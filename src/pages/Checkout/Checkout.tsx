@@ -80,12 +80,12 @@ export const Checkout = () => {
       {contextHolder}
       <div className="title">Thanh toán</div>
       <div className="box-first">
-        <div className="returning">
+        {/* <div className="returning">
           <div>Returning customer?</div>
           <Link className="login" to="/login">
             Click here to login
           </Link>
-        </div>
+        </div> */}
         <div className="form-checkout">
           <h3 className="title-form">
             Sau khi thanh toán hệ thống tự động kích hoạt khoá học/sản phẩm
@@ -167,7 +167,11 @@ export const Checkout = () => {
                 <td className="product-total">
                   <span className="woocommerce-Price-amount amount">
                     <bdi>
-                      {item?.price * item.quantity}&nbsp;
+                      {(item?.price * item.quantity).toLocaleString("en-US", {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}
+                      &nbsp;
                       <span className="woocommerce-Price-currencySymbol">
                         ₫
                       </span>
@@ -190,12 +194,16 @@ export const Checkout = () => {
             </tr> */}
 
             <tr className="order-total">
-              <th>Tổng</th>
+              <th>Tổng thanh toán</th>
               <td>
                 <strong>
                   <span className="woocommerce-Price-amount amount">
                     <bdi>
-                      {totalPrice}&nbsp;
+                      {totalPrice.toLocaleString("en-US", {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}
+                      &nbsp;
                       <span className="woocommerce-Price-currencySymbol">
                         ₫
                       </span>

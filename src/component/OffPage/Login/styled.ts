@@ -1,5 +1,11 @@
 import styled from "styled-components";
 export const StyleLogin = styled.div<any>`
+  @media (min-width: 800px) {
+    width: 50%;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   .login {
     padding: 0 15px;
     display: grid;
@@ -9,9 +15,13 @@ export const StyleLogin = styled.div<any>`
       line-height: 1.2;
       text-transform: uppercase;
       margin-bottom: 10px;
+      color: #fff;
     }
     .form-login {
       width: 100%;
+      .title {
+        color: #fff;
+      }
       input {
         margin: 10px 0;
         background-color: #fff;

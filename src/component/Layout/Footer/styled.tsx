@@ -1,55 +1,57 @@
 import styled from "styled-components";
 export const StyleFooter = styled.div<any>`
-  .wrapper-footer {
-    padding: 30px 15px;
-    .box {
-      margin: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      background: white;
-      border: 1px solid #f4f4f4;
-      padding: 6px;
-      border-radius: 5px;
-      box-shadow: 2px 2px 20px #0000000f;
-      .box-text {
-        display: flex;
-        align-items: center;
-        .first {
-          font-weight: 700;
-          /* margin-bottom: 0.5em; */
-          margin-top: 0;
-          text-rendering: optimizeSpeed;
-          width: 100%;
-          font-size: 16px;
-        }
-        .second {
-          border: none;
-          color: #fff;
-          font-weight: 500;
-          background-color: #f68002;
-          font-size: 13px;
-          width: 110px;
-          height: 30px;
-          border-radius: 3px;
-        }
-      }
-    }
-  }
+  background-image: linear-gradient(white, #d5e5ff);
   .absolute-footer {
+    height: 180px;
     display: grid;
     justify-content: center;
     align-items: center;
+    padding: 30px 0;
     .container {
-      .footer-secondary {
-        display: grid;
-        gap: 8px;
-        .footer-text {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .footer-first {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+      }
+      .footer-second {
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% - 20% - 30%);
+        .footer-secondary {
+          display: grid;
+          gap: 8px;
+          .footer-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            a {
+              text-decoration: none;
+              color: #f68002;
+            }
+          }
+        }
+      }
+      .info-company {
+        .box-icon {
           display: flex;
-          justify-content: center;
+          gap: 8px;
+
           align-items: center;
-          a {
-            text-decoration: none;
-            color: #f68002;
+          padding-bottom: 10px;
+
+          width: 100%;
+          .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 23px;
+            height: 23px;
+            border: 1px solid #ffffff;
+            border-radius: 9999999px;
           }
         }
       }
@@ -62,6 +64,7 @@ export const StyleFooter = styled.div<any>`
           align-items: center;
           h4,
           p {
+            color: #fff;
             margin: 10px;
             text-align: center;
             display: flex;

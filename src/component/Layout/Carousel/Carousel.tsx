@@ -4,6 +4,7 @@ import { StyledCarousel } from "./styled";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import { Tooltip } from "antd";
 interface CarouselInterface {
   listCourse: any;
 }
@@ -14,18 +15,18 @@ export const CarouselHome = ({ listCourse }: CarouselInterface) => {
       <Carousel
         additionalTransfrom={0}
         arrows
-        autoPlay
-        autoPlaySpeed={5000}
+        autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container-with-dots"
+        containerClass="container"
         dotListClass=""
         draggable
-        focusOnSelect={false}
+        focusOnSelect
         infinite={false}
         itemClass=""
         keyBoardControl
         minimumTouchDrag={80}
+        partialVisible
         pauseOnHover
         renderArrowsWhenDisabled={false}
         renderButtonGroupOutside={false}
@@ -42,22 +43,22 @@ export const CarouselHome = ({ listCourse }: CarouselInterface) => {
               min: 1024,
             },
             items: 3,
-            partialVisibilityGutter: 40,
+            partialVisibilityGutter: 20,
           },
           tablet: {
             breakpoint: {
               max: 1024,
-              min: 586,
+              min: 726,
             },
-            items: 3,
-            partialVisibilityGutter: 30,
+            items: 2,
+            partialVisibilityGutter: 40,
           },
           mobile: {
             breakpoint: {
-              max: 586,
+              max: 726,
               min: 0,
             },
-            items: 2,
+            items: 1,
             partialVisibilityGutter: 30,
           },
         }}
@@ -65,7 +66,7 @@ export const CarouselHome = ({ listCourse }: CarouselInterface) => {
         rewindWithAnimation={false}
         rtl={false}
         shouldResetAutoplay
-        showDots={false}
+        showDots
         sliderClass=""
         slidesToSlide={2}
         swipeable
@@ -77,15 +78,34 @@ export const CarouselHome = ({ listCourse }: CarouselInterface) => {
           >
             <div className="title">
               <img
-                style={{ width: "100%", height: "100px", borderRadius: "3px" }}
+                style={{
+                  width: "100%",
+                  height: "150px",
+                  borderRadius: "3px",
+                  objectFit: "cover",
+                }}
                 src={item?.image}
                 alt=""
               />
             </div>
             <div className="body">
               <div className="body-first">
-                <div className="item-first">{item?.title}</div>
-                <div className="price">{item?.price}₫</div>
+                <div className="item-first">
+                  {/* <Tooltip title={item?.title}> */}
+                  <div style={{ color: "black", height: "34px" }}>
+                    {item?.title?.length > 65
+                      ? `${item?.title?.slice(0, 65)}...`
+                      : item?.title}
+                  </div>
+                  {/* </Tooltip> */}
+                </div>
+                <div className="price">
+                  {item.price.toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  })}
+                  ₫
+                </div>
               </div>
             </div>
           </Link>

@@ -6,3 +6,7 @@ const appSelector = (state: RootState) => {
 };
 
 export const selectAppSelector = createSelector(appSelector, (state) => state);
+export const selectNumberCart = createSelector(
+  appSelector,
+  (appState) => appState.numberCart
+);

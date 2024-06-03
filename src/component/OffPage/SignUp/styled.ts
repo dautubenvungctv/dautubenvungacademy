@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
 export const StyledSignUp = styled.div<any>`
+  @media (min-width: 800px) {
+    width: 50%;
+    .sign-in {
+      padding: 0px 15px 0 15px;
+      border-left: 1px solid #333;
+    }
+  }
+  @media (max-width: 800px) {
+    .sign-in {
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      padding: 20px 15px 0 15px;
+    }
+    width: 100%;
+  }
   .sign-in {
-    margin-top: 20px;
-    border-top: 1px solid #333;
-
     display: grid;
-    padding: 20px 15px 0 15px;
     .title-login {
+      color: #fff;
       font-size: 20px;
       font-weight: 700;
       line-height: 1.2;
@@ -16,6 +28,9 @@ export const StyledSignUp = styled.div<any>`
     }
     .form-login {
       width: 100%;
+      .title {
+        color: #fff;
+      }
       input {
         margin: 10px 0;
         background-color: #fff;

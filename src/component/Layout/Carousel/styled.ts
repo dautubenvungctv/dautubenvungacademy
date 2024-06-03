@@ -1,26 +1,41 @@
 import styled from "styled-components";
 
 export const StyledCarousel = styled.div<any>`
+  .react-multi-carousel-track {
+    gap: 4px;
+  }
+  .react-multi-carousel-dot--active button {
+    background: gray;
+  }
+  .react-multi-carousel-list {
+    height: 300px;
+  }
   .item-caroulsel {
-    border-image: linear-gradient(#4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b)
-      30;
-    border-width: 2px;
-    border-style: solid;
+    &:hover {
+      transform: scale(1.05);
+      width: 270px;
+      height: 220px;
+      box-shadow: none;
+      border: 1px solid #b2bec3;
+    }
+    transition: transform 400ms, box-shadow 400ms;
     text-decoration: none;
     display: flex;
-    width: 150px;
+    width: 270px;
     height: 220px;
     padding: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    border-radius: 8px;
-    background: ${(props) =>
-      props.screen_mode === "dark" ? "#2a2e39" : "#F0F3FA"};
+    border-radius: 3px;
+    background: #f0f3fa;
+    will-change: transform, box-shadow;
     .title {
       display: flex;
       align-items: center;
       gap: 24px;
+      width: 100%;
       .text-title {
         color: #3594ef;
         font-family: Roboto;
@@ -42,7 +57,7 @@ export const StyledCarousel = styled.div<any>`
         justify-content: space-between;
         align-items: flex-start;
         align-self: stretch;
-        gap: 50px;
+        gap: 10px;
         .item-first {
           color: ${(props) =>
             props.screen_mode === "dark" ? "#fff" : "#080808"};
@@ -53,9 +68,9 @@ export const StyledCarousel = styled.div<any>`
           line-height: normal;
         }
         .price {
-          font-size: 16px !important;
+          font-size: 18px !important;
           font-weight: bold;
-          color: #0683ff !important;
+          color: #9b59b6 !important;
           text-align: center;
           width: 100%;
         }

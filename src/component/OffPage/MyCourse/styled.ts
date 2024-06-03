@@ -1,12 +1,15 @@
 import styled from "styled-components";
 export const StyledMyCourse = styled.div<any>`
+  margin-top: 50px;
+  width: 100%;
   .title-my-course {
     text-align: center;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin: 10px;
+    color: #fff;
   }
   .box-logout {
     width: 100%;

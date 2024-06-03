@@ -69,70 +69,64 @@ export const BookDetail = () => {
       <div className="box-first">
         <div className="info-product">
           <div className="img">
-            <img
-              style={{ width: "100px", height: "100px" }}
-              src={book?.image}
-              alt=""
-            />
+            <img className="img-detail" src={book?.image} alt="" />
           </div>
         </div>
         <div className="technical-information">
           <h1 className="title-product">{book?.title}</h1>
-          <div className="price">{book?.price}₫</div>
+          <div className="text">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+            nonummy nibh euismod tincidunt ut{" "}
+          </div>
+          <div className="price">
+            {book?.price
+              .toLocaleString("en-US", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              })
+              .replace(/,/g, ".")}{" "}
+            VND
+          </div>
           <div className="row-info">
             <div className="left">Thời lượng</div>
             <div className="right">22 bài giảng</div>
           </div>
           <button onClick={handleBookCart} className="btn-add-shopping-cart">
-            <MdAddShoppingCart /> Thêm vào giỏ
+            <MdAddShoppingCart /> Thêm vào giỏ hàng
           </button>
         </div>
       </div>
-      {/* <button className="btn-membership">Đăng ký Membership để học free</button> */}
-      {/* <div className="buttons">
-        <button>
-          <MdAddShoppingCart /> Thanh toán ngay
-        </button>
-      </div> */}
       <div className="describe">
         <div className="describe-first">
-          <div className="title">Mô tả</div>
-          <div className="title-product">Khoá học tiền tỷ</div>
-          <div className="warning">Lưu ý: Khoá học này không bán</div>
           <img src="" alt="" />
           <div className="wp-caption-text">
-            Share Khóa Học Kiếm Tiền Thần Tốc Trong Ngành Mỹ Phẩm Với Quảng Cáo
-            Và Khuyến Mãi Trên Social Media Cùng Marsal Academy
+            <div className="title-product">MÔ TẢ</div>
+          </div>
+          <div className="text-des">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+            consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+            velit esse molestie consequat, vel illum dolore eu feugiat nulla
+            facilisis at vero eros et accumsan et iusto odio dignissim qui
+            blandit praesent luptatum zzril delenit augue duis dolore te feugait
+            nulla facilisi.
           </div>
         </div>
         <div className="describe-second">
-          <div className="title-product">
-            Bạn sẽ học được gì từ khoá học này
+          <div className="box1">
+            <div className="title-des">Bạn sẽ học được gì từ khoá học này:</div>
+            <blockquote
+              dangerouslySetInnerHTML={{
+                __html: book?.description.replace(/\n/g, "<br/>"),
+              }}
+            />
           </div>
-          <blockquote>
-            <p>
-              ✅ Nắm được những con số đắt giá về tiềm năng và xu hướng phát
-              triển của thị trường ngành mỹ phẩm.
-            </p>
-            <p>
-              ✅ Hiểu rõ ràng nhu cầu, hành vi mua hàng của khách hàng → tiền đề
-              giúp bạn có những bài viết quảng cáo bán hàng, khuyến mãi hấp dẫn
-              có thể chốt được ngay đơn hàng ngay lập tức.
-            </p>
-            <p>
-              ✅ Sử dụng thông minh 2 công cụ quảng cáo, khuyến mãi để bán hàng
-              trên các kênh Facebook, Google, Instagram hiệu quả mà không tốn
-              kém.
-            </p>
-            <p>
-              ✅ Sở hữu 3 concept truyền thông sáng tạo để bạn ứng dụng dễ dàng
-              với quảng cáo &amp; khuyến mãi.
-            </p>
-            <p>
-              ✅ Công thức bài viết và video quảng cáo bán hàng lôi kéo sự quan
-              tâm và kích thích khách hàng chi tiền
-            </p>
-          </blockquote>
+          <div className="box2">
+            Đặc biệt: bạn sẽ được tham gia cộng đồng đầu tư, thảo luận về phương
+            pháp đầu tư, pháp lý trong quá trình đầu tư bất động sản
+          </div>
         </div>
         <div className="describe-third"></div>
       </div>

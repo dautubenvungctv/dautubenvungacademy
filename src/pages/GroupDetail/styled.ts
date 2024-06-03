@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const StyledProductDetail = styled.div<any>`
+export const StyledGroupDetail = styled.div<any>`
   margin-top: 50px;
   padding: 0 15px;
 

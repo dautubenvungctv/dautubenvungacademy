@@ -131,7 +131,14 @@ export const CheckoutQR = () => {
             Phương thức thanh toán: <strong>Chuyển khoản</strong>
           </li>
         </ul>
-        <div className="box-qr">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
+          className="box-qr"
+        >
           <div className="titleqr">Mã QR chuyển khoản ngân hàng</div>
           <img style={{ width: "100%" }} src={QR} alt="" />
           <table

@@ -15,6 +15,7 @@ import { ListCourse } from "./pages/ListCourse/ListCourse";
 import path from "path";
 import { BookDetail } from "./pages/BookDetail/BookDetail";
 import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword";
+import { GroupDetail } from "./pages/GroupDetail/GroupDetail";
 function App() {
   const publics = [
     {
@@ -52,6 +53,10 @@ function App() {
     {
       path: "/book-detail/:id",
       pages: BookDetail,
+    },
+    {
+      path: "/group-detail/:id",
+      pages: GroupDetail,
     },
     {
       path: "/forgot-password",

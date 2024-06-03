@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { StyledShoppingCart } from "./styled";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoIosCloseCircleOutline, IoMdCloseCircle } from "react-icons/io";
 import type { InputNumberProps } from "antd";
-import { InputNumber } from "antd";
+import { InputNumber, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { selectAppSelector } from "../../redux/app/selector";
+import { setNumberCart } from "../../redux/app/index";
 
 export const ShoppingCart = () => {
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
+  const dispatch = useDispatch();
+  const [number, setNumber] = useState(null);
 
   const onChange = (item: any) => (value: any) => {
     // Gửi id và quantity mới lên server
-
+    setNumber(value);
     axios
       .put(`http://185.250.36.147:3000/book-cart/${useID}/${item.book_id}`, {
         quantity: value,
@@ -39,7 +42,7 @@ export const ShoppingCart = () => {
   useEffect(() => {
     getCourseCart();
     getBookCart();
-  }, []);
+  }, [number]);
   let listCart = [...listCourseCart, ...listBookCart];
 
   const handleRemove = (item: any) => {
@@ -61,29 +64,63 @@ export const ShoppingCart = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
+  useEffect(() => {
+    const totalCart = listCart.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    console.log("totalCart: ", totalCart);
+
+    dispatch(setNumberCart(totalCart));
+  }, [totalPrice, number]);
 
   return (
     <StyledShoppingCart>
       <h4 className="title-shopping-cart">Giỏ hàng của bạn</h4>
       <div className="box-shoppingcart">
         <div className="box-product">
+          <div
+            style={{
+              fontSize: "1.2em",
+              fontWeight: 700,
+              textAlign: "center",
+            }}
+          >
+            Sản phẩm
+          </div>
           {listCart.length > 0 ? (
             listCart.map((item: any, index: any) => (
               <>
                 <div onClick={() => handleRemove(item)} className="close">
-                  <IoIosCloseCircleOutline />
+                  <IoMdCloseCircle />
                 </div>
                 <div className="form-cart">
-                  <div className="cart-left">Sản phẩm:</div>
-                  <div className="cart-right">{item?.title}</div>
-                </div>
-                <div className="form-cart">
-                  <div className="cart-left">Giá:</div>
-
+                  <div>
+                    <img
+                      style={{ width: "50px", height: "50px" }}
+                      src={item?.image}
+                      alt=""
+                    />
+                  </div>
+                  <div className="cart-left">
+                    {" "}
+                    <Tooltip title={item?.title}>
+                      <div style={{ color: "black", height: "34px" }}>
+                        {item?.title?.length > 65
+                          ? `${item?.title?.slice(0, 65)}...`
+                          : item?.title}
+                      </div>
+                    </Tooltip>
+                  </div>
                   <div className="cart-right">
-                    {item?.price * item.quantity}₫
+                    {(item?.price * item.quantity).toLocaleString("en-US", {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    })}
+                    ₫
                   </div>
                 </div>
+
                 {item.hasOwnProperty("course_id") ? (
                   <></>
                 ) : (
@@ -101,7 +138,11 @@ export const ShoppingCart = () => {
                   </div>
                 )}
 
-                {listCart.length > 0 && <hr />}
+                {listCart.length > 0 && (
+                  <div
+                    style={{ borderTop: "1px solid rgba(0, 0, 0, .09)" }}
+                  ></div>
+                )}
               </>
             ))
           ) : (
@@ -110,11 +151,17 @@ export const ShoppingCart = () => {
         </div>
 
         <div className="box-total">
-          <div className="title">Tổng giá trị đơn hàng</div>
+          {/* <div className="title">Tổng giá trị đơn hàng</div> */}
 
           <div className="form-cart">
-            <div className="cart-left">Tổng:</div>
-            <div className="cart-right">{totalPrice}₫</div>
+            <div className="cart-left">Tổng thanh toán:</div>
+            <div className="cart-right">
+              {totalPrice.toLocaleString("en-US", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              })}
+              ₫
+            </div>
           </div>
           <div className="to-checkout">
             <Link

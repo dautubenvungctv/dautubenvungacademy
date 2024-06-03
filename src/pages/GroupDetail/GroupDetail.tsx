@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, { useEffect, useState } from "react";
-import { StyledProductDetail } from "./styled";
+import { StyledGroupDetail } from "./styled";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { selectAppSelector } from "../../redux/app/selector";
 import debounce from "lodash/debounce";
 import { notification } from "antd";
 
-export const ProductDetail = () => {
+export const GroupDetail = () => {
   const user = useSelector(selectAppSelector, shallowEqual);
   const [api, contextHolder] = notification.useNotification();
 
@@ -19,7 +19,7 @@ export const ProductDetail = () => {
 
   const getDetailCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/courses/${id}`)
+      .get(`http://185.250.36.147:3000/groups/${id}`)
       .then((res) => setCourse(res.data[0]));
   };
   useEffect(() => {
@@ -60,7 +60,7 @@ export const ProductDetail = () => {
     { leading: true, trailing: false }
   );
   return (
-    <StyledProductDetail>
+    <StyledGroupDetail>
       {contextHolder}
 
       <div className="box-first">
@@ -75,7 +75,7 @@ export const ProductDetail = () => {
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
             nonummy nibh euismod tincidunt ut{" "}
           </div>
-          <div className="price">
+          {/* <div className="price">
             {course?.price
               .toLocaleString("en-US", {
                 minimumFractionDigits: 0,
@@ -83,7 +83,7 @@ export const ProductDetail = () => {
               })
               .replace(/,/g, ".")}{" "}
             VND
-          </div>
+          </div> */}
           <div className="row-info">
             <div className="left">Thời lượng</div>
             <div className="right">22 bài giảng</div>
@@ -127,6 +127,6 @@ export const ProductDetail = () => {
         </div>
         <div className="describe-third"></div>
       </div>
-    </StyledProductDetail>
+    </StyledGroupDetail>
   );
 };
