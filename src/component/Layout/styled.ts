@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const StyledLayout = styled.div<any>`
-  background-color: #131c2e;
-
   @media (max-width: 800px) {
     width: 100%;
   }
@@ -35,10 +33,11 @@ export const StyledLayout = styled.div<any>`
         justify-content: space-between;
         padding: 24px;
         width: calc(50% - 24px);
-        background: linear-gradient(to top, #5378be, rgba(255, 255, 255, 0));
+        background: linear-gradient(to bottom, #0f1a53, #2081f7);
         border-radius: 16px;
         .first {
-          font-weight: 500;
+          font-weight: 400;
+          font-family: "system-ui";
           /* margin-bottom: 0.5em; */
           margin-top: 0;
           text-rendering: optimizeSpeed;
@@ -47,8 +46,9 @@ export const StyledLayout = styled.div<any>`
           color: #fff;
         }
         .demo-group {
-          font-size: 12px;
+          font-size: 11px;
           color: #fff;
+          font-family: sans-serif;
         }
         .box-btn-group {
           display: flex;
@@ -60,7 +60,7 @@ export const StyledLayout = styled.div<any>`
             justify-content: center;
             align-items: center;
             border: none;
-            color: black;
+            color: #031b55;
             font-weight: 700;
             background-color: #56d699;
             font-size: 13px;

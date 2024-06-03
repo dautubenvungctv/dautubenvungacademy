@@ -53,16 +53,18 @@ export const StyledBookDetail = styled.div<any>`
       flex-direction: column;
       justify-content: space-between;
       .title-product {
-        font-weight: 700;
+        font-weight: 500;
         font-size: 20px;
         color: #fff;
+        font-family: sans-serif;
       }
       .text {
         color: #fff;
+        font-size: 13px;
       }
       .price {
         font-size: 17px !important;
-        font-weight: bold;
+
         color: #131c2e !important;
         text-align: center;
         background: #ffc833;
@@ -107,11 +109,12 @@ export const StyledBookDetail = styled.div<any>`
         height: 45px;
         width: 100%;
         color: #131c2e;
-        font-weight: 700;
-        font-size: 20px;
+        font-weight: 500;
+        font-size: 19px;
         background-color: #56d699;
         border: none;
         margin-bottom: 10px;
+        font-family: revert;
       }
     }
   }
@@ -170,6 +173,7 @@ export const StyledBookDetail = styled.div<any>`
         color: #ffff;
         margin-top: 20px;
         margin-bottom: 40px;
+        font-size: 13px;
       }
     }
     .describe-second {

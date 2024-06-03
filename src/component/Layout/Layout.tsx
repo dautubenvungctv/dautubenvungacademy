@@ -6,6 +6,7 @@ import { Flex } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { GrFormNextLink } from "react-icons/gr";
+import next from "../../assets/Asset 5.png";
 
 interface LayoutProps {
   children: any;
@@ -74,14 +75,23 @@ export const Layout = ({ children }: LayoutProps) => {
                     praesent luptatum zzril delenit augue duis
                   </div>
                   <div className="box-btn-group">
-                    <GrFormNextLink
+                    <div
                       style={{
-                        width: "10%",
-                        background: "#ffc833",
+                        width: "15%",
+                        background: "#FFCF03",
                         borderRadius: "20px",
-                        height: "24px",
+                        height: "28px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
-                    />
+                    >
+                      <img
+                        style={{ width: "70%", height: "20px" }}
+                        src={next}
+                        alt=""
+                      />
+                    </div>
                     <Link
                       to={`/group-detail/${item?.group_id}`}
                       className="second"

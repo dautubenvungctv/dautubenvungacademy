@@ -92,7 +92,8 @@ export const BookDetail = () => {
             <div className="right">22 bài giảng</div>
           </div>
           <button onClick={handleBookCart} className="btn-add-shopping-cart">
-            <MdAddShoppingCart /> Thêm vào giỏ hàng
+            <MdAddShoppingCart />{" "}
+            <span style={{ marginTop: "3px" }}>THÊM VÀO GIỎ HÀNG</span>
           </button>
         </div>
       </div>

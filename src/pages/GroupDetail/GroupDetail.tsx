@@ -75,7 +75,7 @@ export const GroupDetail = () => {
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
             nonummy nibh euismod tincidunt ut{" "}
           </div>
-          {/* <div className="price">
+          <div className="price">
             {course?.price
               .toLocaleString("en-US", {
                 minimumFractionDigits: 0,
@@ -83,13 +83,14 @@ export const GroupDetail = () => {
               })
               .replace(/,/g, ".")}{" "}
             VND
-          </div> */}
+          </div>
           <div className="row-info">
             <div className="left">Thời lượng</div>
             <div className="right">22 bài giảng</div>
           </div>
           <button onClick={handleCartCourse} className="btn-add-shopping-cart">
-            <MdAddShoppingCart /> Thêm vào giỏ hàng
+            <MdAddShoppingCart />{" "}
+            <span style={{ marginTop: "3px" }}>THÊM VÀO GIỎ HÀNG</span>
           </button>
         </div>
       </div>

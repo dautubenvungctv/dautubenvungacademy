@@ -1,9 +1,9 @@
 import styled from "styled-components";
 export const StyleFooter = styled.div<any>`
-  background-image: linear-gradient(white, #d5e5ff);
+  background-image: linear-gradient(white, #ecf3ff);
   .absolute-footer {
     height: 180px;
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 30px 0;
@@ -15,11 +15,15 @@ export const StyleFooter = styled.div<any>`
         display: flex;
         flex-direction: column;
         width: 20%;
+        .text {
+          font-size: 12px;
+          color: #0f1b54;
+        }
       }
       .footer-second {
         display: flex;
         justify-content: space-between;
-        width: calc(100% - 20% - 30%);
+
         .footer-secondary {
           display: grid;
           gap: 8px;
@@ -27,7 +31,8 @@ export const StyleFooter = styled.div<any>`
             display: flex;
             justify-content: center;
             align-items: center;
-            color: black;
+            color: #0f1b54;
+            font-size: 13px;
             a {
               text-decoration: none;
               color: #f68002;

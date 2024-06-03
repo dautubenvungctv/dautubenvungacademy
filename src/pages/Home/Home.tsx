@@ -6,7 +6,7 @@ import axios from "axios";
 import { Flex } from "antd";
 import { FaFacebookSquare, FaYoutube, FaTiktok } from "react-icons/fa";
 import { GrFormNextLink } from "react-icons/gr";
-
+import next from "../../assets/Asset 5.png";
 export const Home = () => {
   const [listCourse, setListCourse] = useState([]);
   const [listBooks, setListBooks] = useState([]);
@@ -39,21 +39,30 @@ export const Home = () => {
         </div>
         <div className="info-company">
           <div className="box-icon">
-            <div
+            <a
+              target="_plank"
+              href="https://www.facebook.com/hoangvinhdautu"
               style={{ color: "#3D5A98", background: "#ffffff" }}
               className="icon"
             >
               <FaFacebookSquare />
-            </div>
-            <div style={{ color: "red", background: "#fff" }} className="icon">
+            </a>
+            <a
+              target="_plank"
+              href="https://www.youtube.com/@hoangvinhdautubenvung"
+              style={{ color: "red", background: "#fff" }}
+              className="icon"
+            >
               <FaYoutube />
-            </div>
-            <div
+            </a>
+            <a
+              target="_plank"
+              href="https://www.tiktok.com/@hoangvinhdautu"
               style={{ color: "black", background: "#fff" }}
               className="icon"
             >
               <FaTiktok />
-            </div>
+            </a>
           </div>
           <div className="info-child">
             <div className="title-company">
@@ -73,28 +82,47 @@ export const Home = () => {
         </div>
       </div>
       <div className="box-headerhome">
-        {/* <img
-          src="https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-6/440212779_759722503002558_2165049528631978589_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHilYBwGWU4Ufb4uXQh6HP0ijqG7V1LGziKOobtXUsbOLuEexhZ24D2Qomw_S4mGyrYBe_Y4R2aZGbWmsAoJbWf&_nc_ohc=kpoXAKXB-j8Q7kNvgFOVPV3&_nc_ht=scontent.fhan14-1.fna&oh=00_AYBYbv1DrFiD2sQehuuYoy6kavG9MGIwjlMgfOSGiYfGNw&oe=6644BA86"
-          className="banner-header"
-          alt=""
-        /> */}
         <div className="container">
           <div className="member">
-            <GrFormNextLink
+            <div
               style={{
                 width: "10%",
                 background: "#FFCF03",
                 borderRadius: "20px",
-                height: "28px",
+                height: "35px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
+            >
+              <img style={{ width: "70%", height: "20px" }} src={next} alt="" />
+            </div>
+
             <div className="text-member">
               Truy cập đường link để tìm hiểu thêm
             </div>
-
-            <a className="btn-member" href="dautubenvung.vn" target="_plank">
-              dautubenvung.vn
-            </a>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+              className="btn-member"
+            >
+              <a
+                // style={{
+                //   display: "flex",
+                //   justifyContent: "center !important",
+                //   alignContent: "center !important",
+                //   color: "#051E5C",
+                // }}
+                className="link"
+                href="dautubenvung.vn"
+                target="_plank"
+              >
+                dautubenvung.vn
+              </a>
+            </div>
           </div>
 
           <div className="carousel">
@@ -128,9 +156,10 @@ export const Home = () => {
                         {/* <Tooltip title={item?.title}> */}
                         <div
                           style={{
-                            color: "#131C2E",
-                            height: "16px",
-                            fontFamily: "Arial, sans-serif",
+                            color: "#020C2F",
+                            height: "24px",
+                            fontSize: "17px",
+                            fontFamily: "system-ui",
                             fontWeight: 600,
                           }}
                         >
@@ -186,7 +215,7 @@ export const Home = () => {
                 <img
                   style={{
                     width: "100%",
-                    height: "190px",
+                    height: "200px",
                     borderRadius: "10px",
                   }}
                   src={item.image}
@@ -197,7 +226,15 @@ export const Home = () => {
                 <div className="body-first">
                   <div className="item-first">
                     {/* <Tooltip title={item?.title}> */}
-                    <div style={{ color: "#fff", height: "16px" }}>
+                    <div
+                      style={{
+                        color: "#fff",
+                        height: "24px",
+                        fontSize: "17px",
+                        fontFamily: "system-ui",
+                        fontWeight: 600,
+                      }}
+                    >
                       {item?.title?.length > 30
                         ? `${item?.title?.slice(0, 30)}...`
                         : item?.title}

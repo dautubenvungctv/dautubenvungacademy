@@ -52,37 +52,33 @@ export const Footer = () => {
                   <div className="footer-text ">Khoá học</div>
                   <div className="footer-text ">Sách</div>
                 </div>
-                <div className="footer-secondary">
-                  <div className="footer-text ">Trang chủ</div>
-                  <div className="footer-text ">Khoá học</div>
-                  <div className="footer-text ">Sách</div>
-                </div>
-                <div className="footer-secondary">
-                  <div className="footer-text ">Trang chủ</div>
-                  <div className="footer-text ">Khoá học</div>
-                  <div className="footer-text ">Sách</div>
-                </div>
               </div>
               <div className="info-company">
                 <div className="box-icon">
-                  <div
+                  <a
+                    target="_plank"
+                    href="https://www.facebook.com/hoangvinhdautu"
                     style={{ color: "#3D5A98", background: "#ffffff" }}
                     className="icon"
                   >
                     <FaFacebookSquare />
-                  </div>
-                  <div
+                  </a>
+                  <a
+                    target="_plank"
+                    href="https://www.youtube.com/@hoangvinhdautubenvung"
                     style={{ color: "red", background: "#fff" }}
                     className="icon"
                   >
                     <FaYoutube />
-                  </div>
-                  <div
+                  </a>
+                  <a
+                    target="_plank"
+                    href="https://www.tiktok.com/@hoangvinhdautu"
                     style={{ color: "black", background: "#fff" }}
                     className="icon"
                   >
                     <FaTiktok />
-                  </div>
+                  </a>
                 </div>
               </div>
               {/* <div className="footer-primary">

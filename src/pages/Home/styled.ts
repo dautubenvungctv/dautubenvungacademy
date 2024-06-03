@@ -19,7 +19,8 @@ export const StyledHome = styled.div<any>`
 
       .carousel {
         width: 100%;
-        background: #fff;
+        background-image: linear-gradient(to bottom, white, #ecf3ff);
+
         border-radius: 24px;
         padding: 10px 10px;
         .item-caroulsel {
@@ -155,6 +156,12 @@ export const StyledHome = styled.div<any>`
             color: #ffffff;
             font-weight: 700;
             font-size: 20px;
+            .link {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: #051e5c;
+            }
           }
         }
       }
@@ -184,7 +191,8 @@ export const StyledHome = styled.div<any>`
       justify-content: center;
       align-items: center;
       .carousel {
-        background: #fff;
+        background-image: linear-gradient(to bottom, white, #ecf3ff);
+
         border-radius: 24px;
         padding: 10px 10px;
         width: 100%;
@@ -246,7 +254,7 @@ export const StyledHome = styled.div<any>`
                 line-height: normal;
               }
               .text-demo {
-                color: #131c2e;
+                color: #020c2f;
                 font-size: 11px;
                 font-family: Arial, sans-serif;
               }
@@ -256,24 +264,30 @@ export const StyledHome = styled.div<any>`
                 width: 100%;
                 margin-top: 20px;
                 .price {
-                  font-size: 14px !important;
+                  font-size: 12px !important;
                   font-weight: bold;
                   color: #131c2e !important;
                   text-align: center;
                   background: #ffcf03;
                   border-radius: 20px;
                   padding: 3px 20px;
+                  display: flex;
+                  align-items: center;
+                  font-family: system-ui;
                 }
                 .buy-now {
-                  color: #131c2e;
+                  color: #020c2f;
                   border: none;
                   background-color: #56d699;
                   border-radius: 20px;
-                  padding: 3px 20px;
-                  font-size: 14px !important;
+                  padding: 3px 15px;
+                  font-family: sans-serif;
                   font-weight: bold;
-                  color: #131c2e !important;
-                  font-weight: 600;
+                  display: flex;
+                  align-items: center;
+                  font-weight: bold;
+                  font-size: 12px;
+                  justify-content: center;
                 }
               }
             }
@@ -313,7 +327,7 @@ export const StyledHome = styled.div<any>`
       }
       .member {
         margin: 30px 0;
-        background-color: #f0f3fa;
+        background: linear-gradient(to top, #8a97ab, #ffffff);
         width: 80%;
         border-radius: 5px;
         display: flex;
@@ -324,8 +338,8 @@ export const StyledHome = styled.div<any>`
 
         .text-member {
           font-size: 115%;
-          color: black;
-          font-weight: 600;
+          color: #051e5c;
+          font-weight: 500;
           text-align: center;
         }
 
@@ -340,6 +354,12 @@ export const StyledHome = styled.div<any>`
           color: black;
           font-weight: 500;
           font-size: 20px;
+          .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #051e5c;
+          }
         }
       }
       .box-shadow-2 {
@@ -369,7 +389,7 @@ export const StyledHome = styled.div<any>`
         bottom: 0;
         width: 20%;
         height: 300px;
-        background: linear-gradient(to left, #131c2e, rgba(255, 255, 255, 0));
+        background: linear-gradient(to left, #072563, rgba(255, 255, 255, 0));
       }
     }
     .info-company {
@@ -408,7 +428,7 @@ export const StyledHome = styled.div<any>`
           border-left: 2px solid #f0f3fa;
           padding-left: 30px;
           color: #f0f3fa;
-          font-size: 13px;
+          font-size: 12px;
           height: 150px;
         }
       }
@@ -472,7 +492,7 @@ export const StyledHome = styled.div<any>`
         transition: transform 400ms, box-shadow 400ms;
         text-decoration: none;
         display: flex;
-        width: 160px;
+        width: 147px;
 
         padding: 8px;
 
@@ -517,7 +537,7 @@ export const StyledHome = styled.div<any>`
               line-height: normal;
             }
             .text-demo {
-              color: #9ea1a9;
+              color: #bababa;
               font-size: 11px;
               font-family: Arial, sans-serif;
             }
@@ -527,24 +547,27 @@ export const StyledHome = styled.div<any>`
 
               flex-direction: column;
               .price {
-                font-size: 14px !important;
+                font-size: 12px !important;
                 font-weight: bold;
-                color: #131c2e !important;
+                color: #020c2f !important;
                 text-align: center;
                 background: #ffcf03;
                 border-radius: 20px;
                 padding: 3px 15px;
+                font-family: system-ui;
               }
               .buy-now {
-                color: #131c2e;
+                color: #020c2f;
                 border: none;
                 background-color: #56d699;
                 border-radius: 20px;
                 padding: 3px 15px;
-                font-size: 14px !important;
+                font-size: 12px !important;
                 font-weight: bold;
-
-                font-weight: 600;
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+                font-family: sans-serif;
               }
             }
           }
@@ -611,6 +634,12 @@ export const StyledHome = styled.div<any>`
           color: #ffffff;
           font-weight: 700;
           font-size: 20px;
+          .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #051e5c;
+          }
         }
       }
     }
