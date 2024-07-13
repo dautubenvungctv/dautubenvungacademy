@@ -11,6 +11,7 @@ const initialState = {
   isLogin: false,
   refresh: true,
   numberCart: null,
+  product: null,
 };
 
 const { reducer, actions } = createSlice({
@@ -32,9 +33,18 @@ const { reducer, actions } = createSlice({
     setNumberCart: (state, action) => {
       state.numberCart = action.payload;
     },
+    setProduct: (state, action) => {
+      state.product = action.payload;
+    },
   },
 });
-export const { setUserInfo, setLogin, setLogout, refreshAPI, setNumberCart } =
-  actions;
+export const {
+  setUserInfo,
+  setLogin,
+  setLogout,
+  refreshAPI,
+  setNumberCart,
+  setProduct,
+} = actions;
 
 export default reducer;

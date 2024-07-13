@@ -1,5 +1,10 @@
 import styled from "styled-components";
 export const StyledMyCourse = styled.div<any>`
+  @media (max-width: 800px) {
+    .table-course {
+      margin: 0 15px;
+    }
+  }
   margin-top: 50px;
   width: 100%;
   .title-my-course {
@@ -11,14 +16,35 @@ export const StyledMyCourse = styled.div<any>`
     margin: 10px;
     color: #fff;
   }
+  .table-course {
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .ant-table-wrapper .ant-table-tbody > tr > td {
+    border-bottom: 4px solid #f0f0f0 !important;
+  }
+  .ant-table-wrapper .ant-table-pagination.ant-pagination {
+    display: none;
+  }
+  .rowClassName1 td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .rowClassName1 td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
   .box-logout {
     width: 100%;
     display: flex;
     justify-content: center;
+
     .btn-logout {
+      border-radius: 13px;
       background-color: #3493fa;
       border: 1px solid transparent;
-      border-radius: 0;
       box-sizing: border-box;
       color: #fff;
       cursor: pointer;
@@ -42,5 +68,15 @@ export const StyledMyCourse = styled.div<any>`
         opacity 0.3s, color 0.3s;
       vertical-align: middle;
     }
+  }
+  .ant-table-wrapper .ant-table-thead > tr > th {
+    border-radius: 8px;
+  }
+  .ant-table-wrapper .ant-table-tbody > tr.ant-table-placeholder {
+    border-radius: 8px;
+  }
+  .ant-table-row {
+    background-color: #e9e9e9;
+    border-radius: 8px;
   }
 `;

@@ -1,8 +1,37 @@
 import styled from "styled-components";
 
 export const StyledLayout = styled.div<any>`
-  @media (max-width: 800px) {
+  @media (min-width: 800px) {
     width: 100%;
+    .wrapper-footer {
+      .box {
+        .img {
+          width: 53%;
+          height: 240px;
+        }
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    .wrapper-footer {
+      .box {
+        display: grid;
+        flex-direction: column !important;
+        align-items: center;
+        .img {
+          width: 100%;
+          height: 240px;
+        }
+        .box-text {
+          width: 88% !important;
+          .box-btn-group {
+            .second {
+              padding: 6px 20px !important;
+            }
+          }
+        }
+      }
+    }
   }
   .wrapper-footer {
     padding: 30px 15px;
@@ -64,9 +93,12 @@ export const StyledLayout = styled.div<any>`
             font-weight: 700;
             background-color: #56d699;
             font-size: 13px;
-            width: 110px;
+            padding: 0 20px;
             height: 100%;
             border-radius: 20px;
+            &:hover {
+              border: 1.5px solid #ffcf03;
+            }
           }
         }
       }

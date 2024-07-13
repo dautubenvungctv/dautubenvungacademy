@@ -5,7 +5,7 @@ import iconZalo from "../../../assets/zalo.png";
 import { Flex, Modal } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logodautuden.png";
+import logo from "../../../assets/logo-footer.png";
 import { FaFacebookSquare, FaTiktok, FaYoutube } from "react-icons/fa";
 
 export const Footer = () => {
@@ -27,32 +27,31 @@ export const Footer = () => {
             // background: "#F4F4F4",
           }}
         >
-          <div className="absolute-footer ">
+          <div className="absolute-footer">
             <div className="container">
               <div className="footer-first">
                 <Link to="/" className="icon">
                   <img
                     style={{
-                      width: "180px",
-                      height: "56px",
-                      marginBottom: "7px",
+                      width: "239px",
+                      // height: "76px",
+                      marginBottom: "5px",
                     }}
                     src={logo}
                     alt=""
                   />
                 </Link>
                 <div className="text">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut{" "}
+                  Số 36 LK6A, Làng Việt Kiều Châu Âu, Mỗ Lao, Hà Đông, Hà Nội
                 </div>
               </div>
-              <div className="footer-second">
+              {/* <div className="footer-second">
                 <div className="footer-secondary">
                   <div className="footer-text ">Trang chủ</div>
                   <div className="footer-text ">Khoá học</div>
                   <div className="footer-text ">Sách</div>
                 </div>
-              </div>
+              </div> */}
               <div className="info-company">
                 <div className="box-icon">
                   <a
@@ -80,6 +79,7 @@ export const Footer = () => {
                     <FaTiktok />
                   </a>
                 </div>
+                <div className="hotline">Hotline/Zalo: 0395.888.619</div>
               </div>
               {/* <div className="footer-primary">
             <div className="copyright-footer">

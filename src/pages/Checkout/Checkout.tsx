@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { StyleCheckout } from "./styled";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { notification } from "antd";
+import { shallowEqual, useSelector } from "react-redux";
+import { selectProduct } from "../../redux/app/selector";
 export const Checkout = () => {
   const nextHome = useNavigate();
   const userID = localStorage.getItem("userID");
   const [api, contextHolder] = notification.useNotification();
+  const { state } = useLocation();
+  const { item } = state;
 
   const [name, setName] = useState("");
   const [errName, setErrName] = useState(false);
@@ -22,6 +26,7 @@ export const Checkout = () => {
   const [errAddress, setErrAddress] = useState(false);
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
+
   const getCourseCart = () => {
     axios
       .get(`http://185.250.36.147:3000/course-cart/1`)
@@ -36,12 +41,14 @@ export const Checkout = () => {
     getCourseCart();
     getBookCart();
   }, []);
+
   let listCart = [...listCourseCart, ...listBookCart];
   const totalPrice = listCart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const postInfo = () => {
+
+  const handleSubmit = () => {
     if (
       email !== "" ||
       name !== "" ||
@@ -50,23 +57,17 @@ export const Checkout = () => {
       district !== "" ||
       address !== ""
     ) {
-      axios
-        .post(`http://185.250.36.147:3000/submit-order`, {
-          user_id: userID,
+      nextHome("/check-outqr", {
+        state: {
           name: name,
-          phone: phoneNumber,
+          address: address,
+          phoneNumber: phoneNumber,
+          district: district,
           email: email,
           city: city,
-          district: district,
-          address: address,
-          bookCartId: listBookCart[0]?.cart_id,
-          courseCartId: listCourseCart[0]?.cart_id,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            nextHome("/check-outqr");
-          }
-        });
+          item,
+        },
+      });
     } else {
       api.warning({
         message: `Cảnh báo`,
@@ -75,10 +76,16 @@ export const Checkout = () => {
       });
     }
   };
+  interface Item {
+    title: string;
+  }
+
   return (
     <StyleCheckout>
       {contextHolder}
-      <div className="title">Thanh toán</div>
+      <div className="title">
+        {item.hasOwnProperty("book_id") ? "ĐẶT HÀNG" : "ĐĂNG KÝ KHOÁ HỌC"}
+      </div>
       <div className="box-first">
         {/* <div className="returning">
           <div>Returning customer?</div>
@@ -88,7 +95,7 @@ export const Checkout = () => {
         </div> */}
         <div className="form-checkout">
           <h3 className="title-form">
-            Sau khi thanh toán hệ thống tự động kích hoạt khoá học/sản phẩm
+            Bạn vui lòng nhập đầy đủ thông tin bên ở dưới nhé!
           </h3>
           <div className="form-input">
             <div className="top">Họ và tên*</div>
@@ -117,89 +124,96 @@ export const Checkout = () => {
               type="text"
             />
           </div>
-
-          <div className="form-input">
-            <div className="top">Tỉnh/Thành phố*</div>
-            <input
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              className="bottom"
-              type="text"
-            />
-          </div>
-          <div className="form-input">
-            <div className="top">Quận/Huyện*</div>
-            <input
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
-              className="bottom"
-              type="text"
-            />
-          </div>
-          <div className="form-input">
-            <div className="top">Địa chỉ nhà (Số nhà/Tên Toà...)*</div>
-            <input
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Địa chỉ"
-              className="bottom"
-              type="text"
-            />
-          </div>
+          {item?.hasOwnProperty("book_id") ? (
+            <div>
+              <div className="form-input">
+                <div className="top">Tỉnh/Thành phố*</div>
+                <input
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className="bottom"
+                  type="text"
+                />
+              </div>
+              <div className="form-input">
+                <div className="top">Quận/Huyện*</div>
+                <input
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                  className="bottom"
+                  type="text"
+                />
+              </div>
+              <div className="form-input">
+                <div className="top">Địa chỉ nhà (Số nhà/Tên Toà...)*</div>
+                <input
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Địa chỉ"
+                  className="bottom"
+                  type="text"
+                />
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="box-second">
         <div className="product-buy">
-          <div className="title">Sản phẩm đặt mua</div>
+          {/* <div className="title">Sản phẩm đặt mua</div> */}
           <div className="shop_table">
             <div className="header-table">
-              <th className="product-name">Sản phẩm</th>
-              <th className="product-total">Giá</th>
+              <th style={{ color: "#ffff" }} className="product-name">
+                {item.hasOwnProperty("book_id") ? "Tên sách:" : "Tên khoá học:"}
+              </th>
+              <th
+                style={{ color: "#ffff", fontSize: "12px" }}
+                className="product-total"
+              >
+                {item ? (
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: item.title.replace(/\(/g, "<br> ("),
+                    }}
+                  />
+                ) : (
+                  "Product not available"
+                )}
+              </th>
             </div>
-            {listCart.map((item: any, index: any) => (
-              <tr className="cart_item">
-                <td className="product-name">
-                  {item.title}&nbsp;{" "}
-                  <strong className="product-quantity">
-                    ×&nbsp;{item.quantity}
-                  </strong>{" "}
-                </td>
-                <td className="product-total">
-                  <span className="woocommerce-Price-amount amount">
-                    <bdi>
-                      {(item?.price * item.quantity).toLocaleString("en-US", {
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                      &nbsp;
-                      <span className="woocommerce-Price-currencySymbol">
-                        ₫
-                      </span>
-                    </bdi>
-                  </span>{" "}
-                </td>
-              </tr>
-            ))}
 
-            {/* <tr className="cart-subtotal">
-              <th>Tạm tính</th>
-              <td>
+            <tr className="cart_item">
+              <td
+                style={{ color: "#ffff", fontWeight: 600 }}
+                className="product-name"
+              >
+                Giá:
+              </td>
+              <td className="product-total">
                 <span className="woocommerce-Price-amount amount">
-                  <bdi>
-                    219.000&nbsp;
+                  <bdi style={{ color: "#ffff" }}>
+                    {item
+                      ? (item.price * 1).toLocaleString("en-US", {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        })
+                      : "0"}
+                    &nbsp;
                     <span className="woocommerce-Price-currencySymbol">₫</span>
                   </bdi>
-                </span>
+                </span>{" "}
               </td>
-            </tr> */}
+            </tr>
 
             <tr className="order-total">
-              <th>Tổng thanh toán</th>
+              <th style={{ color: "#ffff" }}>Tổng thanh toán:</th>
               <td>
                 <strong>
                   <span className="woocommerce-Price-amount amount">
-                    <bdi>
-                      {totalPrice.toLocaleString("en-US", {
+                    <bdi style={{ color: "#ffff" }}>
+                      {item?.price.toLocaleString("en-US", {
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 0,
                       })}
@@ -213,22 +227,19 @@ export const Checkout = () => {
               </td>
             </tr>
           </div>
+          <button onClick={handleSubmit} className="btn-order">
+            THANH TOÁN
+          </button>
         </div>
+
         <div className="payment">
-          <div className="title-payment">Chuyển khoản</div>
           <div className="payment_box payment_method_casso_up_vietinbank">
             <p>
-              Chuyển khoản vào tài khoản <b>Vietinbank</b> của chúng tôi. Đơn
-              hàng sẽ tự động được xác nhận.{" "}
+              Sau khi thanh toán hệ thống sẽ tự động kích hoạt chương trình khoá
+              học của bạn
             </p>
-            <div className="power_by">
-              Tra soát giao dịch tự động bởi Casso Robot
-            </div>
           </div>
         </div>
-        <button onClick={postInfo} className="btn-order">
-          Đặt hàng
-        </button>
       </div>
     </StyleCheckout>
   );

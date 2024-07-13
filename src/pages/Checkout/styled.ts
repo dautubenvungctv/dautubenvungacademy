@@ -1,13 +1,32 @@
 import styled from "styled-components";
 export const StyleCheckout = styled.div<any>`
   padding: 0 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  @media (max-width: 800px) {
+    .form-checkout {
+      width: 100% !important;
+    }
+    .box-second {
+      width: 100% !important;
+      .product-buy {
+        width: 85% !important;
+      }
+    }
+  }
   .title {
-    font-size: 1.75rem;
+    color: #fff;
+    font-size: 1.7rem;
     font-weight: 700;
     text-align: center;
-    padding: 16px;
+    padding: 30px 16px 16px 16px;
   }
   .box-first {
+    width: 100%;
+    justify-content: center;
+    display: flex;
     .returning {
       border-radius: 3px;
       padding: 16px 30px;
@@ -22,10 +41,12 @@ export const StyleCheckout = styled.div<any>`
       }
     }
     .form-checkout {
+      width: 53.5%;
+
       display: flex;
       flex-direction: column;
-      border-radius: 3px;
-      padding: 16px 30px;
+      border-radius: 8px;
+      padding: 16px 30px 25px 30px;
       margin: 0 0 24px 0;
       border: 1px solid #d5d8dc;
       .title-form {
@@ -33,42 +54,51 @@ export const StyleCheckout = styled.div<any>`
         font-size: 14px;
         font-weight: 700;
         margin-top: 0;
-        margin-bottom: 30px;
-        color: #000;
+        margin-bottom: 20px;
+        color: #fff;
       }
       .form-input {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
         .top {
           font-size: 14px;
-          color: #69727d;
+          color: #fff;
           margin-bottom: 10px;
         }
         .bottom {
           color: #69727d;
-          background-color: #f9fafa;
+          background-color: #d4d4d4;
           font-size: 14px;
           border: none;
           font-weight: 400;
-          padding: 16px;
-          width: calc(100% - 30px);
+          padding: 10px;
+          width: calc(100% - 20px);
+          border-radius: 13px;
         }
       }
     }
   }
   .box-second {
-    padding-bottom: 50px;
+    width: 60%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     .product-buy {
-      border-radius: 3px;
+      width: 90%;
+      border-radius: 8px;
       padding: 16px 30px;
       margin: 0 0 24px 0;
       border: 1px solid #d5d8dc;
       display: grid;
       .title {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 700;
         margin-top: 0;
         margin-bottom: var(--sections-title-spacing, 30px);
-        color: var(--sections-title-color, #000);
+        color: var(--sections-title-color, #fff);
       }
       .shop_table {
         .order-total,
@@ -77,16 +107,20 @@ export const StyleCheckout = styled.div<any>`
         .header-table {
           display: flex;
           justify-content: space-between;
-          padding: 15px;
+          padding: 10px;
           width: calc(100% - 30px);
+        }
+        .cart_item {
+          .product-name {
+          }
         }
       }
     }
     .payment {
-      border-radius: 3px;
-      padding: 16px 30px;
-      margin: 0 0 24px 0;
-      border: 1px solid #d5d8dc;
+      border-radius: 8px;
+      padding: 16px 30px 0px 16;
+
+      /* border: 1px solid #d5d8dc; */
       display: grid;
       .title-payment {
         font-size: 14px;
@@ -94,20 +128,28 @@ export const StyleCheckout = styled.div<any>`
         color: var(--sections-radio-buttons-color, #69727d);
       }
       .payment_box {
-        color: #69727d;
-        background-color: #f9fafa;
-        font-weight: 400;
-        font-size: 13px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 0;
+        color: #fff;
+        p {
+          margin-top: 5px;
+        }
       }
     }
     .btn-order {
-      background-color: #5bc0de;
-      width: 100%;
+      margin-bottom: 20px;
+      margin-top: 15px;
+      margin-left: 10px;
+      cursor: pointer;
+      background-color: #42a732;
+      width: calc(100% - 20px);
       float: none;
       color: var(--purchase-button-normal-text-color, #fff);
       min-height: auto;
       padding: var(--purchase-button-padding, 1em 1em);
-      border-radius: var(--purchase-button-border-radius, 3px);
+      border-radius: var(--purchase-button-border-radius, 13px);
       border: none;
     }
   }

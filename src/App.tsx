@@ -16,6 +16,7 @@ import path from "path";
 import { BookDetail } from "./pages/BookDetail/BookDetail";
 import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword";
 import { GroupDetail } from "./pages/GroupDetail/GroupDetail";
+import { Document } from "./pages/Document/Document";
 function App() {
   const publics = [
     {
@@ -25,6 +26,10 @@ function App() {
     {
       path: "/login",
       pages: User,
+    },
+    {
+      path: "/document",
+      pages: Document,
     },
     {
       path: "/product-detail/:id",

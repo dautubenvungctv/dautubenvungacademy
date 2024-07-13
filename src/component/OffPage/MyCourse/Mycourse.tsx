@@ -21,17 +21,15 @@ export const Mycourse = () => {
   const userID = localStorage.getItem("userID");
   const getListMyCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/course-after-payment/${userID}`)
+      .get(`http://185.250.36.147:3000/my-courses/${userID}`)
       .then((res1) => {
         setListMyCourse(res1?.data);
       });
   };
   const getListMyBook = () => {
-    axios
-      .get(`http://185.250.36.147:3000/book-after-payment/${userID}`)
-      .then((res2) => {
-        setListMyBook(res2?.data);
-      });
+    axios.get(`http://185.250.36.147:3000/my-books/${userID}`).then((res2) => {
+      setListMyBook(res2?.data);
+    });
   };
   useEffect(() => {
     console.log(window.location.href);
@@ -41,16 +39,20 @@ export const Mycourse = () => {
   const columns = [
     {
       title: "Ngày",
-      dataIndex: "added_at",
+      dataIndex: "enroll_date",
+      render: (_: any, record: any) => {
+        return (
+          <Space size="middle">
+            <div>{record.added_at}</div>
+          </Space>
+        );
+      },
     },
     {
       title: "Tên",
       dataIndex: "title",
     },
-    {
-      title: "Số lượng",
-      dataIndex: "quantity",
-    },
+
     // {
     //   title: "Action",
     //   key: "action",
@@ -68,28 +70,29 @@ export const Mycourse = () => {
   const columnsCourse = [
     {
       title: "Ngày",
-      dataIndex: "added_at",
+      dataIndex: "enroll_date",
+      render: (_: any, record: any) => {
+        console.log("_: ", _);
+        console.log("record: ", record);
+        return (
+          <Space size="middle">
+            <div>{record.added_at}</div>
+          </Space>
+        );
+      },
     },
     {
       title: "Tên",
       dataIndex: "title",
     },
-    {
-      title: "Số lượng",
-      dataIndex: "quantity",
-    },
+
     {
       title: "Vào học",
-      key: "action",
+      key: "url_course",
       render: (_: any, record: any) => {
-        // console.log("_: ", _);
-        // console.log("record: ", record);
         return (
           <Space size="middle">
-            <a
-              target="_plank"
-              href="https://husteduvn-my.sharepoint.com/personal/linh_ns185373_sis_hust_edu_vn/_layouts/15/stream.aspx?id=%2Fpersonal%2Flinh%5Fns185373%5Fsis%5Fhust%5Fedu%5Fvn%2FDocuments%2Ftiktok%2Emp4&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E5489ab20%2D4511%2D49f6%2Da6b1%2D0dcf3f8ca991"
-            >
+            <a target="_plank" href={_.url}>
               Vào học
             </a>
           </Space>
@@ -101,10 +104,12 @@ export const Mycourse = () => {
   return (
     <StyledMyCourse>
       <div className="title-my-course">Khoá học của tôi</div>
-      <Table columns={columnsCourse} dataSource={formatCourse} />
-      <div className="title-my-course">Sách đã mua của tôi</div>
+      <div className="table-course">
+        <Table columns={columnsCourse} dataSource={formatCourse} />
+      </div>
+      {/* <div className="title-my-course">Sách đã mua của tôi</div>
 
-      <Table columns={columns} dataSource={formatBook} />
+      <Table columns={columns} dataSource={formatBook} /> */}
       <div className="box-logout">
         <button onClick={handleLogOut} className="btn-logout">
           Đăng xuất

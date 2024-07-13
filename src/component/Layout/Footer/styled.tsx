@@ -1,12 +1,17 @@
 import styled from "styled-components";
 export const StyleFooter = styled.div<any>`
   background-image: linear-gradient(white, #ecf3ff);
+  @media (max-width: 800px) {
+    .absolute-footer {
+      padding: 9px 15px !important;
+    }
+  }
   .absolute-footer {
-    height: 180px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 0;
+    padding: 9px 0;
     .container {
       display: flex;
       justify-content: space-between;
@@ -14,10 +19,11 @@ export const StyleFooter = styled.div<any>`
       .footer-first {
         display: flex;
         flex-direction: column;
-        width: 20%;
+
         .text {
-          font-size: 12px;
+          font-size: 13px;
           color: #0f1b54;
+          margin-left: 3px;
         }
       }
       .footer-second {
@@ -46,18 +52,23 @@ export const StyleFooter = styled.div<any>`
           gap: 8px;
 
           align-items: center;
-          padding-bottom: 10px;
-
+          padding-bottom: 8px;
+          justify-content: flex-end;
           width: 100%;
           .icon {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 23px;
-            height: 23px;
+            width: 40px;
+            height: 40px;
             border: 1px solid #ffffff;
             border-radius: 9999999px;
           }
+        }
+        .hotline {
+          font-size: 13px;
+          color: #0f1b54;
+          margin-left: 3px;
         }
       }
       .footer-primary {

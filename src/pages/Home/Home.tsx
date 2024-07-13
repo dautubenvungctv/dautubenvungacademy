@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { CarouselHome } from "../../component/Layout/Carousel/Carousel";
 import { StyledHome } from "./styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Flex } from "antd";
+import { Element } from "react-scroll";
+import { Flex, Tooltip } from "antd";
 import { FaFacebookSquare, FaYoutube, FaTiktok } from "react-icons/fa";
 import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
+import { useDispatch } from "react-redux";
+import { setProduct } from "../../redux/app";
 export const Home = () => {
+  const dispatch = useDispatch();
   const [listCourse, setListCourse] = useState([]);
   const [listBooks, setListBooks] = useState([]);
+  const navigate = useNavigate();
   const getListCourses = () => {
     axios
       .get("http://185.250.36.147:3000/courses")
@@ -26,14 +31,18 @@ export const Home = () => {
   useEffect(() => {
     getBooks();
   }, []);
+  const handleBuy = (item: any) => {
+    navigate("/check-out", { state: { item } });
+  };
   return (
     <StyledHome>
       <div className="company">
         <div className="img-company">
           <img
-            style={{ height: "300px", width: "100%" }}
+            style={{ width: "100%" }}
             src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/445027283_452477927427860_5476144160905867461_n.jpg?stp=dst-jpg_p526x296&_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGa7xh7_BzF_K4Izqeq7JoYOImoZh-S2jE4iahmH5LaMTn8G1EVdijveOeNvdhEmwuhVoIZCTGPPr0EK1IHqHNQ&_nc_ohc=X79DMIdusakQ7kNvgHWwb23&_nc_ht=scontent.fhan14-2.fna&oh=00_AYDk1bV0_5pN51wcdBgy4Bk-2Nd90YxNSNWcNu9hLfzCyw&oe=665B65F1"
             alt=""
+            className="avt-cty"
           />
           <div className="blurred-section"></div>
         </div>
@@ -42,7 +51,7 @@ export const Home = () => {
             <a
               target="_plank"
               href="https://www.facebook.com/hoangvinhdautu"
-              style={{ color: "#3D5A98", background: "#ffffff" }}
+              style={{ color: "#3D5A98" }}
               className="icon"
             >
               <FaFacebookSquare />
@@ -50,7 +59,7 @@ export const Home = () => {
             <a
               target="_plank"
               href="https://www.youtube.com/@hoangvinhdautubenvung"
-              style={{ color: "red", background: "#fff" }}
+              style={{ color: "red" }}
               className="icon"
             >
               <FaYoutube />
@@ -58,7 +67,7 @@ export const Home = () => {
             <a
               target="_plank"
               href="https://www.tiktok.com/@hoangvinhdautu"
-              style={{ color: "black", background: "#fff" }}
+              style={{ color: "black" }}
               className="icon"
             >
               <FaTiktok />
@@ -124,73 +133,82 @@ export const Home = () => {
               </a>
             </div>
           </div>
-
-          <div className="carousel">
-            <strong className="title-course">KHOÁ HỌC</strong>
-            <Flex
-              style={{ padding: "20px 100px" }}
-              wrap="wrap"
-              gap="24px"
-              justify="center"
-            >
-              {listCourse.map((item: any, index: any) => (
-                <Link
-                  to={`/product-detail/${item?.course_id}`}
-                  className="item-caroulsel"
-                >
-                  <div className="title">
-                    <img
-                      style={{
-                        width: "100%",
-                        height: "150px",
-                        borderRadius: "3px",
-                        objectFit: "cover",
-                      }}
-                      src={item?.image}
-                      alt=""
-                    />
-                  </div>
-                  <div className="body">
-                    <div className="body-first">
-                      <div className="item-first">
-                        {/* <Tooltip title={item?.title}> */}
-                        <div
-                          style={{
-                            color: "#020C2F",
-                            height: "24px",
-                            fontSize: "17px",
-                            fontFamily: "system-ui",
-                            fontWeight: 600,
-                          }}
+          <Element name="courses">
+            <div className="carousel">
+              <strong className="title-course">KHOÁ HỌC</strong>
+              <Flex
+                className="flex-course"
+                wrap="wrap"
+                gap="24px"
+                justify="center"
+              >
+                {listCourse.map((item: any, index: any) => (
+                  <Link
+                    to={`/product-detail/${item?.course_id}`}
+                    className="item-caroulsel"
+                  >
+                    <Link
+                      to={`/product-detail/${item?.course_id}`}
+                      className="title"
+                    >
+                      <img
+                        style={{
+                          width: "100%",
+                          height: "150px",
+                          borderRadius: "3px",
+                          objectFit: "cover",
+                        }}
+                        src={item?.image}
+                        alt=""
+                      />
+                    </Link>
+                    <div className="body">
+                      <div className="body-first">
+                        <Link
+                          to={`/product-detail/${item?.course_id}`}
+                          className="item-first"
                         >
-                          {item?.title?.length > 30
-                            ? `${item?.title?.slice(0, 30)}...`
-                            : item?.title}
+                          <Tooltip color="#04225C" title={item?.title}>
+                            <div
+                              style={{
+                                color: "#020C2F",
+                                height: "24px",
+                                fontSize: "17px",
+                                fontFamily: "system-ui",
+                                fontWeight: 600,
+                              }}
+                            >
+                              {item?.title?.length > 25
+                                ? `${item?.title?.slice(0, 25)}...`
+                                : item?.title}
+                            </div>
+                          </Tooltip>
+                        </Link>
+                        <Link
+                          to={`/product-detail/${item?.course_id}`}
+                          className="text-demo"
+                        >
+                          {item?.demo}
+                        </Link>
+                        <div className="box-buy">
+                          <div className="price">
+                            {item.price
+                              .toLocaleString("en-US", {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0,
+                              })
+                              .replace(/,/g, ".")}{" "}
+                            VND
+                          </div>
+                          <button className="buy-now">ĐĂNG KÝ KHOÁ HỌC</button>
                         </div>
-                        {/* </Tooltip> */}
-                      </div>
-                      <div className="text-demo">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut{" "}
-                      </div>
-                      <div className="box-buy">
-                        <div className="price">
-                          {item.price
-                            .toLocaleString("en-US", {
-                              minimumFractionDigits: 0,
-                              maximumFractionDigits: 0,
-                            })
-                            .replace(/,/g, ".")}{" "}
-                          VND
-                        </div>
-                        <button className="buy-now">MUA NGAY</button>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
-            </Flex>
-          </div>
+                  </Link>
+                ))}
+              </Flex>
+            </div>
+          </Element>
         </div>
       </div>
 
@@ -203,66 +221,78 @@ export const Home = () => {
           />
         </a>
       </div> */}
-      <div className="wrapper-book ">
-        <strong className="title-book">SÁCH</strong>
-        <Flex wrap="wrap" gap="24px">
-          {listBooks.map((item: any, index: any) => (
-            <Link
-              to={`/book-detail/${item?.book_id}`}
-              className="item-caroulsel-book"
-            >
-              <div className="title">
-                <img
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    borderRadius: "10px",
-                  }}
-                  src={item.image}
-                  alt=""
-                />
-              </div>
-              <div className="body">
-                <div className="body-first">
-                  <div className="item-first">
-                    {/* <Tooltip title={item?.title}> */}
-                    <div
+      <Element name="book">
+        {listBooks.length > 0 && (
+          <div className="wrapper-book ">
+            <strong className="title-book">SÁCH</strong>
+            <Flex wrap="wrap" gap="24px">
+              {listBooks.map((item: any, index: any) => (
+                <Link
+                  to={`/book-detail/${item?.book_id}`}
+                  className="item-caroulsel-book"
+                >
+                  <Link to={`/book-detail/${item?.book_id}`} className="title">
+                    <img
                       style={{
-                        color: "#fff",
-                        height: "24px",
-                        fontSize: "17px",
-                        fontFamily: "system-ui",
-                        fontWeight: 600,
+                        width: "100%",
+                        height: "200px",
+                        borderRadius: "10px",
                       }}
-                    >
-                      {item?.title?.length > 30
-                        ? `${item?.title?.slice(0, 30)}...`
-                        : item?.title}
+                      src={item.image}
+                      alt=""
+                    />
+                  </Link>
+                  <div className="body">
+                    <div className="body-first">
+                      <Link
+                        to={`/book-detail/${item?.book_id}`}
+                        className="item-first"
+                      >
+                        {/* <Tooltip title={item?.title}> */}
+                        <div
+                          style={{
+                            color: "#fff",
+                            height: "24px",
+                            fontSize: "17px",
+                            fontFamily: "system-ui",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {item?.title?.length > 30
+                            ? `${item?.title?.slice(0, 30)}...`
+                            : item?.title}
+                        </div>
+                        {/* </Tooltip> */}
+                      </Link>
+                      <Link
+                        to={`/book-detail/${item?.book_id}`}
+                        className="text-demo"
+                      >
+                        {item?.demo}
+                      </Link>
+                      <div className="box-buy">
+                        <Link
+                          to={`/book-detail/${item?.book_id}`}
+                          className="price"
+                        >
+                          {item.price
+                            .toLocaleString("en-US", {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })
+                            .replace(/,/g, ".")}{" "}
+                          VND
+                        </Link>
+                        <button className="buy-now">MUA NGAY</button>
+                      </div>
                     </div>
-                    {/* </Tooltip> */}
                   </div>
-                  <div className="text-demo">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                    sed diam nonummy nibh euismod tincidunt ut{" "}
-                  </div>
-                  <div className="box-buy">
-                    <div className="price">
-                      {item.price
-                        .toLocaleString("en-US", {
-                          minimumFractionDigits: 0,
-                          maximumFractionDigits: 0,
-                        })
-                        .replace(/,/g, ".")}{" "}
-                      VND
-                    </div>
-                    <button className="buy-now">MUA NGAY</button>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </Flex>
-      </div>
+                </Link>
+              ))}
+            </Flex>
+          </div>
+        )}
+      </Element>
     </StyledHome>
   );
 };

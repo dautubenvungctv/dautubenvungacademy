@@ -5,15 +5,48 @@ import { styled } from "styled-components";
 // };
 
 export const StyledHeader = styled.div<any>`
+  @media (max-width: 800px) {
+    .flex-row {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      .icon-mobile {
+        display: block !important;
+        color: #fff;
+        font-size: 23px;
+        position: relative;
+        .box-mobile {
+          z-index: 30;
+          position: absolute;
+          background-color: #0b3388;
+          top: 30px;
+          padding: 20px;
+          display: grid;
+          font-size: 15px;
+
+          width: 100px;
+          border-radius: 8px;
+          .tab {
+            color: #fff;
+            padding: 10px 0;
+          }
+        }
+      }
+    }
+    .second-header {
+      display: none !important;
+    }
+  }
   .header-main {
     width: 100%;
     z-index: 10;
     padding-top: 15px;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    .icon-mobile {
+      display: none;
+    }
     .flex-row {
       padding-bottom: 8px;
-      /* padding-left: 15px; */
-      padding-right: 30px;
+
       align-items: center;
       display: flex;
       flex-flow: row nowrap;
@@ -93,6 +126,10 @@ export const StyledHeader = styled.div<any>`
   }
   .icon-user {
     font-size: 20px;
+    &:hover {
+      transform: scale(1.05);
+      font-size: 25;
+    }
   }
   @media (max-width: 549px) {
     .header-main {

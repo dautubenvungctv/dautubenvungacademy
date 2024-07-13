@@ -35,7 +35,7 @@ export const StyledSignUp = styled.div<any>`
         margin: 10px 0;
         background-color: #fff;
         border: 1px solid #ddd;
-        border-radius: 0;
+        border-radius: 13px;
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         color: #333;
@@ -60,7 +60,7 @@ export const StyledSignUp = styled.div<any>`
     .btn-login {
       background-color: #3493fa;
       border: 1px solid transparent;
-      border-radius: 0;
+      border-radius: 13px;
       box-sizing: border-box;
       color: #fff;
       cursor: pointer;

@@ -23,10 +23,12 @@ export const StyleLogin = styled.div<any>`
         color: #fff;
       }
       input {
+        border-radius: 13px;
+
         margin: 10px 0;
         background-color: #fff;
         border: 1px solid #ddd;
-        border-radius: 0;
+
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         color: #333;
@@ -51,7 +53,7 @@ export const StyleLogin = styled.div<any>`
     .btn-login {
       background-color: #3493fa;
       border: 1px solid transparent;
-      border-radius: 0;
+      border-radius: 13px;
       box-sizing: border-box;
       color: #fff;
       cursor: pointer;
@@ -100,7 +102,7 @@ export const StyleLogin = styled.div<any>`
         margin: 10px 0;
         background-color: #fff;
         border: 1px solid #ddd;
-        border-radius: 0;
+
         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         color: #333;
@@ -111,6 +113,7 @@ export const StyleLogin = styled.div<any>`
         transition: color 0.3s, border 0.3s, background 0.3s, opacity 0.3s;
         vertical-align: middle;
         width: 100%;
+        border-radius: 13px;
       }
     }
     .memorize {
@@ -121,7 +124,7 @@ export const StyleLogin = styled.div<any>`
     .btn-login {
       background-color: #3493fa;
       border: 1px solid transparent;
-      border-radius: 0;
+      border-radius: 13px;
       box-sizing: border-box;
       color: #fff;
       cursor: pointer;

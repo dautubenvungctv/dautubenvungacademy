@@ -4,6 +4,7 @@ import axios from "axios";
 import { notification } from "antd";
 import type { NotificationArgsProps } from "antd";
 import { useNavigation } from "react-router-dom";
+import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 
 type NotificationPlacement = NotificationArgsProps["placement"];
 export const SignUp = () => {
@@ -14,6 +15,7 @@ export const SignUp = () => {
   const [errEmail, setErrEmail] = useState(false);
   const [errPhoneNumber, setErrPhoneNumber] = useState(false);
   const [errPassWord, setErrPassWord] = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const openNotification = (placement: NotificationPlacement) => {
     api.success({
       message: `Notification success`,
@@ -71,7 +73,7 @@ export const SignUp = () => {
           {errEmail ? <p>Email không được để trống</p> : <></>}
         </div>
         <div className="form-login">
-          <div className="title">SĐT</div>
+          <div className="title">Số điện thoại</div>
           <input
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
@@ -82,11 +84,19 @@ export const SignUp = () => {
 
         <div className="form-login">
           <div className="title">Mật khẩu</div>
-          <input
-            value={passWord}
-            onChange={(e) => setPassWord(e.target.value)}
-            type="text"
-          />
+          <div style={{ position: "relative" }}>
+            <input
+              value={passWord}
+              onChange={(e) => setPassWord(e.target.value)}
+              type={showPass ? "text" : "password"}
+            />
+            <div
+              onClick={() => setShowPass(!showPass)}
+              style={{ position: "absolute", right: 20, top: 22 }}
+            >
+              {showPass ? <IoMdEye /> : <IoIosEyeOff />}
+            </div>
+          </div>
           {errPassWord ? <p>Mật khẩu không được để trống</p> : <></>}
         </div>
         {/* <div className="memorize">
