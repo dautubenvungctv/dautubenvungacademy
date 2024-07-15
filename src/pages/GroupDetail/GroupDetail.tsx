@@ -77,7 +77,7 @@ export const GroupDetail = () => {
         <div className="technical-information">
           <h1 className="title-product">{course?.title}</h1>
           <div className="text">{course?.demo}</div>
-          {/* <div className="price">
+          <div className="price">
             {course?.price
               ?.toLocaleString("en-US", {
                 minimumFractionDigits: 0,
@@ -85,7 +85,7 @@ export const GroupDetail = () => {
               })
               .replace(/,/g, ".")}{" "}
             VND
-          </div> */}
+          </div>
 
           <button
             onClick={() => handleBuy(course)}

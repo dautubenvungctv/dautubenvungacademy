@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledSignUp } from "./styled";
 import axios from "axios";
 import { notification } from "antd";
@@ -12,10 +12,12 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [passWord, setPassWord] = useState("");
+  const [passWordFirst, setPassWordFirst] = useState("");
   const [errEmail, setErrEmail] = useState(false);
   const [errPhoneNumber, setErrPhoneNumber] = useState(false);
   const [errPassWord, setErrPassWord] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [showPassFirst, setShowPassFirst] = useState(false);
   const openNotification = (placement: NotificationPlacement) => {
     api.success({
       message: `Notification success`,
@@ -23,7 +25,13 @@ export const SignUp = () => {
       placement,
     });
   };
-
+  useEffect(() => {
+    if (passWord !== passWordFirst) {
+      setErrPassWord(true);
+    } else {
+      setErrPassWord(false);
+    }
+  }, [passWord, passWordFirst]);
   const handleSignUp = () => {
     if (email === "") {
       setErrEmail(true);
@@ -35,12 +43,17 @@ export const SignUp = () => {
     } else {
       setErrPhoneNumber(false);
     }
-    if (passWord === "") {
+    if (passWord !== passWordFirst) {
       setErrPassWord(true);
     } else {
       setErrPassWord(false);
     }
-    if (passWord !== "" || email !== "" || phoneNumber !== "") {
+    if (
+      passWord !== "" &&
+      email !== "" &&
+      phoneNumber !== "" &&
+      passWord === passWordFirst
+    ) {
       axios
         .post("http://185.250.36.147:3000/auth/register", {
           email: email,
@@ -70,7 +83,11 @@ export const SignUp = () => {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
           />
-          {errEmail ? <p>Email không được để trống</p> : <></>}
+          {errEmail ? (
+            <p style={{ marginTop: "5px" }}>Email không được để trống</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="form-login">
           <div className="title">Số điện thoại</div>
@@ -79,11 +96,37 @@ export const SignUp = () => {
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
           />
-          {errPhoneNumber ? <p>Số điện thoại không được để trống</p> : <></>}
+          {errPhoneNumber ? (
+            <p style={{ marginTop: "5px" }}>
+              Số điện thoại không được để trống
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
-
         <div className="form-login">
           <div className="title">Mật khẩu</div>
+          <div style={{ position: "relative" }}>
+            <input
+              value={passWordFirst}
+              onChange={(e) => setPassWordFirst(e.target.value)}
+              type={showPassFirst ? "text" : "password"}
+            />
+            <div
+              onClick={() => setShowPassFirst(!showPassFirst)}
+              style={{
+                position: "absolute",
+                right: 20,
+                top: 22,
+                cursor: "pointer",
+              }}
+            >
+              {showPassFirst ? <IoMdEye /> : <IoIosEyeOff />}
+            </div>
+          </div>
+        </div>
+        <div className="form-login">
+          <div className="title">Nhập lại mật khẩu</div>
           <div style={{ position: "relative" }}>
             <input
               value={passWord}
@@ -92,12 +135,21 @@ export const SignUp = () => {
             />
             <div
               onClick={() => setShowPass(!showPass)}
-              style={{ position: "absolute", right: 20, top: 22 }}
+              style={{
+                position: "absolute",
+                right: 20,
+                top: 22,
+                cursor: "pointer",
+              }}
             >
               {showPass ? <IoMdEye /> : <IoIosEyeOff />}
             </div>
           </div>
-          {errPassWord ? <p>Mật khẩu không được để trống</p> : <></>}
+          {errPassWord ? (
+            <p style={{ margin: "0" }}>Mật khẩu không trùng nhau</p>
+          ) : (
+            <></>
+          )}
         </div>
         {/* <div className="memorize">
           <input type="checkbox" name="" id="" />

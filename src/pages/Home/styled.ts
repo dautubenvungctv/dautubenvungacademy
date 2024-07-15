@@ -52,16 +52,16 @@ export const StyledHome = styled.div<any>`
           .item-caroulsel {
             &:hover {
               transform: scale(1.05);
-              width: 281px;
-              height: 263px;
+              border: 1px solid #b2bec3;
+
               box-shadow: none;
             }
-            border: 1px solid #b2bec3;
+
             transition: transform 400ms, box-shadow 400ms;
             text-decoration: none;
             display: flex;
             width: 281px;
-            height: 263px;
+
             padding: 8px;
 
             flex-direction: column;
@@ -264,16 +264,15 @@ export const StyledHome = styled.div<any>`
           .item-caroulsel {
             &:hover {
               transform: scale(1.05);
-              width: 281px;
-              height: 263px;
-              box-shadow: none;
               border: 1px solid #b2bec3;
+
+              box-shadow: none;
             }
             transition: transform 400ms, box-shadow 400ms;
             text-decoration: none;
             display: flex;
             width: 281px;
-            height: 263px;
+
             padding: 8px;
 
             flex-direction: column;
