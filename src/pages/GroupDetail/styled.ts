@@ -19,6 +19,7 @@ export const StyledGroupDetail = styled.div<any>`
             width: 100%;
             border-radius: 24px;
             height: 300px;
+            object-fit: cover;
           }
         }
       }
@@ -45,6 +46,7 @@ export const StyledGroupDetail = styled.div<any>`
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             width: 100%;
             border-radius: 24px;
+            object-fit: cover;
           }
         }
       }
