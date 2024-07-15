@@ -128,7 +128,7 @@ export const Home = () => {
                 //   color: "#051E5C",
                 // }}
                 className="link"
-                href="dautubenvung.vn"
+                href="https://dautubenvung.vn/"
                 target="_plank"
               >
                 dautubenvung.vn
