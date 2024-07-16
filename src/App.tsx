@@ -17,11 +17,16 @@ import { BookDetail } from "./pages/BookDetail/BookDetail";
 import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword";
 import { GroupDetail } from "./pages/GroupDetail/GroupDetail";
 import { Document } from "./pages/Document/Document";
+import { ChangePass } from "./pages/ChangePass/ChangePass";
 function App() {
   const publics = [
     {
       path: "/",
       pages: Home,
+    },
+    {
+      path: "/change-pass",
+      pages: ChangePass,
     },
     {
       path: "/login",

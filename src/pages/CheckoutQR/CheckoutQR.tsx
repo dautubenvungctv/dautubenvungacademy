@@ -68,7 +68,6 @@ export const CheckoutQR = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          nextHome("/login");
         }
       });
   };

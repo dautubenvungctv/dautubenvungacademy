@@ -3,12 +3,14 @@ import { StyledMyCourse } from "./styled";
 import { Space, Table } from "antd";
 import axios from "axios";
 import moment from "moment";
+import { Link } from "react-router-dom";
 export const Mycourse = () => {
   const handleLogOut = () => {
     localStorage.removeItem("userID");
     localStorage.removeItem("token");
     window.location.reload();
   };
+
   const [listMyBook, setListMyBook] = useState([]);
   const formatBook = listMyBook.map((item: any) => {
     return { ...item, added_at: moment(item?.added_at).format("DD-MM-YYYY") };
@@ -129,6 +131,9 @@ export const Mycourse = () => {
         <button onClick={handleLogOut} className="btn-logout">
           Đăng xuất
         </button>
+        <Link to="/change-pass" className="btn-logout">
+          Đổi mật khẩu
+        </Link>
       </div>
     </StyledMyCourse>
   );

@@ -112,6 +112,7 @@ export const Footer = () => {
                 height: "40px",
                 width: "40px",
               }}
+              className="icon-rot"
             >
               <img
                 style={{

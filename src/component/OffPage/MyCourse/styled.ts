@@ -40,7 +40,7 @@ export const StyledMyCourse = styled.div<any>`
     width: 100%;
     display: flex;
     justify-content: center;
-
+    gap: 8px;
     .btn-logout {
       border-radius: 13px;
       background-color: #3493fa;

@@ -72,7 +72,6 @@ export const StyleFooter = styled.div<any>`
             align-items: center;
             width: 35px;
             height: 35px;
-
             border-radius: 9999999px;
           }
         }
@@ -109,11 +108,29 @@ export const StyleFooter = styled.div<any>`
     right: 10px;
     display: grid;
     gap: 10px;
+    .icon-rot {
+      animation: phone-vr-circle-fill 1s infinite alternate;
+    }
   }
   @media (max-width: 849px) {
     .medium-text-center .pull-left,
     .medium-text-center .pull-right {
       float: none;
+    }
+  }
+  @keyframes phone-vr-circle-fill {
+    0%,
+    50%,
+    100% {
+      -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+    10%,
+    30% {
+      -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+    20%,
+    40% {
+      -webkit-transform: rotate(25deg) scale(1) skew(1deg);
     }
   }
 `;

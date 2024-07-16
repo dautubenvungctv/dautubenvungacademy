@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const StyledForgotPassWord = styled.div<any>`
+  margin-top: 30px;
   padding: 0 15px;
   .form-input {
     margin-bottom: 5px;
@@ -14,14 +15,16 @@ export const StyledForgotPassWord = styled.div<any>`
       font-size: 14px;
       border: none;
       font-weight: 400;
-      padding: 16px;
+      padding: 2px;
       width: calc(100% - 30px);
+      border-radius: 13px;
+      height: 2.507em;
     }
     .btn-sendcode {
       margin: 10px 0;
       background-color: #f98002;
       border: none;
-      border-radius: 3px;
+      border-radius: 13px;
       padding: 10px 10px;
       color: #fff;
     }
@@ -33,7 +36,7 @@ export const StyledForgotPassWord = styled.div<any>`
   .btnforgot {
     background-color: #3493fa;
     border: 1px solid transparent;
-    border-radius: 0;
+    border-radius: 13px3;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
@@ -42,7 +45,6 @@ export const StyledForgotPassWord = styled.div<any>`
     font-weight: bolder;
     letter-spacing: 0.03em;
     line-height: 2.4em;
-
     margin-top: 10px;
     max-width: 100%;
     min-height: 2.5em;
