@@ -33,6 +33,26 @@ export const Layout = ({ children }: LayoutProps) => {
       });
     }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
   };
+  const initZalo = () => {
+    if (!document.getElementById("zalo-script")) {
+      const script = document.createElement("script");
+      script.setAttribute("id", "zalo-script");
+      script.type = "text/javascript";
+      script.src = "https://sp.zalo.me/plugins/sdk.js";
+      script.onload = () => {
+        console.log("Zalo SDK loaded");
+        // Gọi các hàm khởi tạo hoặc sử dụng Zalo SDK ở đây
+      };
+      script.onerror = () => {
+        console.error("Failed to load Zalo SDK");
+      };
+      document.getElementsByTagName("head")[0].appendChild(script);
+    }
+  };
+
+  useEffect(() => {
+    initZalo();
+  }, []);
   return (
     <StyledLayout>
       <Flex
