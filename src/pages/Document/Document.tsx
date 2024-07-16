@@ -3,6 +3,7 @@ import { StyleDocument } from "./styles";
 import { Element, Link as Scroll, scroller } from "react-scroll";
 import axios from "axios";
 import { notification } from "antd";
+import anhVinh from "../../assets/anhvinh.jpg";
 export const Document = () => {
   const [name, setName] = useState("");
   const [api, contextHolder] = notification.useNotification();
@@ -16,19 +17,27 @@ export const Document = () => {
     }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
   };
   const sendEmail = () => {
-    axios
-      .post("http://185.250.36.147:3000/send-document", {
-        email: email,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          api.success({
-            message: `Thành công`,
-            description: "Bạn đã đăng ký nhận ebook miễn phí thành công!",
-            placement: "topRight",
-          });
-        }
+    if (name !== "" && email !== "") {
+      axios
+        .post("http://185.250.36.147:3000/send-document", {
+          email: email,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            api.success({
+              message: `Thành công`,
+              description: "Bạn đã đăng ký nhận ebook miễn phí thành công!",
+              placement: "topRight",
+            });
+          }
+        });
+    } else {
+      api.error({
+        message: `Lỗi`,
+        description: "Đăng ký thất bại",
+        placement: "topRight",
       });
+    }
   };
   return (
     <StyleDocument>
@@ -58,11 +67,7 @@ export const Document = () => {
             </button>
           </div>
         </div>
-        <img
-          style={{ width: 300 }}
-          src="https://w.ladicdn.com/s550x700/5e874668e0f4570769c1795e/bia-ebook-20220909102934.png"
-          alt=""
-        />
+        <img style={{ width: 300 }} src={anhVinh} alt="" />
       </div>
       <div className="content-ebook">
         <p className="ladi-headline ladi-transition">

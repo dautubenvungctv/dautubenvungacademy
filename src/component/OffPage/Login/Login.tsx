@@ -56,7 +56,7 @@ export const Login = () => {
             api.error({
               message: `Notification success`,
               description: "Tài khoản, mật khẩu không đúng!",
-              placement: "bottomRight",
+              placement: "topRight",
             });
           }
         })
@@ -64,7 +64,7 @@ export const Login = () => {
           api.error({
             message: `Notification success`,
             description: "Tài khoản, mật khẩu không đúng!",
-            placement: "bottomRight",
+            placement: "topRight",
           });
         });
     }

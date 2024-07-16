@@ -61,7 +61,12 @@ export const SignUp = () => {
           phone: phoneNumber,
           password: passWord,
         })
-        .then((res) => openNotification("bottomRight"))
+        .then((res) => {
+          openNotification("bottomRight");
+          setEmail("");
+          setPassWord("");
+          setPhoneNumber("");
+        })
         .catch((err) =>
           api.error({
             message: `Lỗi`,

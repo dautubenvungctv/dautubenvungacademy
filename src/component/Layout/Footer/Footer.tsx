@@ -33,7 +33,7 @@ export const Footer = () => {
                 <Link to="/" className="icon">
                   <img
                     style={{
-                      width: "239px",
+                      width: "187px",
                       // height: "76px",
                       marginBottom: "5px",
                     }}
@@ -92,32 +92,33 @@ export const Footer = () => {
           <div className="contact">
             <a href="https://www.facebook.com/hoangvinhdautu" target="_plank">
               <img
+                className="icon-rot"
                 style={{
                   background: "#5196E4",
                   borderRadius: "10000000000px",
-                  height: "50px",
-                  width: "50px",
+                  height: "40px",
+                  width: "40px",
                 }}
                 src={iconFacebook}
                 alt=""
               />
             </a>
             <a
-              href="https://zalo.me/0395.888.619"
+              href="https://zalo.me/0395888619"
               target="_plank"
               style={{
                 background: "#5196E4",
                 borderRadius: "10000000000px",
-                height: "50px",
-                width: "50px",
+                height: "40px",
+                width: "40px",
               }}
             >
               <img
                 style={{
                   background: "#5196E4",
                   borderRadius: "10000000000px",
-                  height: "50px",
-                  width: "50px",
+                  height: "40px",
+                  width: "40px",
                 }}
                 src={iconZalo}
                 alt=""

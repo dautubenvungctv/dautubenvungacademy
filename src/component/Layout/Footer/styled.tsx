@@ -1,9 +1,19 @@
 import styled from "styled-components";
 export const StyleFooter = styled.div<any>`
   background-image: linear-gradient(white, #ecf3ff);
+
   @media (max-width: 800px) {
     .absolute-footer {
       padding: 9px 15px !important;
+    }
+    .text {
+      font-size: 11px !important;
+    }
+    .box-icon {
+      padding-bottom: 7px !important;
+    }
+    .hotline {
+      font-size: 11px !important;
     }
   }
   .absolute-footer {
@@ -16,6 +26,7 @@ export const StyleFooter = styled.div<any>`
       display: flex;
       justify-content: space-between;
       width: 100%;
+      gap: 3px;
       .footer-first {
         display: flex;
         flex-direction: column;
@@ -59,8 +70,8 @@ export const StyleFooter = styled.div<any>`
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
 
             border-radius: 9999999px;
           }
@@ -69,6 +80,7 @@ export const StyleFooter = styled.div<any>`
           font-size: 12px;
           color: #0f1b54;
           margin-left: 3px;
+          text-align: center;
         }
       }
       .footer-primary {
@@ -93,7 +105,7 @@ export const StyleFooter = styled.div<any>`
   }
   .contact {
     position: fixed;
-    bottom: 10px;
+    bottom: 100px;
     right: 10px;
     display: grid;
     gap: 10px;

@@ -145,14 +145,11 @@ export const Layout = ({ children }: LayoutProps) => {
                             alt=""
                           />
                         </div>
-                        <Link
-                          to={`/group-detail/${item?.group_id}`}
-                          className="second"
-                        >
+                        <div className="second">
                           {index === 0
                             ? "ĐĂNG KÝ TƯ VẤN"
                             : "THAM GIA CỘNG ĐỒNG"}
-                        </Link>
+                        </div>
                       </div>
                     </div>
                   </div>

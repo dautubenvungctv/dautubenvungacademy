@@ -149,7 +149,7 @@ export const Header = () => {
                       style={{
                         position: "absolute",
                         top: "31px",
-                        background: "#56D699",
+                        background: "#fff",
                         padding: "8px",
                         borderRadius: "8px",
                         display: "flex",
@@ -159,9 +159,10 @@ export const Header = () => {
                         fontWeight: 600,
                         cursor: "pointer",
                         width: "120px",
+                        color: "#2362e0",
                       }}
                     >
-                      Khoá học của bạn
+                      Khoá học của tôi
                     </Link>
                   )}
                 </div>

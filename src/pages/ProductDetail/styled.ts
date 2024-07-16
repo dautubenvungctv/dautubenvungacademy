@@ -9,7 +9,7 @@ export const StyledProductDetail = styled.div<any>`
       justify-content: space-between;
 
       .info-product {
-        width: 53%;
+        width: 55%;
 
         .img {
           width: 100%;
@@ -23,7 +23,7 @@ export const StyledProductDetail = styled.div<any>`
         }
       }
       .technical-information {
-        width: 49%;
+        width: 47%;
       }
     }
     .describe {
@@ -76,7 +76,7 @@ export const StyledProductDetail = styled.div<any>`
     .info-product {
     }
     .technical-information {
-      width: 45%;
+      width: 42%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -89,6 +89,7 @@ export const StyledProductDetail = styled.div<any>`
       .text {
         color: #fff;
         font-size: 13px;
+        text-align: justify;
       }
       .price {
         font-size: 17px !important;
@@ -132,7 +133,7 @@ export const StyledProductDetail = styled.div<any>`
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
+        border-radius: 20px;
         padding: 3px 5px 3px 5px;
         height: 45px;
         width: 100%;
@@ -145,7 +146,6 @@ export const StyledProductDetail = styled.div<any>`
         font-family: revert;
         &:hover {
           transform: scale(1.01);
-
           box-shadow: none;
           border: 1px solid #09ff37;
         }
@@ -222,9 +222,8 @@ export const StyledProductDetail = styled.div<any>`
           width: 40%;
           font-family: Arial, sans-serif;
           font-size: 50px;
-          color: white; /* Text fill color */
-          text-shadow: -1px -1px 0 #0000ff, 1px -1px 0 #0000ff,
-            -1px 1px 0 #0000ff, 1px 1px 0 #0000ff;
+          color: #00369c; /* Text fill color */
+          font-weight: 600;
         }
         .des {
           width: 60%;
@@ -244,7 +243,7 @@ export const StyledProductDetail = styled.div<any>`
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 3px 5px 3px 5px;
             height: 45px;
             width: 80%;

@@ -398,7 +398,7 @@ export const StyledHome = styled.div<any>`
       .member {
         margin: 30px 0;
         background: linear-gradient(to top, #8a97ab, #ffffff);
-        width: 80%;
+        width: 85%;
         border-radius: 5px;
         display: flex;
         gap: 20px;

@@ -119,7 +119,7 @@ export const Home = () => {
             </div>
 
             <div className="text-member">
-              Truy cập đường link để tìm hiểu thêm
+              Truy cập web/app công cụ phân tích hỗ trợ đầu tư cổ phiếu
             </div>
             <div
               style={{
@@ -163,10 +163,7 @@ export const Home = () => {
                     }
                     className="item-caroulsel"
                   >
-                    <Link
-                      to={`/product-detail/${item?.course_id}`}
-                      className="title"
-                    >
+                    <div className="title">
                       <img
                         style={{
                           width: "100%",
@@ -177,13 +174,10 @@ export const Home = () => {
                         src={item?.image}
                         alt=""
                       />
-                    </Link>
+                    </div>
                     <div className="body">
                       <div className="body-first">
-                        <Link
-                          to={`/product-detail/${item?.course_id}`}
-                          className="item-first"
-                        >
+                        <div className="item-first">
                           <Tooltip color="#04225C" title={item?.title}>
                             <div
                               style={{
@@ -199,13 +193,8 @@ export const Home = () => {
                                 : item?.title}
                             </div>
                           </Tooltip>
-                        </Link>
-                        <Link
-                          to={`/product-detail/${item?.course_id}`}
-                          className="text-demo"
-                        >
-                          {item?.demo}
-                        </Link>
+                        </div>
+                        <div className="text-demo">{item?.demo}</div>
                         <div className="box-buy">
                           <div className="price">
                             {item.price
@@ -240,7 +229,7 @@ export const Home = () => {
                   }
                   className="item-caroulsel-book"
                 >
-                  <Link to={`/book-detail/${item?.book_id}`} className="title">
+                  <div className="title">
                     <img
                       style={{
                         width: "100%",
@@ -250,13 +239,10 @@ export const Home = () => {
                       src={item.image}
                       alt=""
                     />
-                  </Link>
+                  </div>
                   <div className="body">
                     <div className="body-first">
-                      <Link
-                        to={`/book-detail/${item?.book_id}`}
-                        className="item-first"
-                      >
+                      <div className="item-first">
                         {/* <Tooltip title={item?.title}> */}
                         <div
                           style={{
@@ -272,18 +258,10 @@ export const Home = () => {
                             : item?.title}
                         </div>
                         {/* </Tooltip> */}
-                      </Link>
-                      <Link
-                        to={`/book-detail/${item?.book_id}`}
-                        className="text-demo"
-                      >
-                        {item?.demo}
-                      </Link>
+                      </div>
+                      <div className="text-demo">{item?.demo}</div>
                       <div className="box-buy">
-                        <Link
-                          to={`/book-detail/${item?.book_id}`}
-                          className="price"
-                        >
+                        <div className="price">
                           {item.price
                             .toLocaleString("en-US", {
                               minimumFractionDigits: 0,
@@ -291,7 +269,7 @@ export const Home = () => {
                             })
                             .replace(/,/g, ".")}{" "}
                           VND
-                        </Link>
+                        </div>
                         <button className="buy-now">MUA NGAY</button>
                       </div>
                     </div>
