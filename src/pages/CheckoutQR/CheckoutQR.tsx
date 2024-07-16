@@ -18,16 +18,26 @@ export const CheckoutQR = () => {
   const today = moment(); // Lấy ngày hiện tại
   const [pricePaid, setPricePaid] = useState<any>(null);
   const [contentPaid, setContentPaid] = useState<any>(null);
-
+  const [checkSucces, setCheckSucces] = useState(false);
   const [idOrder, setIdOder] = useState(null);
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
+  const token = localStorage.getItem("token");
+
   const getOrder = () => {
-    axios.get(`http://185.250.36.147:3000/orders/${userID}`).then((res) => {
-      if (res.data.length > 0) {
-        setIdOder(res.data[res.data.length - 1].id);
-      }
-    });
+    axios
+      .get(`http://185.250.36.147:3000/orders/${userID}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.length > 0) {
+          setIdOder(res.data[res.data.length - 1].id);
+        }
+      });
   };
 
   useEffect(() => {
@@ -35,17 +45,27 @@ export const CheckoutQR = () => {
   }, []);
   const checkSubmitOrder = () => {
     axios
-      .post(`http://185.250.36.147:3000/buy-course`, {
-        user_id: userID ? +userID : null,
-        name: name,
-        phone: userID ? null : phoneNumber,
-        email: userID ? null : email,
-        city: city,
-        district: district,
-        address: address,
-        book_id: item?.book_id,
-        course_id: item?.course_id,
-      })
+      .post(
+        `http://185.250.36.147:3000/buy-course`,
+        {
+          user_id: userID ? +userID : null,
+          name: name,
+          phone: userID ? null : phoneNumber,
+          email: userID ? null : email,
+          city: city,
+          district: district,
+          address: address,
+          book_id: item?.book_id,
+          course_id: item?.course_id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Custom-Header": "foobar",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           nextHome("/login");
@@ -93,13 +113,7 @@ export const CheckoutQR = () => {
       clearInterval(intervalId);
     };
   }, []);
-  const paymentSuccessful = () => {
-    axios.post(`http://185.250.36.147:3000/payment-successful`, {
-      user_id: userID,
-      book_id: listBookCart[0]?.cart_id,
-      course_id: listCourseCart[0]?.cart_id,
-    });
-  };
+
   const matchedString = contentPaid?.match(/DTBV[^\s;]+/);
 
   const expectedString = `DTBV${CODE_ORDER}${phoneNumber}`;
@@ -115,11 +129,12 @@ export const CheckoutQR = () => {
         description: "Chuyển khoản thành công!",
         placement: "bottomRight",
       });
+
       checkSubmitOrder();
       if (!userID) {
         setCheckUserOrder(true);
       } else {
-        nextHome("/login");
+        setCheckSucces(true);
       }
 
       // clearInterval(intervalId);
@@ -220,6 +235,26 @@ export const CheckoutQR = () => {
             </div>
             <Link style={{ color: "#fff" }} to="/login" className="link-login">
               CLICK VÀO ĐÂY ĐỂ ĐĂNG NHẬP VÀO HỌC
+            </Link>
+          </div>
+        ) : checkSucces ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "16px",
+            }}
+            className="box-qr"
+          >
+            <div className="titleqr">
+              Bạn đã chuyển khoản thành công !<br />{" "}
+              <span style={{ fontSize: "23px" }}></span>
+            </div>
+            <Link style={{ color: "#fff" }} to="/login" className="link-login">
+              CLICK VÀO ĐÂY ĐỂ VÀO HỌC
             </Link>
           </div>
         ) : (

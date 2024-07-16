@@ -21,50 +21,23 @@ export const BookDetail = () => {
   const userID = localStorage.getItem("userID");
 
   const [book, setBook] = useState<any>(null);
+  const token = localStorage.getItem("token");
 
   const getDetailBook = () => {
     axios
-      .get(`http://185.250.36.147:3000/books/${id}`)
+      .get(`http://185.250.36.147:3000/books/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setBook(res.data[0]));
   };
   useEffect(() => {
     getDetailBook();
   }, []);
 
-  const handleBookCart = debounce(
-    () => {
-      if (userID) {
-        axios
-          .post(`http://185.250.36.147:3000/book-cart`, {
-            user_id: userID,
-            book_id: id,
-            quantity: 1,
-          })
-          .then((res) => {
-            api.success({
-              message: `Thành công`,
-              description: "Đã thêm vào giỏ hàng!",
-              placement: "topRight",
-            });
-          })
-          .catch((err) => {
-            api.error({
-              message: `Lỗi`,
-              description: "Bạn phải đăng nhập để thêm vào giỏ hàng!",
-              placement: "topRight",
-            });
-          });
-      } else {
-        api.error({
-          message: `Lỗi`,
-          description: "Bạn phải đăng nhập để thêm vào giỏ hàng!",
-          placement: "topRight",
-        });
-      }
-    },
-    3000,
-    { leading: true, trailing: false }
-  );
   if (!book) {
     return <div>Loading...</div>;
   }

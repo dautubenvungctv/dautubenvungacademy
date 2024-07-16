@@ -23,7 +23,7 @@ export const Header = () => {
   const [openOption, setOpenOption] = useState(false);
   const useID = localStorage.getItem("userID");
   const info = localStorage.getItem("info");
-
+  const token = localStorage.getItem("token");
   const handleScrollTo = (target: any) => {
     navigate("/");
     setTimeout(() => {
@@ -35,12 +35,24 @@ export const Header = () => {
   };
   const getCourseCart = () => {
     axios
-      .get(`http://185.250.36.147:3000/course-cart/${useID}`)
+      .get(`http://185.250.36.147:3000/course-cart/${useID}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListCourseCart(res.data));
   };
   const getBookCart = () => {
     axios
-      .get(`http://185.250.36.147:3000/book-cart/${useID}`)
+      .get(`http://185.250.36.147:3000/book-cart/${useID}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListBookCart(res.data));
   };
   useEffect(() => {

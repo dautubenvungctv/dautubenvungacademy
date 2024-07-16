@@ -8,6 +8,8 @@ export const Document = () => {
   const [name, setName] = useState("");
   const [api, contextHolder] = notification.useNotification();
   const [email, setEmail] = useState("");
+  const token = localStorage.getItem("token");
+
   const handleScrollTo = (target: any) => {
     setTimeout(() => {
       scroller.scrollTo(target, {
@@ -19,9 +21,19 @@ export const Document = () => {
   const sendEmail = () => {
     if (name !== "" && email !== "") {
       axios
-        .post("http://185.250.36.147:3000/send-document", {
-          email: email,
-        })
+        .post(
+          "http://185.250.36.147:3000/send-document",
+          {
+            email: email,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "X-Custom-Header": "foobar",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((res) => {
           if (res.status === 200) {
             api.success({

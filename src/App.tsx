@@ -7,7 +7,7 @@ import { Home } from "./pages/Home/Home";
 import { Login } from "./component/OffPage/Login/Login";
 import { User } from "./component/OffPage";
 import { ProductDetail } from "./pages/ProductDetail/ProductDetail";
-import { ShoppingCart } from "./pages/ShoppingCart/ShoppingCart";
+
 import { Checkout } from "./pages/Checkout/Checkout";
 import { CheckoutQR } from "./pages/CheckoutQR/CheckoutQR";
 import { Member } from "./pages/Member/Member";
@@ -35,10 +35,7 @@ function App() {
       path: "/product-detail/:id",
       pages: ProductDetail,
     },
-    {
-      path: "/shopping-cart",
-      pages: ShoppingCart,
-    },
+
     {
       path: "/check-out",
       pages: Checkout,

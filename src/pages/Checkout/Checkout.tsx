@@ -26,15 +26,28 @@ export const Checkout = () => {
   const [errAddress, setErrAddress] = useState(false);
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
+  const token = localStorage.getItem("token");
 
   const getCourseCart = () => {
     axios
-      .get(`http://185.250.36.147:3000/course-cart/1`)
+      .get(`http://185.250.36.147:3000/course-cart/1`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListCourseCart(res.data));
   };
   const getBookCart = () => {
     axios
-      .get(`http://185.250.36.147:3000/book-cart/1`)
+      .get(`http://185.250.36.147:3000/book-cart/1`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListBookCart(res.data));
   };
   useEffect(() => {

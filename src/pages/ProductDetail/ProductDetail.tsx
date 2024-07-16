@@ -14,7 +14,7 @@ import { Element } from "react-scroll";
 export const ProductDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const token = localStorage.getItem("token");
   const user = useSelector(selectAppSelector, shallowEqual);
   const [api, contextHolder] = notification.useNotification();
 
@@ -23,10 +23,17 @@ export const ProductDetail = () => {
   const userID = localStorage.getItem("userID");
 
   const getDetailCourse = () => {
-    axios.get(`http://185.250.36.147:3000/courses/${id}`).then((res) => {
-      console.log("res: ", res);
-      setCourse(res.data[0]);
-    });
+    axios
+      .get(`http://185.250.36.147:3000/courses/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setCourse(res.data[0]);
+      });
   };
   useEffect(() => {
     getDetailCourse();

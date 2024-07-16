@@ -13,13 +13,20 @@ import { setProduct } from "../../redux/app";
 export const Home = () => {
   const dispatch = useDispatch();
   const [infoCompany, setInfoCompany] = useState<any>([]);
+  const token = localStorage.getItem("token");
 
   const [listCourse, setListCourse] = useState([]);
   const [listBooks, setListBooks] = useState([]);
   const navigate = useNavigate();
   const getListCourses = () => {
     axios
-      .get("http://185.250.36.147:3000/courses")
+      .get("http://185.250.36.147:3000/courses", {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListCourse(res.data));
   };
   useEffect(() => {
@@ -27,7 +34,13 @@ export const Home = () => {
   }, []);
   const getBooks = () => {
     axios
-      .get("http://185.250.36.147:3000/books")
+      .get("http://185.250.36.147:3000/books", {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListBooks(res.data));
   };
   useEffect(() => {
@@ -37,9 +50,17 @@ export const Home = () => {
     navigate("/check-out", { state: { item } });
   };
   const getCompany = () => {
-    axios.get(`http://185.250.36.147:3000/title`).then((res) => {
-      setInfoCompany(res.data[0]);
-    });
+    axios
+      .get(`http://185.250.36.147:3000/title`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setInfoCompany(res.data[0]);
+      });
   };
   useEffect(() => {
     getCompany();

@@ -19,10 +19,17 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const [listGroups, setListGroups] = useState([]);
   const getListGroups = () => {
     axios
-      .get("http://185.250.36.147:3000/groups")
+      .get("http://185.250.36.147:3000/groups", {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setListGroups(res.data));
   };
   useEffect(() => {

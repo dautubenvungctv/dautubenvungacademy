@@ -19,10 +19,17 @@ export const GroupDetail = () => {
   const { id }: any = useParams();
   const [course, setCourse] = useState<any>(null);
   const userID = localStorage.getItem("userID");
+  const token = localStorage.getItem("token");
 
   const getDetailCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/groups/${id}`)
+      .get(`http://185.250.36.147:3000/groups/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => setCourse(res.data[0]));
   };
   useEffect(() => {
@@ -32,11 +39,21 @@ export const GroupDetail = () => {
     () => {
       if (userID) {
         axios
-          .post(`http://185.250.36.147:3000/course-cart`, {
-            user_id: userID,
-            course_id: id,
-            quantity: 1,
-          })
+          .post(
+            `http://185.250.36.147:3000/course-cart`,
+            {
+              user_id: userID,
+              course_id: id,
+              quantity: 1,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "X-Custom-Header": "foobar",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
           .then((res) => {
             api.success({
               message: `Thành công`,
