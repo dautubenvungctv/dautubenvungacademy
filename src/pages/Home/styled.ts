@@ -16,6 +16,7 @@ export const StyledHome = styled.div<any>`
     .company {
       flex-direction: column;
       padding: 0 15px !important;
+      margin-bottom: 50px;
       .img-company {
         width: 100% !important;
         .avt-cty {
@@ -32,7 +33,6 @@ export const StyledHome = styled.div<any>`
           position: static !important;
           .text-company {
             padding-right: 10px;
-            height: 108px !important;
           }
         }
       }
