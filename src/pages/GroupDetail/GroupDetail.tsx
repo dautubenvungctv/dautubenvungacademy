@@ -9,13 +9,14 @@ import { selectAppSelector } from "../../redux/app/selector";
 import debounce from "lodash/debounce";
 import { notification } from "antd";
 import { setProduct } from "../../redux/app";
+import { Element } from "react-scroll";
 
 export const GroupDetail = () => {
   const user = useSelector(selectAppSelector, shallowEqual);
   const [api, contextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id }: any = useParams();
   const [course, setCourse] = useState<any>(null);
   const userID = localStorage.getItem("userID");
 
@@ -26,7 +27,7 @@ export const GroupDetail = () => {
   };
   useEffect(() => {
     getDetailCourse();
-  }, []);
+  }, [id]);
   const handleCartCourse = debounce(
     () => {
       if (userID) {
@@ -92,17 +93,16 @@ export const GroupDetail = () => {
             className="btn-add-shopping-cart"
           >
             <MdAddShoppingCart />{" "}
-            <span style={{ marginTop: "3px" }}>ĐĂNG KÝ NGAY</span>
+            <span style={{ marginTop: "3px" }}>
+              {id === "26" ? "ĐĂNG KÝ TƯ VẤN ĐẦU TƯ" : "THAM GIA CỘNG ĐỒNG"}
+            </span>
           </button>
         </div>
       </div>
+
       <div className="describe">
         <div className="describe-first">
           <img src="" alt="" />
-          <div className="wp-caption-text">
-            <div className="title-product">MÔ TẢ</div>
-          </div>
-          <div className="text-des"></div>
         </div>
         <div className="describe-second">
           <div className="box1">
@@ -118,7 +118,11 @@ export const GroupDetail = () => {
                   onClick={() => handleBuy(course)}
                   className="btn-add-shopping-cart-des"
                 >
-                  <span style={{ marginTop: "3px" }}>ĐĂNG KÝ KHOÁ HỌC</span>
+                  <span style={{ marginTop: "3px" }}>
+                    {id === "26"
+                      ? "ĐĂNG KÝ TƯ VẤN ĐẦU TƯ"
+                      : "THAM GIA CỘNG ĐỒNG"}
+                  </span>
                 </button>
               </div>
             </div>

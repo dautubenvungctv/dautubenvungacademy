@@ -57,7 +57,7 @@ export const Footer = () => {
                   <a
                     target="_plank"
                     href="https://www.facebook.com/hoangvinhdautu"
-                    style={{ color: "#3D5A98", background: "#ffffff" }}
+                    style={{ color: "#3D5A98" }}
                     className="icon"
                   >
                     <FaFacebookSquare />
@@ -65,7 +65,7 @@ export const Footer = () => {
                   <a
                     target="_plank"
                     href="https://www.youtube.com/@hoangvinhdautubenvung"
-                    style={{ color: "red", background: "#fff" }}
+                    style={{ color: "red" }}
                     className="icon"
                   >
                     <FaYoutube />
@@ -73,7 +73,7 @@ export const Footer = () => {
                   <a
                     target="_plank"
                     href="https://www.tiktok.com/@hoangvinhdautu"
-                    style={{ color: "black", background: "#fff" }}
+                    style={{ color: "black" }}
                     className="icon"
                   >
                     <FaTiktok />
@@ -90,17 +90,21 @@ export const Footer = () => {
             </div>
           </div>
           <div className="contact">
-            <img
-              style={{
-                background: "#5196E4",
-                borderRadius: "10000000000px",
-                height: "50px",
-                width: "50px",
-              }}
-              src={iconFacebook}
-              alt=""
-            />
-            <div
+            <a href="https://www.facebook.com/hoangvinhdautu" target="_plank">
+              <img
+                style={{
+                  background: "#5196E4",
+                  borderRadius: "10000000000px",
+                  height: "50px",
+                  width: "50px",
+                }}
+                src={iconFacebook}
+                alt=""
+              />
+            </a>
+            <a
+              href="https://zalo.me/0395.888.619"
+              target="_plank"
               style={{
                 background: "#5196E4",
                 borderRadius: "10000000000px",
@@ -118,7 +122,7 @@ export const Footer = () => {
                 src={iconZalo}
                 alt=""
               />
-            </div>
+            </a>
           </div>
         </div>
       </Flex>

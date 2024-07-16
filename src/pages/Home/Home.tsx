@@ -3,7 +3,7 @@ import { CarouselHome } from "../../component/Layout/Carousel/Carousel";
 import { StyledHome } from "./styled";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Element } from "react-scroll";
+import { Element, scroller } from "react-scroll";
 import { Flex, Tooltip } from "antd";
 import { FaFacebookSquare, FaYoutube, FaTiktok } from "react-icons/fa";
 import { GrFormNextLink } from "react-icons/gr";
@@ -44,6 +44,15 @@ export const Home = () => {
   useEffect(() => {
     getCompany();
   }, []);
+  const handleScrollTo = (id: any, target: any) => {
+    navigate(id);
+    setTimeout(() => {
+      scroller.scrollTo(target, {
+        smooth: true,
+        duration: 500,
+      });
+    }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
+  };
   return (
     <StyledHome>
       <div className="company">
@@ -145,8 +154,13 @@ export const Home = () => {
                 justify="center"
               >
                 {listCourse.map((item: any, index: any) => (
-                  <Link
-                    to={`/product-detail/${item?.course_id}`}
+                  <div
+                    onClick={() =>
+                      handleScrollTo(
+                        `/product-detail/${item?.course_id}`,
+                        "header"
+                      )
+                    }
                     className="item-caroulsel"
                   >
                     <Link
@@ -206,7 +220,7 @@ export const Home = () => {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </Flex>
             </div>
@@ -214,23 +228,16 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* <div className="banner">
-        <a href="https://khokhoahoc.co/membership/">
-          <img
-            className="img-banner"
-            src="https://images.unsplash.com/photo-1506765515384-028b60a970df?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFubmVyfGVufDB8fDB8fHww"
-            alt=""
-          />
-        </a>
-      </div> */}
       <Element name="book">
         {listBooks.length > 0 && (
           <div className="wrapper-book ">
             <strong className="title-book">SÁCH</strong>
             <Flex wrap="wrap" gap="24px">
               {listBooks.map((item: any, index: any) => (
-                <Link
-                  to={`/book-detail/${item?.book_id}`}
+                <div
+                  onClick={() =>
+                    handleScrollTo(`/book-detail/${item?.book_id}`, "header")
+                  }
                   className="item-caroulsel-book"
                 >
                   <Link to={`/book-detail/${item?.book_id}`} className="title">
@@ -289,7 +296,7 @@ export const Home = () => {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </Flex>
           </div>

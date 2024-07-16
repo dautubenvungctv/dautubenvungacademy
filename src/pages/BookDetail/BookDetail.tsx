@@ -10,6 +10,7 @@ import { getItem } from "localforage";
 import { notification } from "antd";
 import debounce from "lodash/debounce";
 import { setProduct } from "../../redux/app";
+import { Element } from "react-scroll";
 
 export const BookDetail = () => {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ export const BookDetail = () => {
   return (
     <StyledBookDetail>
       {contextHolder}
+
       <div className="box-first">
         <div className="info-product">
           <div className="img">
@@ -100,13 +102,10 @@ export const BookDetail = () => {
           </button>
         </div>
       </div>
+
       <div className="describe">
         <div className="describe-first">
           <img src="" alt="" />
-          <div className="wp-caption-text">
-            <div className="title-product">MÔ TẢ</div>
-          </div>
-          <div className="text-des"></div>
         </div>
         <div className="describe-second">
           <div className="box1">

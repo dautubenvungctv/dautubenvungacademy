@@ -9,7 +9,7 @@ export const StyledProductDetail = styled.div<any>`
       justify-content: space-between;
 
       .info-product {
-        width: 49%;
+        width: 53%;
 
         .img {
           width: 100%;

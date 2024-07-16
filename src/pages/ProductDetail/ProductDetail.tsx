@@ -9,6 +9,7 @@ import { selectAppSelector } from "../../redux/app/selector";
 import debounce from "lodash/debounce";
 import { notification } from "antd";
 import { setProduct } from "../../redux/app";
+import { Element } from "react-scroll";
 
 export const ProductDetail = () => {
   const navigate = useNavigate();
@@ -22,13 +23,14 @@ export const ProductDetail = () => {
   const userID = localStorage.getItem("userID");
 
   const getDetailCourse = () => {
-    axios
-      .get(`http://185.250.36.147:3000/courses/${id}`)
-      .then((res) => setCourse(res.data[0]));
+    axios.get(`http://185.250.36.147:3000/courses/${id}`).then((res) => {
+      console.log("res: ", res);
+      setCourse(res.data[0]);
+    });
   };
   useEffect(() => {
     getDetailCourse();
-  }, []);
+  }, [id]);
   const handleCartCourse = debounce(
     () => {
       if (userID) {
@@ -97,13 +99,10 @@ export const ProductDetail = () => {
           </button>
         </div>
       </div>
+
       <div className="describe">
         <div className="describe-first">
           <img src="" alt="" />
-          <div className="wp-caption-text">
-            <div className="title-product">MÔ TẢ</div>
-          </div>
-          <div className="text-des"></div>
         </div>
         <div className="describe-second">
           <div className="box1">

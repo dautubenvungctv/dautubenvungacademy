@@ -23,8 +23,12 @@ export const StyledLayout = styled.div<any>`
           height: 240px;
         }
         .box-text {
+          gap: 16px;
           width: 88% !important;
           .box-btn-group {
+            .icon-next {
+              width: 20% !important;
+            }
             .second {
               padding: 6px 20px !important;
             }
@@ -71,7 +75,7 @@ export const StyledLayout = styled.div<any>`
           margin-top: 0;
           text-rendering: optimizeSpeed;
           width: 100%;
-          font-size: 21px;
+          font-size: 17px;
           color: #fff;
         }
         .demo-group {
@@ -84,6 +88,9 @@ export const StyledLayout = styled.div<any>`
           justify-content: space-between;
           width: 100%;
           align-items: center;
+          .icon-next {
+            width: 15%;
+          }
           .second {
             display: flex;
             justify-content: center;

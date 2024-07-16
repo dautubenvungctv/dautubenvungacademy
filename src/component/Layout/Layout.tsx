@@ -3,17 +3,18 @@ import { Header } from "./Header/Header";
 import { Footer } from "./Footer/Footer";
 import { StyledLayout } from "./styled";
 import { Flex } from "antd";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
+import { scroller } from "react-scroll";
 
 interface LayoutProps {
   children: any;
 }
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const [listGroups, setListGroups] = useState([]);
   const getListGroups = () => {
     axios
@@ -23,6 +24,15 @@ export const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     getListGroups();
   }, []);
+  const handleScrollTo = (id: any, target: any) => {
+    navigate(id);
+    setTimeout(() => {
+      scroller.scrollTo(target, {
+        smooth: true,
+        duration: 500,
+      });
+    }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
+  };
   return (
     <StyledLayout>
       <Flex
@@ -51,53 +61,68 @@ export const Layout = ({ children }: LayoutProps) => {
           ) : (
             <div className="wrapper-footer">
               <div className="title-group">CỘNG ĐỒNG</div>
-              {listGroups.map((item: any, index: any) => (
-                <Link
-                  to={`/group-detail/${item?.group_id}`}
-                  style={{
-                    flexDirection: index % 2 ? "row-reverse" : "row",
-                  }}
-                  className="box"
-                >
-                  <img
-                    className="img"
+              {listGroups
+                .slice()
+                .reverse()
+                .map((item: any, index: any) => (
+                  <div
+                    onClick={() =>
+                      handleScrollTo(
+                        `/group-detail/${item?.group_id}`,
+                        "header"
+                      )
+                    }
                     style={{
-                      borderRadius: "16px",
+                      flexDirection: index % 2 ? "row-reverse" : "row",
                     }}
-                    src={item.image}
-                    alt=""
-                  />
-                  <div className="box-text">
-                    <div className="first">{item?.title}</div>
-                    <div className="demo-group">{item?.demo}</div>
-                    <div className="box-btn-group">
-                      <div
-                        style={{
-                          width: "15%",
-                          background: "#FFCF03",
-                          borderRadius: "20px",
-                          height: "28px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <img
-                          style={{ width: "70%", height: "20px" }}
-                          src={next}
-                          alt=""
-                        />
+                    className="box"
+                  >
+                    <img
+                      className="img"
+                      style={{
+                        borderRadius: "16px",
+                        objectFit: "cover",
+                      }}
+                      src={item.image}
+                      alt=""
+                    />
+                    <div className="box-text">
+                      <div className="first">{item?.title}</div>
+                      <div className="demo-group">{item?.demo}</div>
+                      <div className="box-btn-group">
+                        <div
+                          className="icon-next"
+                          style={{
+                            background: "#FFCF03",
+                            borderRadius: "20px",
+                            height: "28px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <img
+                            style={{
+                              width: "70%",
+                              height: "20px",
+                              objectFit: "cover",
+                            }}
+                            src={next}
+                            alt=""
+                          />
+                        </div>
+                        <Link
+                          to={`/group-detail/${item?.group_id}`}
+                          className="second"
+                        >
+                          {index === 0
+                            ? "ĐĂNG KÝ TƯ VẤN"
+                            : "THAM GIA CỘNG ĐỒNG"}
+                        </Link>
                       </div>
-                      <Link
-                        to={`/group-detail/${item?.group_id}`}
-                        className="second"
-                      >
-                        {index === 0 ? "ĐĂNG KÝ TƯ VẤN" : "THAM GIA CỘNG ĐỒNG"}
-                      </Link>
                     </div>
                   </div>
-                </Link>
-              ))}
+                ))}
             </div>
           )}
         </div>

@@ -213,10 +213,12 @@ export const Checkout = () => {
                 <strong>
                   <span className="woocommerce-Price-amount amount">
                     <bdi style={{ color: "#ffff" }}>
-                      {item?.price.toLocaleString("en-US", {
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
+                      {item
+                        ? (item.price * 1).toLocaleString("en-US", {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          })
+                        : "0"}
                       &nbsp;
                       <span className="woocommerce-Price-currencySymbol">
                         ₫

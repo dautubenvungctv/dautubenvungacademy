@@ -149,10 +149,12 @@ export const CheckoutQR = () => {
               <strong>
                 <span className="woocommerce-Price-amount amount">
                   <bdi>
-                    {item?.price.toLocaleString("en-US", {
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                    })}
+                    {item
+                      ? (item.price * 1).toLocaleString("en-US", {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        })
+                      : "0"}
                     &nbsp;
                     <span className="woocommerce-Price-currencySymbol">₫</span>
                   </bdi>
@@ -181,10 +183,12 @@ export const CheckoutQR = () => {
             <strong>
               <span className="woocommerce-Price-amount amount">
                 <bdi>
-                  {item?.price.toLocaleString("en-US", {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  })}
+                  {item
+                    ? (item.price * 1).toLocaleString("en-US", {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })
+                    : "0"}
                   &nbsp;
                   <span className="woocommerce-Price-currencySymbol">₫</span>
                 </bdi>
@@ -296,10 +300,12 @@ export const CheckoutQR = () => {
                   >
                     <div ng-switch-when="vcb" className="ng-scope">
                       <span style={{ color: "#FFF" }}>
-                        {item?.price.toLocaleString("en-US", {
-                          minimumFractionDigits: 0,
-                          maximumFractionDigits: 0,
-                        })}{" "}
+                        {item
+                          ? (item.price * 1).toLocaleString("en-US", {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })
+                          : "0"}
                         <sup>vnđ</sup>
                       </span>
                     </div>

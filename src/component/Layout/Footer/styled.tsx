@@ -21,7 +21,7 @@ export const StyleFooter = styled.div<any>`
         flex-direction: column;
 
         .text {
-          font-size: 13px;
+          font-size: 12px;
           color: #0f1b54;
           margin-left: 3px;
         }
@@ -61,12 +61,12 @@ export const StyleFooter = styled.div<any>`
             align-items: center;
             width: 40px;
             height: 40px;
-            border: 1px solid #ffffff;
+
             border-radius: 9999999px;
           }
         }
         .hotline {
-          font-size: 13px;
+          font-size: 12px;
           color: #0f1b54;
           margin-left: 3px;
         }
