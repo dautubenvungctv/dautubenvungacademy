@@ -8,7 +8,11 @@ import axios from "axios";
 import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
 import { scroller } from "react-scroll";
-
+declare global {
+  interface Window {
+    zaloJSV2: any;
+  }
+}
 interface LayoutProps {
   children: any;
 }
@@ -35,6 +39,16 @@ export const Layout = ({ children }: LayoutProps) => {
   };
   const initZalo = () => {
     if (!document.getElementById("zalo-script")) {
+      // Thêm đoạn script tạm thời để tránh lỗi
+      window.zaloJSV2 = {
+        zalo_h5_event_handler: function (
+          eventId: any,
+          eventName: any,
+          eventData: any
+        ) {},
+      };
+
+      // Tạo và thêm thẻ script để tải SDK của Zalo
       const script = document.createElement("script");
       script.setAttribute("id", "zalo-script");
       script.type = "text/javascript";
