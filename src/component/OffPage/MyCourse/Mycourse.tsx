@@ -18,22 +18,37 @@ export const Mycourse = () => {
   const formatCourse = listMyCourse.map((item: any) => {
     return { ...item, added_at: moment(item?.added_at).format("DD-MM-YYYY") };
   });
+  const token = localStorage.getItem("token");
+
   const userID = localStorage.getItem("userID");
   const getListMyCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/my-courses/${userID}`)
+      .get(`http://185.250.36.147:3000/my-courses/${userID}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res1) => {
         setListMyCourse(res1?.data);
       });
   };
   const getListMyBook = () => {
-    axios.get(`http://185.250.36.147:3000/my-books/${userID}`).then((res2) => {
-      setListMyBook(res2?.data);
-    });
+    axios
+      .get(`http://185.250.36.147:3000/my-books/${userID}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": "foobar",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res2) => {
+        setListMyBook(res2?.data);
+      });
   };
   useEffect(() => {
-    console.log(window.location.href);
-    getListMyBook();
+    // getListMyBook();
     getListMyCourse();
   }, [window.location.href]);
   const columns = [

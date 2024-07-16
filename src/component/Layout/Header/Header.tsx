@@ -33,32 +33,7 @@ export const Header = () => {
       });
     }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
   };
-  const getCourseCart = () => {
-    axios
-      .get(`http://185.250.36.147:3000/course-cart/${useID}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => setListCourseCart(res.data));
-  };
-  const getBookCart = () => {
-    axios
-      .get(`http://185.250.36.147:3000/book-cart/${useID}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => setListBookCart(res.data));
-  };
-  useEffect(() => {
-    getCourseCart();
-    getBookCart();
-  }, []);
+
   let listCart = [...listCourseCart, ...listBookCart];
   const totalCart = listCart.reduce((total, item) => total + item.quantity, 0);
 
