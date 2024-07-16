@@ -58,7 +58,7 @@ export const Home = () => {
       <div className="company">
         <div className="img-company">
           <img
-            style={{ width: "100%" }}
+            style={{ width: "100%", objectFit: "cover" }}
             src={infoCompany?.image_url}
             alt=""
             className="avt-cty"
