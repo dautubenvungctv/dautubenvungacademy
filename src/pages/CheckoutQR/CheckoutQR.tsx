@@ -86,7 +86,7 @@ export const CheckoutQR = () => {
     ? item.book_id
     : item.course_id;
 
-  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=xDTBVx${CODE_ORDER}x${phoneNumber}&accountName=${MY_BANK.ACCOUNT_NAME}`;
+  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=xDTBVx${CODE_ORDER}x${phoneNumber}x&accountName=${MY_BANK.ACCOUNT_NAME}`;
   const API_KEY =
     "AK_CS.72f19260378f11efb7127b03250987c0.S4hO33vAcwUjzFSgRA1xxzhWBvfjMEizTRfU72G9rk9uGVmeRBW0GvXRhyAmKqWKkckzSKHA";
   const API_GET_PAID =
@@ -107,6 +107,7 @@ export const CheckoutQR = () => {
 
           const regex = /DTBV\w+/g;
           const matches = input.match(regex);
+          console.log("matches: ", matches);
           return matches ? matches[1] : null;
         }
 
@@ -121,15 +122,14 @@ export const CheckoutQR = () => {
             phoneNumberCheck === phoneNumber && courseIDCheck == CODE_ORDER
           );
         });
-        setPricePaid(paid.amount);
-        setContentPaid(paid.description);
+        setPricePaid(paid?.amount);
+        setContentPaid(paid?.description);
       })
       .catch((error) => {
         console.error("API call error:", error);
       });
   };
   useEffect(() => {
-    // checkPaid();
     let intervalId: any;
     intervalId = setInterval(() => {
       checkPaid();
@@ -151,8 +151,9 @@ export const CheckoutQR = () => {
     return matches ? matches[1] : null;
   }
 
-  const expectedString = `xDTBVx${CODE_ORDER}x${phoneNumber}`;
+  const expectedString = `xDTBVx${CODE_ORDER}x${phoneNumber}x`;
 
+  console.log("extractDTBVId(contentPaid): ", extractDTBVId(contentPaid));
   useEffect(() => {
     if (
       pricePaid === item?.price &&
@@ -184,7 +185,7 @@ export const CheckoutQR = () => {
             <li className="woocommerce-order-overview__order order">
               Mã đơn hàng:{" "}
               <strong>
-                xDTBVx{CODE_ORDER}x{phoneNumber}
+                xDTBVx{CODE_ORDER}x{phoneNumber}x
               </strong>
             </li>
             <li className="woocommerce-order-overview__date date">
@@ -218,7 +219,7 @@ export const CheckoutQR = () => {
           <li className="woocommerce-order-overview__order order">
             Mã đơn hàng:{" "}
             <strong>
-              xDTBVx{CODE_ORDER}x{phoneNumber}
+              xDTBVx{CODE_ORDER}x{phoneNumber}x
             </strong>
           </li>
           <li className="woocommerce-order-overview__date date">
@@ -387,7 +388,7 @@ export const CheckoutQR = () => {
                     style={{ textAlign: "left" }}
                   >
                     <strong style={{ fontSize: "16px" }}>
-                      xDTBVx{CODE_ORDER}x{phoneNumber}
+                      xDTBVx{CODE_ORDER}x{phoneNumber}x
                     </strong>
                   </td>
                 </tr>
