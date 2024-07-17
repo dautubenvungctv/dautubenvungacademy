@@ -222,9 +222,8 @@ export const StyledGroupDetail = styled.div<any>`
           width: 40%;
           font-family: Arial, sans-serif;
           font-size: 50px;
-          color: white; /* Text fill color */
-          text-shadow: -1px -1px 0 #0000ff, 1px -1px 0 #0000ff,
-            -1px 1px 0 #0000ff, 1px 1px 0 #0000ff;
+          color: #00369c;
+          font-weight: 600;
         }
         .des {
           width: 60%;

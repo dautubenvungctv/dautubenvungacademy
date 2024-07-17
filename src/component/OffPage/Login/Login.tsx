@@ -40,6 +40,7 @@ export const Login = () => {
           password: passWord,
         })
         .then((res) => {
+          console.log("res: ", res);
           if (res.status === 200) {
             api.success({
               message: `Notification success`,

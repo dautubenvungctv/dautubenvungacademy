@@ -123,7 +123,9 @@ export const GroupDetail = () => {
         </div>
         <div className="describe-second">
           <div className="box1">
-            <div className="title-des">Bạn sẽ học được gì từ khoá học này:</div>
+            <div className="title-des">
+              Bạn sẽ học được gì từ chương trình này:
+            </div>
             <div className="des">
               <blockquote
                 dangerouslySetInnerHTML={{
