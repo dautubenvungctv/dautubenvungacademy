@@ -86,7 +86,7 @@ export const CheckoutQR = () => {
     ? item.book_id
     : item.course_id;
 
-  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=DTBVx${CODE_ORDER}x${phoneNumber}&accountName=${MY_BANK.ACCOUNT_NAME}`;
+  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=xDTBVx${CODE_ORDER}x${phoneNumber}&accountName=${MY_BANK.ACCOUNT_NAME}`;
   const API_KEY =
     "AK_CS.72f19260378f11efb7127b03250987c0.S4hO33vAcwUjzFSgRA1xxzhWBvfjMEizTRfU72G9rk9uGVmeRBW0GvXRhyAmKqWKkckzSKHA";
   const API_GET_PAID =
@@ -107,15 +107,15 @@ export const CheckoutQR = () => {
 
           const regex = /DTBV\w+/g;
           const matches = input.match(regex);
-          return matches ? matches[0] : null;
+          return matches ? matches[1] : null;
         }
 
         const paid = res.data.data.records.find((item: any) => {
           let des = item.description;
 
           let extractString = extractDTBVId(item.description);
-          let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[2];
-          let courseIDCheck = extractDTBVId(item.description)?.split("x")[1];
+          let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[3];
+          let courseIDCheck = extractDTBVId(item.description)?.split("x")[2];
 
           return (
             phoneNumberCheck === phoneNumber && courseIDCheck == CODE_ORDER
@@ -148,10 +148,10 @@ export const CheckoutQR = () => {
 
     const regex = /DTBV\w+/g;
     const matches = input.match(regex);
-    return matches ? matches[0] : null;
+    return matches ? matches[1] : null;
   }
 
-  const expectedString = `DTBVx${CODE_ORDER}x${phoneNumber}`;
+  const expectedString = `xDTBVx${CODE_ORDER}x${phoneNumber}`;
 
   useEffect(() => {
     if (
@@ -184,7 +184,7 @@ export const CheckoutQR = () => {
             <li className="woocommerce-order-overview__order order">
               Mã đơn hàng:{" "}
               <strong>
-                DTBVx{CODE_ORDER}x{phoneNumber}
+                xDTBVx{CODE_ORDER}x{phoneNumber}
               </strong>
             </li>
             <li className="woocommerce-order-overview__date date">
@@ -218,7 +218,7 @@ export const CheckoutQR = () => {
           <li className="woocommerce-order-overview__order order">
             Mã đơn hàng:{" "}
             <strong>
-              DTBVx{CODE_ORDER}x{phoneNumber}
+              xDTBVx{CODE_ORDER}x{phoneNumber}
             </strong>
           </li>
           <li className="woocommerce-order-overview__date date">
@@ -387,7 +387,7 @@ export const CheckoutQR = () => {
                     style={{ textAlign: "left" }}
                   >
                     <strong style={{ fontSize: "16px" }}>
-                      DTBVx{CODE_ORDER}x{phoneNumber}
+                      xDTBVx{CODE_ORDER}x{phoneNumber}
                     </strong>
                   </td>
                 </tr>

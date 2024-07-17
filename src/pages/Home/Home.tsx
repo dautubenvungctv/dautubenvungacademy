@@ -118,7 +118,13 @@ export const Home = () => {
               <h1>{infoCompany?.title_first}</h1>
               <h1>{infoCompany?.title_second}</h1>
             </div>
-            <div className="text-company">{infoCompany?.description}</div>
+            <div className="text-company">
+              <blockquote
+                dangerouslySetInnerHTML={{
+                  __html: infoCompany?.description?.replace(/\n/g, "<br/>"),
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
