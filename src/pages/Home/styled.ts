@@ -33,6 +33,7 @@ export const StyledHome = styled.div<any>`
           position: static !important;
           .text-company {
             padding-right: 10px;
+            height: 165px !important;
           }
         }
       }
@@ -518,6 +519,9 @@ export const StyledHome = styled.div<any>`
           font-size: 12px;
           text-align: justify;
           height: 150px;
+          blockquote {
+            margin: 0 !important;
+          }
         }
       }
     }

@@ -153,7 +153,6 @@ export const CheckoutQR = () => {
 
   const expectedString = `xDTBVx${CODE_ORDER}x${phoneNumber}x`;
 
-  console.log("extractDTBVId(contentPaid): ", extractDTBVId(contentPaid));
   useEffect(() => {
     if (
       pricePaid === item?.price &&
