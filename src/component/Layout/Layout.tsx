@@ -110,65 +110,57 @@ export const Layout = ({ children }: LayoutProps) => {
           ) : (
             <div className="wrapper-footer">
               <div className="title-group">CỘNG ĐỒNG</div>
-              {listGroups
-                ?.slice()
-                .reverse()
-                .map((item: any, index: any) => (
-                  <div
-                    onClick={() =>
-                      handleScrollTo(
-                        `/group-detail/${item?.group_id}`,
-                        "header"
-                      )
-                    }
+              {listGroups.map((item: any, index: any) => (
+                <div
+                  onClick={() =>
+                    handleScrollTo(`/group-detail/${item?.group_id}`, "header")
+                  }
+                  style={{
+                    flexDirection: index % 2 ? "row-reverse" : "row",
+                  }}
+                  className="box"
+                >
+                  <img
+                    className="img"
                     style={{
-                      flexDirection: index % 2 ? "row-reverse" : "row",
+                      borderRadius: "16px",
+                      objectFit: "cover",
                     }}
-                    className="box"
-                  >
-                    <img
-                      className="img"
-                      style={{
-                        borderRadius: "16px",
-                        objectFit: "cover",
-                      }}
-                      src={item.image}
-                      alt=""
-                    />
-                    <div className="box-text">
-                      <div className="first">{item?.title}</div>
-                      <div className="demo-group">{item?.demo}</div>
-                      <div className="box-btn-group">
-                        <div
-                          className="icon-next"
+                    src={item.image}
+                    alt=""
+                  />
+                  <div className="box-text">
+                    <div className="first">{item?.title}</div>
+                    <div className="demo-group">{item?.demo}</div>
+                    <div className="box-btn-group">
+                      <div
+                        className="icon-next"
+                        style={{
+                          background: "#FFCF03",
+                          borderRadius: "20px",
+                          height: "28px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <img
                           style={{
-                            background: "#FFCF03",
-                            borderRadius: "20px",
-                            height: "28px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
+                            width: "70%",
+                            height: "20px",
+                            objectFit: "cover",
                           }}
-                        >
-                          <img
-                            style={{
-                              width: "70%",
-                              height: "20px",
-                              objectFit: "cover",
-                            }}
-                            src={next}
-                            alt=""
-                          />
-                        </div>
-                        <div className="second">
-                          {index === 0
-                            ? "ĐĂNG KÝ TƯ VẤN"
-                            : "THAM GIA CỘNG ĐỒNG"}
-                        </div>
+                          src={next}
+                          alt=""
+                        />
+                      </div>
+                      <div className="second">
+                        {index === 0 ? "ĐĂNG KÝ TƯ VẤN" : "THAM GIA CỘNG ĐỒNG"}
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
           )}
         </div>

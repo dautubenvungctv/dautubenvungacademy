@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { StyledForgotPassWord } from "./styled";
 import axios from "axios";
 import { notification } from "antd";
+import { useNavigate } from "react-router-dom";
 export const ForgotPassword = () => {
   const [api, contextHolder] = notification.useNotification();
-
+  const nextLogin = useNavigate();
   const [email, setEmail] = useState("");
   const [texCode, setTextCode] = useState(null);
   const [code, setCode] = useState("");
@@ -31,11 +32,21 @@ export const ForgotPassword = () => {
       .post(`${process.env.REACT_APP_PORT}/auth/forgot-password`, {
         email: email,
       })
-      .then((res) => setTextCode(res.data.passcode));
+      .then((res) => {
+        if (res.status === 200) {
+          api.success({
+            message: `Thông báo`,
+            description:
+              "Bạn hãy vui lòng kiểm tra thông báo email trong hòm thư rác/spam để nhận mã code!",
+            placement: "topRight",
+          });
+          setTextCode(res.data.passcode);
+        }
+      });
   };
   const handleChangePass = () => {
     axios
-      .post("http://localhost:3000/change-password", {
+      .post(`${process.env.REACT_APP_PORT}/change-password`, {
         email: email,
         password: passWordSecond,
       })
@@ -46,6 +57,7 @@ export const ForgotPassword = () => {
             description: "Đổi mật khẩu thành công!",
             placement: "topRight",
           });
+          nextLogin("/login");
         }
       })
       .catch((err) => {
