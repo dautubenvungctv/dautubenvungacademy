@@ -112,7 +112,6 @@ export const CheckoutQR = () => {
 
         const paid = res.data.data.records.find((item: any) => {
           let des = item.description;
-          console.log("des: ", des);
 
           let extractString = extractDTBVId(item.description);
           let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[2];
@@ -151,8 +150,6 @@ export const CheckoutQR = () => {
     const matches = input.match(regex);
     return matches ? matches[0] : null;
   }
-  console.log(extractDTBVId(contentPaid));
-  console.log("contentPaid: ", contentPaid);
 
   const expectedString = `DTBVx${CODE_ORDER}x${phoneNumber}`;
 
@@ -164,7 +161,7 @@ export const CheckoutQR = () => {
       api.success({
         message: `Notification success`,
         description: "Chuyển khoản thành công!",
-        placement: "bottomRight",
+        placement: "topRight",
       });
 
       checkSubmitOrder();

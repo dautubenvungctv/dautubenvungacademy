@@ -1,6 +1,13 @@
 import styled from "styled-components";
 export const StyleChangePass = styled.div<any>`
   margin-top: 50px;
+  .titleqr {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 500;
+  }
   .box-input {
     display: flex;
     justify-content: center;
@@ -53,6 +60,15 @@ export const StyleChangePass = styled.div<any>`
           }
         }
       }
+    }
+  }
+  .link-login {
+    color: #fff;
+    background-color: #42a732;
+    padding: 20px;
+    border-radius: 13px;
+    &:hover {
+      transform: scale(1.02);
     }
   }
 `;
