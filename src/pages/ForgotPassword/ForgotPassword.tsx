@@ -28,7 +28,7 @@ export const ForgotPassword = () => {
   }, [passWordSecond]);
   const handleSendCode = () => {
     axios
-      .post("http://185.250.36.147:3000/auth/forgot-password", {
+      .post(`${process.env.REACT_APP_PORT}/auth/forgot-password`, {
         email: email,
       })
       .then((res) => setTextCode(res.data.passcode));

@@ -55,23 +55,24 @@ export const SignUp = () => {
       passWord === passWordFirst
     ) {
       axios
-        .post("http://185.250.36.147:3000/auth/register", {
+        .post(`${process.env.REACT_APP_PORT}/auth/register`, {
           email: email,
           name: "",
           phone: phoneNumber,
           password: passWord,
         })
         .then((res) => {
-          openNotification("bottomRight");
+          openNotification("topRight");
           setEmail("");
           setPassWord("");
           setPhoneNumber("");
+          setPassWordFirst("");
         })
         .catch((err) =>
           api.error({
             message: `Lỗi`,
             description: "Đã có tài khoản tương tự",
-            placement: "bottomRight",
+            placement: "topRight",
           })
         );
     }

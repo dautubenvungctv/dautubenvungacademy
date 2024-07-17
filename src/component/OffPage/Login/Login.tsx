@@ -3,6 +3,7 @@ import { StyleLogin } from "./styled";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { SignUp } from "../SignUp/SignUp";
 import axios from "axios";
+import io from "socket.io-client";
 import { notification } from "antd";
 import type { NotificationArgsProps } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,8 +20,7 @@ export const Login = () => {
   const [errPhoneNumber, setErrPhoneNumber] = useState(false);
   const [errPassWord, setErrPassWord] = useState(false);
   const [showPass, setShowPass] = useState(false);
-  // const appData = useSelector(selectAppSelector);
-  // console.log("appData: ", appData);
+
   const handleSubmit = () => {
     if (phoneNumber === "") {
       setErrPhoneNumber(true);
@@ -35,7 +35,7 @@ export const Login = () => {
 
     if (phoneNumber !== "" || passWord !== "") {
       axios
-        .post("http://185.250.36.147:3000/auth/login", {
+        .post(`${process.env.REACT_APP_PORT}/auth/login`, {
           phone: phoneNumber,
           password: passWord,
         })
@@ -52,6 +52,25 @@ export const Login = () => {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("userID", res.data.user_id);
             localStorage.setItem("info", res.data.info);
+            const socket = io(`${process.env.REACT_APP_SOCKET_PORT}`);
+            if (!res.data.user_id) {
+              socket.close();
+            } else {
+              socket.on("connect", () => {
+                console.log("Connected to socket server");
+
+                socket.emit("login", res.data.user_id);
+              });
+
+              socket.on("forceLogout", (message: any) => {
+                // alert("Tài khoản đã đăng nhập ở nơi khác");
+                localStorage.removeItem("userID");
+                localStorage.removeItem("token");
+                window.location.reload();
+
+                // Thực hiện đăng xuất, xóa local storage, v.v...
+              });
+            }
           } else if (res.status === 404) {
             api.error({
               message: `Notification success`,

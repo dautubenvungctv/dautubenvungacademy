@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "./component/Layout/Layout";
-
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
@@ -70,6 +69,7 @@ function App() {
       pages: ForgotPassword,
     },
   ];
+
   return (
     <Router>
       <Routes>

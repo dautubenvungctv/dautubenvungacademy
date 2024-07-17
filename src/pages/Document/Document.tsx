@@ -22,7 +22,7 @@ export const Document = () => {
     if (name !== "" && email !== "") {
       axios
         .post(
-          "http://185.250.36.147:3000/send-document",
+          `${process.env.REACT_APP_PORT}/send-document`,
           {
             email: email,
           },
@@ -30,7 +30,7 @@ export const Document = () => {
             headers: {
               "Content-Type": "application/json",
               "X-Custom-Header": "foobar",
-              Authorization: `Bearer ${token}`,
+              // Authorization: `Bearer ${token}`,
             },
           }
         )
@@ -164,7 +164,7 @@ export const Document = () => {
               // marginLeft: "80px",
             }}
             className="img-avt"
-            src="https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-1/283664379_552346723019673_5624950971899530111_n.jpg?stp=dst-jpg_p200x200&_nc_cat=107&ccb=1-7&_nc_sid=50d2ac&_nc_ohc=hiWoh7TJVA8Q7kNvgE652VU&_nc_ht=scontent.fhan14-1.fna&oh=00_AYB5wmiD0R6HAt6CReHbP2POin3kJvRF52ggbf_Fb9r-3w&oe=669417D4"
+            src={anhVinh}
             alt=""
           />
           <div className="box-mxh">

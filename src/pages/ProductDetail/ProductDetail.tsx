@@ -24,11 +24,11 @@ export const ProductDetail = () => {
 
   const getDetailCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/courses/${id}`, {
+      .get(`${process.env.REACT_APP_PORT}/courses/${id}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -42,7 +42,7 @@ export const ProductDetail = () => {
     () => {
       if (userID) {
         axios
-          .post(`http://185.250.36.147:3000/buy-course`, {
+          .post(`${process.env.REACT_APP_PORT}/buy-course`, {
             user_id: userID,
             course_id: id,
             quantity: 1,

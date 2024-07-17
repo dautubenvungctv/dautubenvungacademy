@@ -26,11 +26,11 @@ export const CheckoutQR = () => {
 
   const getOrder = () => {
     axios
-      .get(`http://185.250.36.147:3000/orders/${userID}`, {
+      .get(`${process.env.REACT_APP_PORT}/orders/${userID}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -46,7 +46,7 @@ export const CheckoutQR = () => {
   const checkSubmitOrder = () => {
     axios
       .post(
-        `http://185.250.36.147:3000/buy-course`,
+        `${process.env.REACT_APP_PORT}/buy-course`,
         {
           user_id: userID ? +userID : null,
           name: name,
@@ -62,12 +62,17 @@ export const CheckoutQR = () => {
           headers: {
             "Content-Type": "application/json",
             "X-Custom-Header": "foobar",
-            Authorization: `Bearer ${token}`,
+            // Authorization: `Bearer ${token}`,
           },
         }
       )
       .then((res) => {
         if (res.status === 200) {
+          if (!userID) {
+            setCheckUserOrder(true);
+          } else {
+            setCheckSucces(true);
+          }
         }
       });
   };
@@ -81,10 +86,11 @@ export const CheckoutQR = () => {
     ? item.book_id
     : item.course_id;
 
-  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=DTBV${CODE_ORDER}${phoneNumber}&accountName=${MY_BANK.ACCOUNT_NAME}`;
+  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=DTBVx${CODE_ORDER}x${phoneNumber}&accountName=${MY_BANK.ACCOUNT_NAME}`;
   const API_KEY =
     "AK_CS.72f19260378f11efb7127b03250987c0.S4hO33vAcwUjzFSgRA1xxzhWBvfjMEizTRfU72G9rk9uGVmeRBW0GvXRhyAmKqWKkckzSKHA";
-  const API_GET_PAID = "https://oauth.casso.vn/v2/transactions";
+  const API_GET_PAID =
+    "https://oauth.casso.vn/v2/transactions?sort=DESC&pageSize=50";
   const checkPaid = () => {
     axios
       .get(API_GET_PAID, {
@@ -94,7 +100,28 @@ export const CheckoutQR = () => {
         },
       })
       .then((res) => {
-        const paid = res.data.data.records[res.data.data.records.length - 1];
+        function extractDTBVId(input: any) {
+          if (!input) {
+            return null; // Nếu input là null hoặc undefined, trả về null
+          }
+
+          const regex = /DTBV\w+/g;
+          const matches = input.match(regex);
+          return matches ? matches[0] : null;
+        }
+
+        const paid = res.data.data.records.find((item: any) => {
+          let des = item.description;
+          console.log("des: ", des);
+
+          let extractString = extractDTBVId(item.description);
+          let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[2];
+          let courseIDCheck = extractDTBVId(item.description)?.split("x")[1];
+
+          return (
+            phoneNumberCheck === phoneNumber && courseIDCheck == CODE_ORDER
+          );
+        });
         setPricePaid(paid.amount);
         setContentPaid(paid.description);
       })
@@ -113,15 +140,26 @@ export const CheckoutQR = () => {
     };
   }, []);
 
-  const matchedString = contentPaid?.match(/DTBV[^\s;]+/);
+  let listSplitString = contentPaid?.split(":");
 
-  const expectedString = `DTBV${CODE_ORDER}${phoneNumber}`;
+  function extractDTBVId(input: any) {
+    if (!input) {
+      return null; // Nếu input là null hoặc undefined, trả về null
+    }
+
+    const regex = /DTBV\w+/g;
+    const matches = input.match(regex);
+    return matches ? matches[0] : null;
+  }
+  console.log(extractDTBVId(contentPaid));
+  console.log("contentPaid: ", contentPaid);
+
+  const expectedString = `DTBVx${CODE_ORDER}x${phoneNumber}`;
 
   useEffect(() => {
     if (
       pricePaid === item?.price &&
-      matchedString &&
-      matchedString[0] === expectedString
+      extractDTBVId(contentPaid) === expectedString
     ) {
       api.success({
         message: `Notification success`,
@@ -149,8 +187,7 @@ export const CheckoutQR = () => {
             <li className="woocommerce-order-overview__order order">
               Mã đơn hàng:{" "}
               <strong>
-                DTBV{CODE_ORDER}
-                {phoneNumber}
+                DTBVx{CODE_ORDER}x{phoneNumber}
               </strong>
             </li>
             <li className="woocommerce-order-overview__date date">
@@ -184,8 +221,7 @@ export const CheckoutQR = () => {
           <li className="woocommerce-order-overview__order order">
             Mã đơn hàng:{" "}
             <strong>
-              DTBV{CODE_ORDER}
-              {phoneNumber}
+              DTBVx{CODE_ORDER}x{phoneNumber}
             </strong>
           </li>
           <li className="woocommerce-order-overview__date date">
@@ -354,8 +390,7 @@ export const CheckoutQR = () => {
                     style={{ textAlign: "left" }}
                   >
                     <strong style={{ fontSize: "16px" }}>
-                      DTBV{CODE_ORDER}
-                      {phoneNumber}
+                      DTBVx{CODE_ORDER}x{phoneNumber}
                     </strong>
                   </td>
                 </tr>

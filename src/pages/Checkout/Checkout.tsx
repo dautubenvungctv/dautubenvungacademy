@@ -30,22 +30,22 @@ export const Checkout = () => {
 
   const getCourseCart = () => {
     axios
-      .get(`http://185.250.36.147:3000/course-cart/1`, {
+      .get(`${process.env.REACT_APP_PORT}/course-cart/1`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => setListCourseCart(res.data));
   };
   const getBookCart = () => {
     axios
-      .get(`http://185.250.36.147:3000/book-cart/1`, {
+      .get(`${process.env.REACT_APP_PORT}/book-cart/1`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => setListBookCart(res.data));

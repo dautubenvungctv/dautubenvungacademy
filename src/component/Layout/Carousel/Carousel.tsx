@@ -71,7 +71,7 @@ export const CarouselHome = ({ listCourse }: CarouselInterface) => {
         slidesToSlide={2}
         swipeable
       >
-        {listCourse.map((item: any, index: any) => (
+        {listCourse?.map((item: any, index: any) => (
           <Link
             to={`/product-detail/${item?.course_id}`}
             className="item-caroulsel"

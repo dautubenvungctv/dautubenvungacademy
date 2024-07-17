@@ -3,11 +3,13 @@ import { Header } from "./Header/Header";
 import { Footer } from "./Footer/Footer";
 import { StyledLayout } from "./styled";
 import { Flex } from "antd";
+
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
 import { scroller } from "react-scroll";
+
 declare global {
   interface Window {
     zaloJSV2: any;
@@ -23,14 +25,20 @@ export const Layout = ({ children }: LayoutProps) => {
   const [listGroups, setListGroups] = useState([]);
   const getListGroups = () => {
     axios
-      .get("http://185.250.36.147:3000/groups", {
+      .get(`${process.env.REACT_APP_PORT}/groups`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setListGroups(res.data));
+      .then((res) => {
+        if (res?.data?.length) {
+          setListGroups(res.data);
+        } else {
+          setListGroups([]);
+        }
+      });
   };
   useEffect(() => {
     getListGroups();
@@ -103,7 +111,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <div className="wrapper-footer">
               <div className="title-group">CỘNG ĐỒNG</div>
               {listGroups
-                .slice()
+                ?.slice()
                 .reverse()
                 .map((item: any, index: any) => (
                   <div

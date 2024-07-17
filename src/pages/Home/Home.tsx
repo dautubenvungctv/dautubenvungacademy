@@ -20,11 +20,11 @@ export const Home = () => {
   const navigate = useNavigate();
   const getListCourses = () => {
     axios
-      .get("http://185.250.36.147:3000/courses", {
+      .get(`${process.env.REACT_APP_PORT}/courses`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => setListCourse(res.data));
@@ -34,11 +34,11 @@ export const Home = () => {
   }, []);
   const getBooks = () => {
     axios
-      .get("http://185.250.36.147:3000/books", {
+      .get(`${process.env.REACT_APP_PORT}/books`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => setListBooks(res.data));
@@ -51,11 +51,11 @@ export const Home = () => {
   };
   const getCompany = () => {
     axios
-      .get(`http://185.250.36.147:3000/title`, {
+      .get(`${process.env.REACT_APP_PORT}/title`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -174,7 +174,7 @@ export const Home = () => {
                 gap="24px"
                 justify="center"
               >
-                {listCourse.map((item: any, index: any) => (
+                {listCourse?.map((item: any, index: any) => (
                   <div
                     onClick={() =>
                       handleScrollTo(

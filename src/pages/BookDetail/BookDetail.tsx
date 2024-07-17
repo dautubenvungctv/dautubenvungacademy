@@ -25,11 +25,11 @@ export const BookDetail = () => {
 
   const getDetailBook = () => {
     axios
-      .get(`http://185.250.36.147:3000/books/${id}`, {
+      .get(`${process.env.REACT_APP_PORT}/books/${id}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => setBook(res.data[0]));

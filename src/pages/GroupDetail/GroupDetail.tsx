@@ -23,11 +23,11 @@ export const GroupDetail = () => {
 
   const getDetailCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/groups/${id}`, {
+      .get(`${process.env.REACT_APP_PORT}/groups/${id}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => setCourse(res.data[0]));
@@ -40,7 +40,7 @@ export const GroupDetail = () => {
       if (userID) {
         axios
           .post(
-            `http://185.250.36.147:3000/course-cart`,
+            `${process.env.REACT_APP_PORT}/course-cart`,
             {
               user_id: userID,
               course_id: id,
@@ -50,7 +50,7 @@ export const GroupDetail = () => {
               headers: {
                 "Content-Type": "application/json",
                 "X-Custom-Header": "foobar",
-                Authorization: `Bearer ${token}`,
+                // Authorization: `Bearer ${token}`,
               },
             }
           )

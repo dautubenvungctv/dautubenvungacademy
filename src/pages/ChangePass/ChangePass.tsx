@@ -9,7 +9,7 @@ export const ChangePass = () => {
   const [passWord, setPassWord] = useState("");
   const submitChange = () => {
     axios.put(
-      `http://185.250.36.147:3000/users/${userId}`,
+      `${process.env.REACT_APP_PORT}/users/${userId}`,
       {
         email: email,
         phone: phone,
@@ -19,7 +19,7 @@ export const ChangePass = () => {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       }
     );

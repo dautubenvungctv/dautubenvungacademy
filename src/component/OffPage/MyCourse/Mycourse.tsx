@@ -25,24 +25,26 @@ export const Mycourse = () => {
   const userID = localStorage.getItem("userID");
   const getListMyCourse = () => {
     axios
-      .get(`http://185.250.36.147:3000/my-courses/${userID}`, {
+      .get(`${process.env.REACT_APP_PORT}/my-courses/${userID}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res1) => {
-        setListMyCourse(res1?.data);
+        if (res1.data?.length) {
+          setListMyCourse(res1?.data);
+        }
       });
   };
   const getListMyBook = () => {
     axios
-      .get(`http://185.250.36.147:3000/my-books/${userID}`, {
+      .get(`${process.env.REACT_APP_PORT}/my-books/${userID}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       })
       .then((res2) => {
