@@ -261,7 +261,8 @@ export const CheckoutQR = () => {
               Bạn đã chuyển khoản thành công !<br />{" "}
               <span style={{ fontSize: "23px" }}>
                 {" "}
-                Vui lòng kiểm tra email để lấy thông tin đăng nhập.
+                Vui lòng kiểm tra email để lấy thông tin đăng nhập (lưu ý cả mục
+                thư rác/spam ).
               </span>
             </div>
             <Link style={{ color: "#fff" }} to="/login" className="link-login">
