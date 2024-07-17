@@ -262,7 +262,7 @@ export const CheckoutQR = () => {
               <span style={{ fontSize: "23px" }}>
                 {" "}
                 Vui lòng kiểm tra email để lấy thông tin đăng nhập (lưu ý cả mục
-                thư rác/spam ).
+                thư rác/spam).
               </span>
             </div>
             <Link style={{ color: "#fff" }} to="/login" className="link-login">
