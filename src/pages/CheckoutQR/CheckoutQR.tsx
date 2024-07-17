@@ -107,16 +107,15 @@ export const CheckoutQR = () => {
 
           const regex = /DTBV\w+/g;
           const matches = input.match(regex);
-          console.log("matches: ", matches);
-          return matches ? matches[1] : null;
+          return matches ? matches[0] : null;
         }
 
         const paid = res.data.data.records.find((item: any) => {
           let des = item.description;
 
           let extractString = extractDTBVId(item.description);
-          let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[3];
-          let courseIDCheck = extractDTBVId(item.description)?.split("x")[2];
+          let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[2];
+          let courseIDCheck = extractDTBVId(item.description)?.split("x")[1];
 
           return (
             phoneNumberCheck === phoneNumber && courseIDCheck == CODE_ORDER
@@ -148,10 +147,10 @@ export const CheckoutQR = () => {
 
     const regex = /DTBV\w+/g;
     const matches = input.match(regex);
-    return matches ? matches[1] : null;
+    return matches ? matches[0] : null;
   }
 
-  const expectedString = `xDTBVx${CODE_ORDER}x${phoneNumber}x`;
+  const expectedString = `DTBVx${CODE_ORDER}x${phoneNumber}x`;
 
   useEffect(() => {
     if (

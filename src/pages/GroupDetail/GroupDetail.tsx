@@ -94,26 +94,31 @@ export const GroupDetail = () => {
         </div>
         <div className="technical-information">
           <h1 className="title-product">{course?.title}</h1>
-          <div className="text">{course?.demo}</div>
-          <div className="price">
-            {course?.price
-              ?.toLocaleString("en-US", {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-              })
-              .replace(/,/g, ".")}{" "}
-            VND
-          </div>
-
-          <button
-            onClick={() => handleBuy(course)}
-            className="btn-add-shopping-cart"
-          >
-            <MdAddShoppingCart />{" "}
-            <span style={{ marginTop: "3px" }}>
-              {id === "26" ? "ĐĂNG KÝ TƯ VẤN ĐẦU TƯ" : "THAM GIA CỘNG ĐỒNG"}
-            </span>
-          </button>
+          <div className="text">{course?.demo}</div>\
+          {id === "26" ? (
+            <div className="price">
+              {course?.price
+                ?.toLocaleString("en-US", {
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                })
+                .replace(/,/g, ".")}{" "}
+              VND
+            </div>
+          ) : (
+            <></>
+          )}
+          {id === "26" ? (
+            <button
+              onClick={() => handleBuy(course)}
+              className="btn-add-shopping-cart"
+            >
+              <MdAddShoppingCart />{" "}
+              <span style={{ marginTop: "3px" }}>ĐĂNG KÝ TƯ VẤN ĐẦU TƯ</span>
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 
@@ -132,18 +137,20 @@ export const GroupDetail = () => {
                   __html: course?.description.replace(/\n/g, "<br/>"),
                 }}
               />
-              <div className="box-submit">
-                <button
-                  onClick={() => handleBuy(course)}
-                  className="btn-add-shopping-cart-des"
-                >
-                  <span style={{ marginTop: "3px" }}>
-                    {id === "26"
-                      ? "ĐĂNG KÝ TƯ VẤN ĐẦU TƯ"
-                      : "THAM GIA CỘNG ĐỒNG"}
-                  </span>
-                </button>
-              </div>
+              {id === "26" ? (
+                <div className="box-submit">
+                  <button
+                    onClick={() => handleBuy(course)}
+                    className="btn-add-shopping-cart-des"
+                  >
+                    <span style={{ marginTop: "3px" }}>
+                      ĐĂNG KÝ TƯ VẤN ĐẦU TƯ
+                    </span>
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           <div className="box2"></div>
