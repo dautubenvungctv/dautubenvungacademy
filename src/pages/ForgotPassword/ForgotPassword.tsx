@@ -74,7 +74,7 @@ export const ForgotPassword = () => {
 
   const handleChangePass = () => {
     axios
-      .post(`${process.env.REACT_APP_PORT}/change-password`, {
+      .post(`${process.env.REACT_APP_PORT}/change-password-email`, {
         email: email,
         password: passWordSecond,
       })
