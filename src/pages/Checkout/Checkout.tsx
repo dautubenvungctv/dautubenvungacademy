@@ -60,14 +60,7 @@ export const Checkout = () => {
   );
 
   const handleSubmit = () => {
-    if (
-      email !== "" ||
-      name !== "" ||
-      phoneNumber !== "" ||
-      city !== "" ||
-      district !== "" ||
-      address !== ""
-    ) {
+    if (email !== "" && name !== "" && phoneNumber !== "") {
       nextHome("/check-outqr", {
         state: {
           name: name,
