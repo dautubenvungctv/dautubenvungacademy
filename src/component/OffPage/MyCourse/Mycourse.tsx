@@ -106,12 +106,15 @@ export const Mycourse = () => {
     {
       title: "Vào học",
       key: "url_course",
-      render: (_: any, record: any) => {
+      render: (item: any, record: any) => {
+        console.log("item: ", item);
+        let path = `/course/${item?.course_id}`;
         return (
           <Space size="middle">
-            <a target="_plank" href={_.url}>
+            {/* <a target="_plank" href={_.url}>
               Vào học
-            </a>
+            </a> */}
+            <Link to={path}>Vào học</Link>
           </Space>
         );
       },

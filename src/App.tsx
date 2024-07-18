@@ -18,6 +18,8 @@ import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword";
 import { GroupDetail } from "./pages/GroupDetail/GroupDetail";
 import { Document } from "./pages/Document/Document";
 import { ChangePass } from "./pages/ChangePass/ChangePass";
+import { TableVideo } from "./pages/Table/Table";
+import { VideoGlobal } from "./pages/Videos";
 function App() {
   const publics = [
     {
@@ -68,6 +70,14 @@ function App() {
     {
       path: "/forgot-password",
       pages: ForgotPassword,
+    },
+    {
+      path: "/course/:courseId",
+      pages: TableVideo,
+    },
+    {
+      path: "/video/:videoId",
+      pages: VideoGlobal,
     },
   ];
 
