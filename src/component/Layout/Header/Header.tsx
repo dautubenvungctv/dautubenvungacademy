@@ -107,7 +107,11 @@ export const Header = () => {
             >
               SÁCH
             </div> */}
-              <Link to="/document" className="tab">
+              <Link
+                style={{ visibility: "visible" }}
+                to="/document"
+                className="tab"
+              >
                 TÀI LIỆU
               </Link>
             </div>
