@@ -76,7 +76,7 @@ function App() {
       pages: TableVideo,
     },
     {
-      path: "/video/:videoId",
+      path: "/video/:courseId/:videoId",
       pages: VideoGlobal,
     },
   ];

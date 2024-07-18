@@ -15,10 +15,11 @@ export const VideoGlobal = () => {
   // }
 
   let videoId = useParams().videoId;
+  let courseId = useParams().courseId;
   useEffect(() => {
     console.log("videoId: ", videoId);
     // getVideo(videoId)
-  }, [videoId]);
+  }, [videoId, courseId]);
 
   const videoJsOptions = {
     autoplay: true,
@@ -27,7 +28,7 @@ export const VideoGlobal = () => {
     fluid: true,
     sources: [
       {
-        src: `http://117.6.60.82:3000/videos/19/${videoId}`,
+        src: `http://117.6.60.82:3000/videos/${courseId}/${videoId}`,
         type: "video/mp4",
       },
     ],

@@ -82,6 +82,7 @@ const Layout = ({ children }: LayoutProps) => {
         localStorage.removeItem("userID");
         localStorage.removeItem("token");
         localStorage.removeItem("info");
+        navigate("/");
         window.location.reload();
       });
     }
