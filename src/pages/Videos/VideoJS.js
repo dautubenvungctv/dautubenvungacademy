@@ -31,7 +31,7 @@ export const VideoJS = (props) => {
       const player = playerRef.current;
 
       player.autoplay(options.autoplay);
-      // player.src(options.sources);
+      player.src(options.sources);
     }
   }, [options, videoRef]);
 
@@ -48,7 +48,7 @@ export const VideoJS = (props) => {
   }, []);
 
   return (
-    <div data-vjs-player>
+    <div style={{ marginBottom: "230px" }} data-vjs-player>
       <button
         style={{
           background: "#1877F2",

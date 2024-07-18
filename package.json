@@ -38,6 +38,7 @@
     "styled-components": "^6.1.8",
     "typescript": "^4.9.5",
     "video.js": "^8.16.1",
+    "videojs-playbackrate-adjuster": "^1.0.1",
     "vite-tsconfig-paths": "^4.3.2",
     "web-vitals": "^2.1.4"
   },
