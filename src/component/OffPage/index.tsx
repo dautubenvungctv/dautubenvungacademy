@@ -4,11 +4,11 @@ import { SignUp } from "./SignUp/SignUp";
 import { Mycourse } from "./MyCourse/Mycourse";
 import { StyledOffPage } from "./styled";
 export const User = () => {
-  const userID = localStorage.getItem("userID");
+  const token = localStorage.getItem("token");
   return (
     <StyledOffPage>
       <div className="box-in-up">
-        {userID ? (
+        {token ? (
           <Mycourse />
         ) : (
           <>

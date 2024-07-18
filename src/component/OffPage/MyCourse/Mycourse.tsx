@@ -8,6 +8,7 @@ export const Mycourse = () => {
   const handleLogOut = () => {
     localStorage.removeItem("userID");
     localStorage.removeItem("token");
+    localStorage.removeItem("info");
     window.location.reload();
   };
 
@@ -76,8 +77,7 @@ export const Mycourse = () => {
     //   title: "Action",
     //   key: "action",
     //   render: (_: any, record: any) => {
-    //     // console.log("_: ", _);
-    //     // console.log("record: ", record);
+
     //     return (
     //       <Space size="middle">
     //         <a>Vào học</a>
@@ -91,8 +91,6 @@ export const Mycourse = () => {
       title: "Ngày",
       dataIndex: "enroll_date",
       render: (_: any, record: any) => {
-        console.log("_: ", _);
-        console.log("record: ", record);
         return (
           <Space size="middle">
             <div>{record.added_at}</div>
@@ -133,9 +131,9 @@ export const Mycourse = () => {
         <button onClick={handleLogOut} className="btn-logout">
           Đăng xuất
         </button>
-        <Link to="/change-pass" className="btn-logout">
+        {/* <Link to="/change-pass" className="btn-logout">
           Đổi mật khẩu
-        </Link>
+        </Link> */}
       </div>
     </StyledMyCourse>
   );

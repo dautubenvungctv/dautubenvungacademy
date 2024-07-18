@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleLogin } from "./styled";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { SignUp } from "../SignUp/SignUp";
@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLogin, setUserInfo } from "../../../redux/app";
 import { selectAppSelector } from "@/redux/app/selector";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
+import { MyContext } from "../../Layout/Layout";
 type NotificationPlacement = NotificationArgsProps["placement"];
 export const Login = () => {
+  const context = useContext(MyContext);
   const [api, contextHolder] = notification.useNotification();
   const nextHome = useNavigate();
   const dispath = useDispatch();
@@ -20,7 +22,10 @@ export const Login = () => {
   const [errPhoneNumber, setErrPhoneNumber] = useState(false);
   const [errPassWord, setErrPassWord] = useState(false);
   const [showPass, setShowPass] = useState(false);
-
+  const { value, setValue } = context;
+  if (!context) {
+    throw new Error("Login must be used within a MyProvider");
+  }
   const handleSubmit = () => {
     if (phoneNumber === "") {
       setErrPhoneNumber(true);
@@ -40,7 +45,6 @@ export const Login = () => {
           password: passWord,
         })
         .then((res) => {
-          console.log("res: ", res);
           if (res.status === 200) {
             api.success({
               message: `Notification success`,
@@ -53,25 +57,7 @@ export const Login = () => {
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("userID", res.data.user_id);
             localStorage.setItem("info", res.data.info);
-            const socket = io(`${process.env.REACT_APP_SOCKET_PORT}`);
-            if (!res.data.user_id) {
-              socket.close();
-            } else {
-              socket.on("connect", () => {
-                console.log("Connected to socket server");
-
-                socket.emit("login", res.data.user_id);
-              });
-
-              socket.on("forceLogout", (message: any) => {
-                // alert("Tài khoản đã đăng nhập ở nơi khác");
-                localStorage.removeItem("userID");
-                localStorage.removeItem("token");
-                window.location.reload();
-
-                // Thực hiện đăng xuất, xóa local storage, v.v...
-              });
-            }
+            setValue(res.data.user_id);
           } else if (res.status === 404) {
             api.error({
               message: `Notification success`,

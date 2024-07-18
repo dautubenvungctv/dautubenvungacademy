@@ -21,7 +21,7 @@ export const Header = () => {
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
   const [openOption, setOpenOption] = useState(false);
-  const useID = localStorage.getItem("userID");
+
   const info = localStorage.getItem("info");
   const token = localStorage.getItem("token");
   const handleScrollTo = (target: any) => {
@@ -112,7 +112,11 @@ export const Header = () => {
               </Link>
             </div>
             <div style={{ display: "flex", gap: "16px" }}>
-              {useID ? (
+              {!token ? (
+                <Link to="/login" className="icon-user">
+                  <FaRegUser style={{ color: "#fff" }} />
+                </Link>
+              ) : (
                 <div
                   style={{
                     position: "relative",
@@ -131,32 +135,51 @@ export const Header = () => {
                 >
                   {info} <IoMdArrowDropdown />
                   {openOption && (
-                    <Link
-                      to="/login"
+                    <div
                       style={{
                         position: "absolute",
                         top: "31px",
                         background: "#fff",
-                        padding: "8px",
                         borderRadius: "8px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        fontSize: "12px",
-                        fontWeight: 600,
-                        cursor: "pointer",
-                        width: "120px",
-                        color: "#2362e0",
                       }}
                     >
-                      Khoá học của tôi
-                    </Link>
+                      <Link
+                        to="/login"
+                        style={{
+                          padding: "8px",
+                          borderBottom: "1px solid #333",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                          width: "120px",
+                          color: "#2362e0",
+                        }}
+                      >
+                        Khoá học của tôi
+                      </Link>
+                      <Link
+                        to="/change-pass"
+                        style={{
+                          padding: "8px",
+
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                          width: "120px",
+                          color: "#2362e0",
+                        }}
+                      >
+                        Đổi mật khẩu
+                      </Link>
+                    </div>
                   )}
                 </div>
-              ) : (
-                <Link to="/login" className="icon-user">
-                  <FaRegUser style={{ color: "#fff" }} />
-                </Link>
               )}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { Header } from "./Header/Header";
 import { Footer } from "./Footer/Footer";
 import { StyledLayout } from "./styled";
@@ -9,6 +9,7 @@ import axios from "axios";
 import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
 import { scroller } from "react-scroll";
+import { io } from "socket.io-client";
 
 declare global {
   interface Window {
@@ -18,10 +19,24 @@ declare global {
 interface LayoutProps {
   children: any;
 }
-export const Layout = ({ children }: LayoutProps) => {
+interface MyContextType {
+  value: any;
+  setValue: any;
+}
+
+// Tạo context với giá trị mặc định
+const MyContext = createContext<any>(undefined);
+
+const Layout = ({ children }: LayoutProps) => {
+  const context = useContext(MyContext);
+  const [value, setValue] = useState(() => {
+    const savedValue = localStorage.getItem("userID");
+    return savedValue !== null ? JSON.parse(savedValue) : null;
+  });
   const location = useLocation();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
   const [listGroups, setListGroups] = useState([]);
   const getListGroups = () => {
     axios
@@ -52,6 +67,29 @@ export const Layout = ({ children }: LayoutProps) => {
       });
     }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
   };
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_SOCKET_PORT}`);
+    if (!value) {
+      socket.close();
+      console.log("close socket");
+    } else {
+      socket.on("connect", () => {
+        console.log("Connected to socket server");
+        socket.emit("login", value);
+      });
+      socket.on("forceLogout", (message: any) => {
+        alert("Tài khoản đã đăng nhập ở nơi khác!");
+        localStorage.removeItem("userID");
+        localStorage.removeItem("token");
+        localStorage.removeItem("info");
+        window.location.reload();
+      });
+    }
+    return () => {
+      socket.close();
+      console.log("close socket 2");
+    };
+  }, [value]);
   const initZalo = () => {
     if (!document.getElementById("zalo-script")) {
       // Thêm đoạn script tạm thời để tránh lỗi
@@ -82,90 +120,103 @@ export const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     initZalo();
   }, []);
+
+  useEffect(() => {
+    // Lưu giá trị vào Local Storage mỗi khi value thay đổi
+    localStorage.setItem("userID", JSON.stringify(value));
+  }, [value]);
   return (
-    <StyledLayout>
-      <Flex
-        style={{
-          flexDirection: "column",
-          minHeight: "100vh",
-          justifyContent: "center",
-        }}
-      >
-        <div
+    <MyContext.Provider value={{ value, setValue }}>
+      <StyledLayout>
+        <Flex
           style={{
-            maxWidth: "1000px",
-            width: "100%",
-            margin: "0 auto",
-            flex: 1,
-            // background: "#F4F4F4",
+            flexDirection: "column",
+            minHeight: "100vh",
+            justifyContent: "center",
           }}
         >
-          <Header />
+          <div
+            style={{
+              maxWidth: "1000px",
+              width: "100%",
+              margin: "0 auto",
+              flex: 1,
+              // background: "#F4F4F4",
+            }}
+          >
+            <Header />
 
-          {children}
-          {location.pathname === "/check-outqr" ||
-          location.pathname === "/check-out" ||
-          location.pathname === "/document" ? (
-            <></>
-          ) : (
-            <div className="wrapper-footer">
-              <div className="title-group">CỘNG ĐỒNG</div>
-              {listGroups.map((item: any, index: any) => (
-                <div
-                  onClick={() =>
-                    handleScrollTo(`/group-detail/${item?.group_id}`, "header")
-                  }
-                  style={{
-                    flexDirection: index % 2 ? "row-reverse" : "row",
-                  }}
-                  className="box"
-                >
-                  <img
-                    className="img"
+            {children}
+            {location.pathname === "/check-outqr" ||
+            location.pathname === "/check-out" ||
+            location.pathname === "/document" ? (
+              <></>
+            ) : (
+              <div className="wrapper-footer">
+                <div className="title-group">CỘNG ĐỒNG</div>
+                {listGroups.map((item: any, index: any) => (
+                  <div
+                    onClick={() =>
+                      handleScrollTo(
+                        `/group-detail/${item?.group_id}`,
+                        "header"
+                      )
+                    }
                     style={{
-                      borderRadius: "16px",
-                      objectFit: "cover",
+                      flexDirection: index % 2 ? "row-reverse" : "row",
                     }}
-                    src={item.image}
-                    alt=""
-                  />
-                  <div className="box-text">
-                    <div className="first">{item?.title}</div>
-                    <div className="demo-group">{item?.demo}</div>
-                    <div className="box-btn-group">
-                      <div
-                        className="icon-next"
-                        style={{
-                          background: "#FFCF03",
-                          borderRadius: "20px",
-                          height: "28px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <img
+                    className="box"
+                  >
+                    <img
+                      className="img"
+                      style={{
+                        borderRadius: "16px",
+                        objectFit: "cover",
+                      }}
+                      src={item.image}
+                      alt=""
+                    />
+                    <div className="box-text">
+                      <div className="first">{item?.title}</div>
+                      <div className="demo-group">{item?.demo}</div>
+                      <div className="box-btn-group">
+                        <div
+                          className="icon-next"
                           style={{
-                            width: "70%",
-                            height: "20px",
-                            objectFit: "cover",
+                            background: "#FFCF03",
+                            borderRadius: "20px",
+                            height: "28px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
                           }}
-                          src={next}
-                          alt=""
-                        />
-                      </div>
-                      <div className="second">
-                        {index === 0 ? "ĐĂNG KÝ TƯ VẤN" : "THAM GIA CỘNG ĐỒNG"}
+                        >
+                          <img
+                            style={{
+                              width: "70%",
+                              height: "20px",
+                              objectFit: "cover",
+                            }}
+                            src={next}
+                            alt=""
+                          />
+                        </div>
+                        <div className="second">
+                          {index === 0
+                            ? "ĐĂNG KÝ TƯ VẤN"
+                            : "THAM GIA CỘNG ĐỒNG"}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <Footer />
-      </Flex>
-    </StyledLayout>
+                ))}
+              </div>
+            )}
+          </div>
+          <Footer />
+        </Flex>
+      </StyledLayout>
+    </MyContext.Provider>
   );
 };
+export { MyContext, Layout };

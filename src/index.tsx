@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import store from "../src/redux/store";
 import { Provider } from "react-redux";
 
+window.zaloJSV2 = {
+  zalo_h5_event_handler: function () {},
+};
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
