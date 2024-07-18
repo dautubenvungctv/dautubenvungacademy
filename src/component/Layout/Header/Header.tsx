@@ -146,6 +146,7 @@ export const Header = () => {
                         top: "31px",
                         background: "#fff",
                         borderRadius: "8px",
+                        border: "1px solid #333",
                       }}
                     >
                       <Link
@@ -170,6 +171,7 @@ export const Header = () => {
                         style={{
                           padding: "8px",
 
+                          borderBottom: "1px solid #333",
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
@@ -182,6 +184,29 @@ export const Header = () => {
                       >
                         Đổi mật khẩu
                       </Link>
+                      <div
+                        onClick={() => {
+                          localStorage.removeItem("userID");
+                          localStorage.removeItem("token");
+                          localStorage.removeItem("info");
+                          setOpenOption(false);
+                          window.location.reload();
+                        }}
+                        style={{
+                          padding: "8px",
+
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontSize: "12px",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                          width: "120px",
+                          color: "#2362e0",
+                        }}
+                      >
+                        Đăng xuất
+                      </div>
                     </div>
                   )}
                 </div>
