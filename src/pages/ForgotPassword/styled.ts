@@ -36,7 +36,7 @@ export const StyledForgotPassWord = styled.div<any>`
   .btnforgot {
     background-color: #3493fa;
     border: 1px solid transparent;
-    border-radius: 13px3;
+    border-radius: 13px;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;

@@ -3,10 +3,13 @@ import { StyleChangePass } from "./styled";
 import axios from "axios";
 import { notification } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 export const ChangePass = () => {
   const [api, contextHolder] = notification.useNotification();
   const next = useNavigate();
   const [checkChange, setCheckChange] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showPassNew, setShowPassNew] = useState(false);
   const userId = localStorage.getItem("userID");
   const token = localStorage.getItem("token");
   const [oldPass, setOldPass] = useState("");
@@ -93,27 +96,50 @@ export const ChangePass = () => {
             </div>
             <div className="form-input">
               <div className="top">Mật khẩu cũ*</div>
-              <input
-                value={oldPass}
-                onChange={(e) => setOldPass(e.target.value)}
-                className="bottom"
-                type="text"
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  value={oldPass}
+                  onChange={(e) => setOldPass(e.target.value)}
+                  type={showPass ? "text" : "password"}
+                  className="bottom"
+                />
+                <div
+                  onClick={() => setShowPass(!showPass)}
+                  style={{ position: "absolute", right: 20, top: 11 }}
+                >
+                  {showPass ? <IoMdEye /> : <IoIosEyeOff />}
+                </div>
+              </div>
             </div>
             <div className="form-input">
               <div className="top">Mật khẩu mới*</div>
-              <input
-                value={passWord}
-                onChange={(e) => setPassWord(e.target.value)}
-                className="bottom"
-                type="text"
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  value={passWord}
+                  onChange={(e) => setPassWord(e.target.value)}
+                  type={showPassNew ? "text" : "password"}
+                  className="bottom"
+                />
+                <div
+                  onClick={() => setShowPassNew(!showPassNew)}
+                  style={{ position: "absolute", right: 20, top: 11 }}
+                >
+                  {showPassNew ? <IoMdEye /> : <IoIosEyeOff />}
+                </div>
+              </div>
             </div>
             <div className="box-btn-mail">
               <button onClick={submitChange} className="btn-order">
                 ĐỔI MẬT KHẨU
               </button>
             </div>
+            <Link
+              style={{ marginTop: "20px", fontSize: "15px" }}
+              to="/forgot-password"
+              className="forgot-password"
+            >
+              Quên mật khẩu ?
+            </Link>
           </div>
         </div>
       )}
