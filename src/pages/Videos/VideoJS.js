@@ -48,7 +48,7 @@ export const VideoJS = (props) => {
   }, []);
 
   return (
-    <div style={{ marginBottom: "230px" }} data-vjs-player>
+    <div className="margin-video" data-vjs-player>
       <button
         style={{
           background: "#1877F2",
