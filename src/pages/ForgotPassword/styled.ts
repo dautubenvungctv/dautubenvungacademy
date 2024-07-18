@@ -19,6 +19,7 @@ export const StyledForgotPassWord = styled.div<any>`
       width: calc(100% - 30px);
       border-radius: 13px;
       height: 2.507em;
+      padding: 0 20px;
     }
     .btn-sendcode {
       margin: 10px 0;
