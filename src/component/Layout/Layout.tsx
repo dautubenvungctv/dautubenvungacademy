@@ -153,7 +153,7 @@ const Layout = ({ children }: LayoutProps) => {
               <></>
             ) : (
               <div className="wrapper-footer">
-                <div className="title-group">CỘNG ĐỒNG</div>
+                <div className="title-group">CỘNG ĐỒNG | TƯ VẤN ĐẦU TƯ</div>
                 {listGroups.map((item: any, index: any) => (
                   <div
                     onClick={() =>

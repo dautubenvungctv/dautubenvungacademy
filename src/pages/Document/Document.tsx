@@ -57,11 +57,14 @@ export const Document = () => {
       <div className="box-first-document">
         <div className="info-ebook">
           <div className="title-ebook">
-            BỘ TÀI LIỆU ĐẦU TƯ
+            BỘ TÀI LIỆU: "NGHỀ ĐẦU TƯ"
             <p className="des">
-              Chỉ trong 6 tháng, mình đã thành công có được thu nhập $2499/tháng{" "}
-              từ ngành copywriting - Đều là vì mình đã may mắn hiểu được 3 bí
-              mật của những người trong ngành này.
+              Xin chào bạn mình là Vinh của ĐẦU TƯ BỀN VỮNG đây.
+            </p>
+            <p style={{ fontSize: "15px", fontWeight: 400 }}>
+              Nhiều năm qua mình thường chia sẻ rất nhiều những kinh nghiệm đầu
+              tư, kinh nghiệm kinh doanh của mình trên kênh Youtube Hoàng Vinh
+              Đầu Tư Bền Vững.
             </p>
           </div>
 
@@ -70,91 +73,63 @@ export const Document = () => {
               onClick={() => handleScrollTo("form")}
               className="btn-click"
             >
-              Tải eBook này ngay tại ĐÂY ...
+              Tải tài liệu tại ĐÂY ...
               <br />
-              <span>
-                Không cần thẻ tín dụng, không cần điền thông tin <br /> lằng
-                nhằng. Hoàn toàn miễn phí!
-              </span>
+              <span style={{ fontSize: "15px" }}>Hoàn toàn miễn phí!</span>
             </button>
           </div>
         </div>
         <img style={{ width: 300 }} src={anhVinh} alt="" />
       </div>
       <div className="content-ebook">
-        <p className="ladi-headline ladi-transition">
-          Hi bạn,
+        <p
+          style={{ lineHeight: 1.5 }}
+          className="ladi-headline ladi-transition"
+        >
+          Mình rất vui vì bạn đã quyết định bỏ thời gian quý giá của bạn để đăng
+          ký nhận bộ tài liệu đầu tư này. Mình trân trọng điều đó và trước hết
+          mình muốn gửi lời cảm ơn trân thành tới bạn.
           <br />
           <br />
-          Đọc được trang này nghĩa là bạn đã biết đến kỹ năng Copywriting trước
-          đây rồi.
+          Đây là bộ tài liệu có tên gọi là "NGHỀ ĐẦU TƯ" được viết bởi một người
+          trước đây từng trải qua nhiều thất bại, phá sản, từng ngậm đắng nuốt
+          cay và lận đận nhiều phen vì hai chữ "làm giàu".
           <br />
           <br />
-          Và mình thật sự chúc mừng bạn ️Vì không phải ai cũng có may mắn được
-          biết đến ngành này sớm như vậy.
-          <br />
-          <br />
-          Đây là ngành vô cùng tiềm năng…
+          Vì vậy nó sẽ không có những triết lý cao siêu như những cuốn sách của
+          bậc vĩ nhân. Cũng chẳng có những lý thuyết nặng nề, khó áp dụng trong
+          thực tiễn. Bởi lẽ những nội dung trong cuốn tài liệu được viết từ
+          chính những kinh nghiệm xương máu và sự chiêm nghiệm của mình trong
+          việc đầu tư ở các thị trường như: bất động sản, cổ phiếu, vàng. Nó sẽ
+          mang đến cho bạn nhiều kiến thức bổ ích, thực tế và có ý nghĩa thực sự
+          trong công việc đầu tư của bạn.
           <br />
         </p>
         <div className="ladi-paragraph ladi-transition">
-          Nhưng mình đã không còn nhận khách hàng nữa. Vì hiện tại mình chỉ làm
-          cho chính mình thôi là đã không còn thời gian.
+          Là một người cầu tiến mình rất thích đọc sách, gặp gỡ rất nhiều người
+          thành công từ hai bàn tay trắng. Nghe những câu chuyện của họ, bản
+          thân mình cũng học hỏi được rất nhiều điều.
           <br />
           <br />
-          Tất cả những điều đó mình đạt được trong vòng chỉ khoảng hơn 1 năm.
+          Trong suốt thời gian gần 10 năm gắn bó với công việc đầu tư mình đã
+          từng đánh đổi những sai lầm bằng rất nhiều tiền, bằng mồ hôi nước mắt,
+          để nhận ra nhiều thứ.
           <br />
           <br />
-          Chính vì vậy, không phải là nói quá khi mà mình luôn nói với những bạn
-          theo dõi mình trên Youtube và TikTok là:
+          Giờ đây, mình gom lại một số những kinh nghiệm, bài học trong nhiều
+          năm đầu tư đó, rút ngắn lại thành một số những lưu ý, những công thức
+          quan trọng áp dụng trong đầu tư để gửi gắm vào bộ tài liệu này.
           <br />
           <br />
-          <span style={{ fontWeight: "bold" }}>
-            “Copywriting chính là ngành tiềm năng số #1 tại Việt Nam ở thời điểm
-            hiện tại”.
-          </span>
+          Mình mong rằng bạn sẽ nhận được một điều gì đó hữu ích để áp dụng
+          trong quản lý tài chính và công việc đầu tư của mình.
           <br />
-          <br />
-          Ok…
-          <br />
-          <br />
-          Tóm lại thì…
-          <br />
-          <br />
-          Sau khi tải xuống cuốn sách này, bạn sẽ tìm thấy trong cuốn sách những
-          nội dung sau:
-          <br />
-        </div>
-        <div className="ladi-paragraph ladi-transition">
-          Lúc mình mới bắt đầu làm copywriting, mình đã có thể tính phí khách
-          hàng <span style={{ fontWeight: "bold" }}>$40-$70/email</span> - Mà
-          mỗi email mình chỉ mất tối đa 1-2 tiếng để viết.
-          <br />
-          <br />
-          Tức là bạn có thể kiếm được từ{" "}
-          <span style={{ fontWeight: "bold" }}>
-            900k-1800k cho mỗi 2 tiếng đồng hồ làm việc.
-          </span>
-          <br />
-          <br />
-          Một mức thu nhập khá tốt phải không nhỉ?
-          <br />
-          <br />
-          Còn ở thời điểm hiện tại…
-          <br />
-          <br />
-          Mình có thể dễ dàng tính phí $100-$200/email.
-          <br />
-          <br />
-          Hoặc $2000-$3000/sales page.
           <br />
         </div>
       </div>
 
       <div className="my-info">
-        <div className="title">
-          NẾU BẠN ĐANG THẮC MẮC MÌNH LÀ AI MÀ DÁM NÓI RA NHỮNG ĐIỀU NÀY...
-        </div>
+        <div className="title">CHÚC BẠN ĐẦU TƯ THẮNG LỢI</div>
         <div className="me">
           <img
             style={{
@@ -339,49 +314,12 @@ export const Document = () => {
             </a>
           </div>
         </div>
-        <div id="PARAGRAPH108" className="ladi-element">
-          <div className="ladi-paragraph ladi-transition">
-            Năm 2020, mình từng là đứa thất nghiệp và không kiếm nổi 2
-            triệu/tháng. Mình làm ăn thua lỗ, không kinh nghiệm, không việc
-            làm,...
-            <br />
-            <br />
-            Nhưng rồi, sau những thất bại đó mình đã quyết tâm vực dậy và quyết
-            định theo đuổi ngành Copywriting
-            <br />
-            <br />
-            Chỉ sau 6 tháng, mình đã cạn mốc thu nhập $2499/tháng từ kỹ năng
-            này, và sau đó khi mình áp dụng kỹ năng Copywriting này cho chính
-            doanh nghiệp của mình thì mình chính thức hoàn thành mục tiêu kiếm
-            $10.000/tháng chỉ sau 9 tháng.
-            <br />
-            <br />
-            Mình hoàn thành mục tiêu này sớm hơn 1 năm là vì mình may mắn tận
-            dụng sức mạnh của Copywriting.
-            <br />
-            <br />
-            Nhờ vậy, mình cũng may mắn được mọi người biết đến với tư cách là
-            người dẫn đầu cho xu hướng Copywriting tại Việt Nam.
-            <br />
-            <br />
-            Đó là một số thông tin cơ bản về mình, bạn có thể tìm hiểu thêm qua
-            kênh Youtube “Minh Xin Chào” với rất nhiều những video liên quan đến
-            Copywriting.
-            <br />
-            <br />
-            Còn ngay bây giờ bạn có thể tải xuống ebook này tại đây:
-            <br />
-          </div>
-        </div>
       </div>
       <div className="box-btn-second">
         <button onClick={() => handleScrollTo("form")} className="btn-click">
-          Tải eBook này ngay tại ĐÂY ...
+          Tải tài liệu tại ĐÂY ...
           <br />
-          <span>
-            Không cần thẻ tín dụng, không cần điền thông tin <br /> lằng nhằng.
-            Hoàn toàn miễn phí!
-          </span>
+          <span style={{ fontSize: "15px" }}>Hoàn toàn miễn phí!</span>
         </button>
       </div>
       <Element name="form">

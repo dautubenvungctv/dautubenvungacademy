@@ -15,43 +15,21 @@ export const CheckoutQR = () => {
   const nextHome = useNavigate();
   const [checkUserOrder, setCheckUserOrder] = useState(false);
   const userID = localStorage.getItem("userID");
+  const token = localStorage.getItem("token");
   const today = moment(); // Lấy ngày hiện tại
   const [pricePaid, setPricePaid] = useState<any>(null);
   const [contentPaid, setContentPaid] = useState<any>(null);
   const [checkSucces, setCheckSucces] = useState(false);
-  const [idOrder, setIdOder] = useState(null);
-  const [listCourseCart, setListCourseCart] = useState<any>([]);
-  const [listBookCart, setListBookCart] = useState<any>([]);
-  const token = localStorage.getItem("token");
 
-  const getOrder = () => {
-    axios
-      .get(`${process.env.REACT_APP_PORT}/orders/${userID}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Custom-Header": "foobar",
-          // Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        if (res.data.length > 0) {
-          setIdOder(res.data[res.data.length - 1].id);
-        }
-      });
-  };
-
-  useEffect(() => {
-    getOrder();
-  }, []);
   const checkSubmitOrder = () => {
     axios
       .post(
         `${process.env.REACT_APP_PORT}/buy-course`,
         {
-          user_id: userID ? +userID : null,
+          user_id: token ? userID : null,
           name: name,
-          phone: userID ? null : phoneNumber,
-          email: userID ? null : email,
+          phone: token ? null : phoneNumber,
+          email: token ? null : email,
           city: city,
           district: district,
           address: address,
@@ -68,7 +46,7 @@ export const CheckoutQR = () => {
       )
       .then((res) => {
         if (res.status === 200) {
-          if (!userID) {
+          if (!token) {
             setCheckUserOrder(true);
           } else {
             setCheckSucces(true);
@@ -86,7 +64,7 @@ export const CheckoutQR = () => {
     ? item.book_id
     : item.course_id;
 
-  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=xDTBVx${CODE_ORDER}x${phoneNumber}x&accountName=${MY_BANK.ACCOUNT_NAME}`;
+  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=XDTBVX${CODE_ORDER}X${phoneNumber}X&accountName=${MY_BANK.ACCOUNT_NAME}`;
   const API_KEY =
     "AK_CS.72f19260378f11efb7127b03250987c0.S4hO33vAcwUjzFSgRA1xxzhWBvfjMEizTRfU72G9rk9uGVmeRBW0GvXRhyAmKqWKkckzSKHA";
   const API_GET_PAID =
@@ -105,17 +83,32 @@ export const CheckoutQR = () => {
             return null; // Nếu input là null hoặc undefined, trả về null
           }
 
-          const regex = /DTBV\w+/g;
-          const matches = input.match(regex);
-          return matches ? matches[0] : null;
+          // Biểu thức chính quy để bắt các chuỗi "DTBV" và "XDTBV"
+          const regex1 = /DTBV\w+/g; // Dành cho các chuỗi bắt đầu với "DTBV"
+          const regex2 = /XDTBVX\d+X\d+X/g; // Dành cho các chuỗi bắt đầu với "XDTBV"
+
+          let matches1 = input.match(regex1);
+          let matches2 = input.match(regex2);
+
+          if (matches1) {
+            // Nếu tìm thấy mã theo regex1, trả về mã đã làm sạch
+            return matches1[0];
+          } else if (matches2) {
+            // Nếu tìm thấy mã theo regex2, làm sạch và trả về mã
+            const extractedCode = matches2[0];
+            const cleanedCode = extractedCode.replace(/X/g, ""); // Loại bỏ các ký tự 'X'
+            return cleanedCode;
+          }
+
+          return null;
         }
 
         const paid = res.data.data.records.find((item: any) => {
           let des = item.description;
 
           let extractString = extractDTBVId(item.description);
-          let phoneNumberCheck = extractDTBVId(item.description)?.split("x")[2];
-          let courseIDCheck = extractDTBVId(item.description)?.split("x")[1];
+          let phoneNumberCheck = extractDTBVId(item.description)?.split("X")[2];
+          let courseIDCheck = extractDTBVId(item.description)?.split("X")[1];
 
           return (
             phoneNumberCheck === phoneNumber && courseIDCheck == CODE_ORDER
@@ -142,15 +135,26 @@ export const CheckoutQR = () => {
 
   function extractDTBVId(input: any) {
     if (!input) {
-      return null; // Nếu input là null hoặc undefined, trả về null
+      return null;
+    }
+    const regex1 = /DTBV\w+/g;
+    const regex2 = /XDTBVX\d+X\d+X/g;
+
+    let matches1 = input.match(regex1);
+    let matches2 = input.match(regex2);
+
+    if (matches1) {
+      return matches1[0];
+    } else if (matches2) {
+      const extractedCode = matches2[0];
+      const cleanedCode = extractedCode.replace(/X/g, "");
+      return cleanedCode;
     }
 
-    const regex = /DTBV\w+/g;
-    const matches = input.match(regex);
-    return matches ? matches[0] : null;
+    return null;
   }
 
-  const expectedString = `DTBVx${CODE_ORDER}x${phoneNumber}x`;
+  const expectedString = `DTBVX${CODE_ORDER}X${phoneNumber}X`;
 
   useEffect(() => {
     if (
@@ -164,7 +168,7 @@ export const CheckoutQR = () => {
       });
 
       checkSubmitOrder();
-      if (!userID) {
+      if (!token) {
         setCheckUserOrder(true);
       } else {
         setCheckSucces(true);
@@ -183,7 +187,7 @@ export const CheckoutQR = () => {
             <li className="woocommerce-order-overview__order order">
               Mã đơn hàng:{" "}
               <strong>
-                xDTBVx{CODE_ORDER}x{phoneNumber}x
+                XDTBVX{CODE_ORDER}x{phoneNumber}X
               </strong>
             </li>
             <li className="woocommerce-order-overview__date date">
@@ -245,7 +249,37 @@ export const CheckoutQR = () => {
             Phương thức thanh toán: <strong>Chuyển khoản</strong>
           </li>
         </ul>
-        {checkUserOrder ? (
+        {item.hasOwnProperty("group_id") &&
+        pricePaid === item?.price &&
+        extractDTBVId(contentPaid) === expectedString ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "16px",
+            }}
+            className="box-qr"
+          >
+            <div className="titleqr">
+              Bạn đã chuyển khoản thành công !<br />{" "}
+              <span style={{ fontSize: "23px" }}>
+                Đầu Tư Bền Vững sẽ liên hệ với bạn để sắp xếp lịch tư vấn trong
+                thời gian sớm nhất.
+              </span>
+            </div>
+            <a
+              style={{ color: "#fff" }}
+              href="https://zalo.me/0395888619"
+              target="_plank"
+              className="link-login"
+            >
+              BẠN CÓ THỂ CLICK VÀO ĐÂY ĐỂ LIÊN HỆ NHÂN VIÊN HỖ TRỢ
+            </a>
+          </div>
+        ) : checkUserOrder ? (
           <div
             style={{
               display: "flex",

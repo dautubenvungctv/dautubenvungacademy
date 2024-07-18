@@ -13,20 +13,18 @@ export const Checkout = () => {
   const { item } = state;
 
   const [name, setName] = useState("");
-  const [errName, setErrName] = useState(false);
+
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [errPhoneNumber, setErrPhoneNumber] = useState(false);
+
   const [email, setEmail] = useState("");
-  const [errEmail, setErrEmail] = useState(false);
+
   const [city, setCity] = useState("");
-  const [errCity, setErrCity] = useState(false);
+
   const [district, setDistrict] = useState("");
-  const [errDistrict, setErrDistrict] = useState(false);
+
   const [address, setAddress] = useState("");
-  const [errAddress, setErrAddress] = useState(false);
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
-  const token = localStorage.getItem("token");
 
   const getCourseCart = () => {
     axios
@@ -97,7 +95,11 @@ export const Checkout = () => {
     <StyleCheckout>
       {contextHolder}
       <div className="title">
-        {item.hasOwnProperty("book_id") ? "ĐẶT HÀNG" : "ĐĂNG KÝ KHOÁ HỌC"}
+        {item.hasOwnProperty("book_id")
+          ? "ĐẶT HÀNG"
+          : item.hasOwnProperty("course_id")
+          ? "ĐĂNG KÝ KHOÁ HỌC"
+          : "ĐĂNG KÝ TƯ VẤN ĐẦU TƯ"}
       </div>
       <div className="box-first">
         {/* <div className="returning">
@@ -179,7 +181,11 @@ export const Checkout = () => {
           <div className="shop_table">
             <div className="header-table">
               <th style={{ color: "#ffff" }} className="product-name">
-                {item.hasOwnProperty("book_id") ? "Tên sách:" : "Tên khoá học:"}
+                {item.hasOwnProperty("book_id")
+                  ? "Tên sách:"
+                  : item.hasOwnProperty("course_id")
+                  ? "Tên khoá học:"
+                  : "Tên chương trình:"}
               </th>
               <th
                 style={{ color: "#ffff", fontSize: "12px" }}
@@ -250,8 +256,11 @@ export const Checkout = () => {
         <div className="payment">
           <div className="payment_box payment_method_casso_up_vietinbank">
             <p>
-              Sau khi thanh toán hệ thống sẽ tự động kích hoạt chương trình khoá
-              học của bạn
+              {item.hasOwnProperty("book_id")
+                ? "Sau khi thanh toán hệ thống sẽ tự động kích hoạt chương trình khoá học của bạn"
+                : item.hasOwnProperty("course_id")
+                ? "Sau khi thanh toán hệ thống sẽ tự động kích hoạt chương trình khoá học của bạn"
+                : "Sau khi thanh toán Đầu Tư Bền Vững sẽ liên hệ với bạn để sắp xếp lịch tư vấn trong thời gian sớm nhất"}
             </p>
           </div>
         </div>

@@ -25,6 +25,8 @@ export const StyleDocument = styled.div`
         margin: 0 !important;
       }
       .box-mxh {
+        display: flex;
+        gap: 8px !important;
         .ladi-element {
           margin: 0 !important;
           .ladi-group {
@@ -32,7 +34,7 @@ export const StyleDocument = styled.div`
             flex-direction: column;
             align-items: center;
             .ladi-paragraph {
-              font-size: 15px;
+              font-size: 11px;
               padding: 0 15px;
               text-align: justify;
             }
@@ -54,6 +56,7 @@ export const StyleDocument = styled.div`
     }
     .content-ebook {
       font-size: 15px;
+      text-align: justify;
     }
   }
   .icon-mobile {
@@ -68,6 +71,7 @@ export const StyleDocument = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      width: 70%;
       .title-ebook {
         font-size: 32px;
         font-family: Roboto, sans-serif;
@@ -91,8 +95,10 @@ export const StyleDocument = styled.div`
           background-color: #ee4d2d;
           padding: 20px;
           font-size: 13px;
-          border-radius: 16px;
+          border-radius: 30px;
           border: none;
+          display: grid;
+          gap: 8px;
           span {
             font-weight: 400;
           }
@@ -104,13 +110,15 @@ export const StyleDocument = styled.div`
     }
   }
   .content-ebook {
+    text-align: justify;
+    font-size: 15px;
     margin-top: 40px;
   }
   .my-info {
     .title {
       margin: 30px 0;
       text-align: center;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1.4;
       font-weight: bold;
       color: #fff;
@@ -137,7 +145,7 @@ export const StyleDocument = styled.div`
       }
     }
     .ladi-element {
-      margin-top: 30px;
+      margin-top: 20px;
     }
   }
   .box-btn-second {
@@ -153,8 +161,10 @@ export const StyleDocument = styled.div`
       background-color: #ee4d2d;
       padding: 20px;
       font-size: 13px;
-      border-radius: 16px;
+      border-radius: 30px;
       border: none;
+      display: grid;
+      gap: 8px;
       span {
         font-weight: 400;
       }
@@ -192,7 +202,7 @@ export const StyleDocument = styled.div`
           font-weight: 400;
           padding: 10px;
           width: calc(100% - 20px);
-          border-radius: 13px;
+          border-radius: 20px;
         }
       }
       .box-btn-mail {
@@ -208,7 +218,7 @@ export const StyleDocument = styled.div`
           color: var(--purchase-button-normal-text-color, #fff);
           min-height: auto;
           padding: var(--purchase-button-padding, 1em 1em);
-          border-radius: var(--purchase-button-border-radius, 13px);
+          border-radius: var(--purchase-button-border-radius, 20px);
           border: none;
           &:hover {
             transform: scale(1.01);

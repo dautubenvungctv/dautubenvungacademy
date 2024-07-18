@@ -23,7 +23,7 @@ export const StyleCheckoutQR = styled.div`
           float: left;
           margin: 0 2em;
           text-transform: uppercase;
-          font-size: 0.715em;
+          font-size: 0.55em;
           line-height: 1;
           border-left: 1px dashed #cfc8d8;
           padding: 0 2em;
@@ -36,7 +36,7 @@ export const StyleCheckoutQR = styled.div`
           float: left;
           margin-right: 2em;
           text-transform: uppercase;
-          font-size: 0.715em;
+          font-size: 0.55em;
           line-height: 1;
           border-right: 1px dashed #cfc8d8;
           padding-right: 2em;

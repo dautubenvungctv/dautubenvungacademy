@@ -129,7 +129,9 @@ export const GroupDetail = () => {
         <div className="describe-second">
           <div className="box1">
             <div className="title-des">
-              Bạn sẽ học được gì từ chương trình này:
+              {id == 26
+                ? "Tư vấn đầu tư & quản lý tài sản:"
+                : "Cộng đồng Đầu Tư Bền Vững"}
             </div>
             <div className="des">
               <blockquote
