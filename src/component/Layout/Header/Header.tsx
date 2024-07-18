@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyledHeader } from "./styled";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa";
@@ -21,9 +21,28 @@ export const Header = () => {
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
   const [openOption, setOpenOption] = useState(false);
+  const optionRef = useRef<any>(null); // Ref cho phần tử popup
+  const mobileMenuRef = useRef<any>(null); // Ref cho menu di động
 
   const info = localStorage.getItem("info");
   const token = localStorage.getItem("token");
+
+ // Thêm event listener khi component mount
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (optionRef.current && !optionRef.current.contains(event.target)) {
+        setOpenOption(false); // Đóng popup người dùng nếu click bên ngoài
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setOpenShowMobile(false); // Đóng menu di động nếu click bên ngoài
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [optionRef, mobileMenuRef]); // Chỉ chạy lại khi ref thay đổi
   const handleScrollTo = (target: any) => {
     navigate("/");
     setTimeout(() => {
@@ -51,7 +70,7 @@ export const Header = () => {
             >
               <RxHamburgerMenu />
               {openShowMobile ? (
-                <div className="box-mobile">
+                <div ref={mobileMenuRef} className="box-mobile">
                   <Link
                     onClick={() => setOpenShowMobile(!openShowMobile)}
                     to="/"
@@ -141,6 +160,7 @@ export const Header = () => {
                   {info} <IoMdArrowDropdown />
                   {openOption && (
                     <div
+                    ref={optionRef} // Tham chiếu ref tới popup
                       style={{
                         position: "absolute",
                         top: "31px",
