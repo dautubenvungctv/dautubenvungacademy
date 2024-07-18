@@ -9,7 +9,7 @@ export const ChangePass = () => {
   const [checkChange, setCheckChange] = useState(false);
   const userId = localStorage.getItem("userID");
   const token = localStorage.getItem("token");
-  const [email, setEmail] = useState("");
+  const [oldPass, setOldPass] = useState("");
   const [phone, setPhone] = useState("");
   const [passWord, setPassWord] = useState("");
   const submitChange = () => {
@@ -17,8 +17,9 @@ export const ChangePass = () => {
       .post(
         `${process.env.REACT_APP_PORT}/change-password`,
         {
-          email: email,
-          password: passWord,
+          phone: phone,
+          old_password: oldPass,
+          new_password: passWord,
         },
         {
           headers: {
@@ -39,11 +40,20 @@ export const ChangePass = () => {
         }
       })
       .catch((err) => {
-        api.error({
-          message: `Lỗi`,
-          description: "Đổi mật khẩu thất bại!",
-          placement: "topRight",
-        });
+        console.log("err.response.status: ", err.response.status);
+        if (err.response.status === 403) {
+          api.error({
+            message: `Lỗi`,
+            description: "Mật khẩu cũ không đúng!",
+            placement: "topRight",
+          });
+        } else if (err.response.status === 404) {
+          api.error({
+            message: `Lỗi`,
+            description: "Đổi mật khẩu thất bại!",
+            placement: "topRight",
+          });
+        }
       });
   };
   return (
@@ -73,16 +83,25 @@ export const ChangePass = () => {
         <div className="box-input">
           <div className="form-checkout">
             <div className="form-input">
-              <div className="top">Địa chỉ email*</div>
+              <div className="top">Số điện thoại*</div>
               <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 className="bottom"
                 type="text"
               />
             </div>
             <div className="form-input">
-              <div className="top">Mật khẩu*</div>
+              <div className="top">Mật khẩu cũ*</div>
+              <input
+                value={oldPass}
+                onChange={(e) => setOldPass(e.target.value)}
+                className="bottom"
+                type="text"
+              />
+            </div>
+            <div className="form-input">
+              <div className="top">Mật khẩu mới*</div>
               <input
                 value={passWord}
                 onChange={(e) => setPassWord(e.target.value)}
