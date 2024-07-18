@@ -134,6 +134,7 @@ export const Header = () => {
                     fontWeight: 600,
                     color: "#fff",
                     cursor: "pointer",
+                    zIndex: 30,
                   }}
                   onClick={() => setOpenOption(!openOption)}
                 >

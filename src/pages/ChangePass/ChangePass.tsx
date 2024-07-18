@@ -14,12 +14,11 @@ export const ChangePass = () => {
   const [passWord, setPassWord] = useState("");
   const submitChange = () => {
     axios
-      .put(
-        `${process.env.REACT_APP_PORT}/users/${userId}`,
+      .post(
+        `${process.env.REACT_APP_PORT}/change-password`,
         {
           email: email,
-          phone: phone,
-          password_hash: passWord,
+          password: passWord,
         },
         {
           headers: {
@@ -38,6 +37,13 @@ export const ChangePass = () => {
           });
           setCheckChange(true);
         }
+      })
+      .catch((err) => {
+        api.error({
+          message: `Lỗi`,
+          description: "Đổi mật khẩu thất bại!",
+          placement: "topRight",
+        });
       });
   };
   return (
@@ -66,16 +72,6 @@ export const ChangePass = () => {
       ) : (
         <div className="box-input">
           <div className="form-checkout">
-            <div className="form-input">
-              <div className="top">Số điện thoại*</div>
-              <input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="bottom"
-                type="text"
-              />
-            </div>
-
             <div className="form-input">
               <div className="top">Địa chỉ email*</div>
               <input
