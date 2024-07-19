@@ -21,6 +21,7 @@ export const ForgotPassword = () => {
   const [errPassWordSecond, setErrPassWordSecond] = useState(false);
   const [showPass, setShowPass] = useState(false);
   const [showPass2, setShowPass2] = useState(false);
+  const [emailError, setEmailError] = useState("");
   useEffect(() => {
     if (code !== "" && code !== texCode) {
       setErrCode(true);
@@ -38,10 +39,16 @@ export const ForgotPassword = () => {
   const [isCooldown, setIsCooldown] = useState(false);
 
   const sendCode = () => {
+    if (!validateEmail(email)) {
+      setEmailError("Email không hợp lệ");
+      return;
+    }
+    setEmailError("");
     if (email === "") {
       setErrEmail(true);
     } else {
       setErrEmail(false);
+
       axios
         .post(`${process.env.REACT_APP_PORT}/auth/forgot-password`, { email })
         .then((res) => {
@@ -80,7 +87,10 @@ export const ForgotPassword = () => {
       debouncedResetCooldown();
     }
   };
-
+  const validateEmail = (email: any) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
   const handleChangePass = () => {
     if (email === "") {
       setErrEmail(true);
@@ -156,6 +166,8 @@ export const ForgotPassword = () => {
           <p style={{ fontSize: "12px", color: "red" }}>
             Email không được để trống!
           </p>
+        ) : emailError ? (
+          <p style={{ fontSize: "12px", color: "red" }}>{emailError}</p>
         ) : (
           <></>
         )}
