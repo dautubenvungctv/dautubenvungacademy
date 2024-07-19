@@ -265,7 +265,7 @@ export const CheckoutQR = () => {
           >
             <div className="titleqr">
               Bạn đã chuyển khoản thành công !<br />{" "}
-              <span style={{ fontSize: "23px" }}>
+              <span style={{ fontSize: "20px" }}>
                 Đầu Tư Bền Vững sẽ liên hệ với bạn để sắp xếp lịch tư vấn trong
                 thời gian sớm nhất.
               </span>
@@ -293,7 +293,7 @@ export const CheckoutQR = () => {
           >
             <div className="titleqr">
               Bạn đã chuyển khoản thành công !<br />{" "}
-              <span style={{ fontSize: "23px" }}>
+              <span style={{ fontSize: "20px" }}>
                 {" "}
                 Vui lòng kiểm tra email để lấy thông tin đăng nhập (lưu ý cả mục
                 thư rác/spam).
