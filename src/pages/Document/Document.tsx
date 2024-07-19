@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StyleDocument } from "./styles";
 import { Element, Link as Scroll, scroller } from "react-scroll";
 import axios from "axios";
 import { notification } from "antd";
 import anhVinh from "../../assets/anhvinh.jpg";
+import { debounce } from "lodash";
 export const Document = () => {
   const [name, setName] = useState("");
   const [api, contextHolder] = notification.useNotification();
   const [email, setEmail] = useState("");
   const [errEmail, setErrEmail] = useState(false);
-   const [errFullName, setErrorFullName] = useState(false);
+  const [errFullName, setErrorFullName] = useState(false);
   const token = localStorage.getItem("token");
+  const [isCooldown, setIsCooldown] = useState(false);
 
   const handleScrollTo = (target: any) => {
     setTimeout(() => {
@@ -20,18 +22,18 @@ export const Document = () => {
       });
     }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
   };
-  const sendEmail = () => {
-    if(email === "") {
+  const postEmail = () => {
+    if (email === "") {
       setErrEmail(true);
     } else {
       setErrEmail(false);
     }
-    if(name === "") {
+    if (name === "") {
       setErrorFullName(true);
     } else {
       setErrorFullName(false);
     }
-    if(name === "" || email === "") {
+    if (name === "" || email === "") {
       api.warning({
         message: `Cảnh báo`,
         description: "Bạn vui lòng nhập đầy đủ thông tin",
@@ -69,6 +71,20 @@ export const Document = () => {
         description: "Bạn vui lòng nhập đầy đủ thông tin",
         placement: "topRight",
       });
+    }
+  };
+  const debouncedResetCooldown = useCallback(
+    debounce(() => {
+      setIsCooldown(false);
+    }, 3000),
+    []
+  );
+
+  const sendEmail = () => {
+    if (!isCooldown) {
+      postEmail();
+      setIsCooldown(true);
+      debouncedResetCooldown();
     }
   };
   return (
@@ -346,7 +362,9 @@ export const Document = () => {
         <div className="box-input">
           <div className="form-checkout">
             <div className="form-input">
-              <div className="top">Họ và tên <span style={{color: 'red'}}>*</span> </div>
+              <div className="top">
+                Họ và tên <span style={{ color: "red" }}>*</span>{" "}
+              </div>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -354,25 +372,31 @@ export const Document = () => {
                 type="text"
               />
               {errFullName ? (
-            <p style={{ marginTop: "5px", color: 'red' }}>Họ và tên không được để trống</p>
-          ) : (
-            <></>
-          )}
+                <p style={{ marginTop: "5px", color: "red", fontSize: "12px" }}>
+                  Họ và tên không được để trống
+                </p>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="form-input">
-              <div className="top">Địa chỉ email <span style={{color: 'red'}}>*</span> </div>
+              <div className="top">
+                Địa chỉ email <span style={{ color: "red" }}>*</span>{" "}
+              </div>
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bottom"
                 type="text"
               />
-               {errEmail ? (
-            <p style={{ marginTop: "5px",  color: 'red' }}>Email không được để trống</p>
-          ) : (
-            <></>
-          )}
+              {errEmail ? (
+                <p style={{ marginTop: "5px", color: "red", fontSize: "12px" }}>
+                  Email không được để trống
+                </p>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="box-btn-mail">
               <button onClick={sendEmail} className="btn-order">

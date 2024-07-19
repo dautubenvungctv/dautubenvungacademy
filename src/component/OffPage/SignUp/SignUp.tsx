@@ -90,7 +90,7 @@ export const SignUp = () => {
             type="email"
           />
           {errEmail ? (
-            <p style={{ marginTop: "5px" }}>Email không được để trống</p>
+            <p style={{ marginTop: "0px" }}>Email không được để trống</p>
           ) : (
             <></>
           )}
@@ -103,7 +103,7 @@ export const SignUp = () => {
             type="text"
           />
           {errPhoneNumber ? (
-            <p style={{ marginTop: "5px" }}>
+            <p style={{ marginTop: "0px" }}>
               Số điện thoại không được để trống
             </p>
           ) : (

@@ -89,7 +89,7 @@ export const Login = () => {
             type="text"
           />
           {errPhoneNumber ? (
-            <p>Số điện thoại Mật khẩu không được để trống</p>
+            <p style={{ margin: 0 }}>Số điện thoại không được để trống</p>
           ) : (
             <></>
           )}
@@ -112,7 +112,11 @@ export const Login = () => {
             </div>
           </div>
 
-          {errPassWord ? <p>Mật khẩu không được để trống</p> : <></>}
+          {errPassWord ? (
+            <p style={{ margin: 0 }}>Mật khẩu không được để trống</p>
+          ) : (
+            <></>
+          )}
         </div>
         {/* <div className="memorize">
           <input type="checkbox" name="" id="" />
