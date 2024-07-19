@@ -25,6 +25,12 @@ export const Checkout = () => {
   const [address, setAddress] = useState("");
   const [listCourseCart, setListCourseCart] = useState<any>([]);
   const [listBookCart, setListBookCart] = useState<any>([]);
+  const [errEmail, setErrEmail] = useState(false);
+const [errPhoneNumber, setErrPhoneNumber] = useState(false);
+ const [errFullName, setErrorFullName] = useState(false);
+ const [errCity, setErrorCity] = useState(false);
+  const [errDistrict, setErrorDistrict] = useState(false);
+  const [errAddress, setErrorAddress] = useState(false);
 
   const getCourseCart = () => {
     axios
@@ -60,6 +66,29 @@ export const Checkout = () => {
   );
 
   const handleSubmit = () => {
+    if (email === "") {
+      setErrEmail(true);
+    } else {
+      setErrEmail(false);
+    }
+    if (phoneNumber === "") {
+      setErrPhoneNumber(true);
+    } else {
+      setErrPhoneNumber(false);
+    }
+    if (name === "") {
+      setErrorFullName(true);
+    } else {
+      setErrorFullName(false);
+    }
+    if(email === "" || name === "" || phoneNumber === "") {
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Bạn vui lòng nhập đầy đủ thông tin",
+        placement: "topRight",
+      });
+      return;
+    }
     if (email !== "" && name !== "" && phoneNumber !== "") {
       nextHome("/check-outqr", {
         state: {
@@ -75,7 +104,7 @@ export const Checkout = () => {
     } else {
       api.warning({
         message: `Cảnh báo`,
-        description: "Bạn phải nhập đầy đủ thông tin để thanh toán giỏ hàng!",
+        description: "Bạn vui lòng nhập đầy đủ thông tin",
         placement: "topRight",
       });
     }
@@ -106,36 +135,54 @@ export const Checkout = () => {
             Bạn vui lòng nhập đầy đủ thông tin bên ở dưới nhé!
           </h3>
           <div className="form-input">
-            <div className="top">Họ và tên*</div>
+            <div className="top">Họ và tên <span style={{color: 'red'}}>*</span> </div>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="bottom"
               type="text"
             />
+             {errFullName ? (
+            <p style={{ marginTop: "5px", color: 'red' }}>Họ và tên không được để trống</p>
+          ) : (
+            <></>
+          )}
           </div>
           <div className="form-input">
-            <div className="top">Số điện thoại*</div>
+            <div className="top">Số điện thoại <span style={{color: 'red'}}>*</span> </div>
             <input
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="bottom"
               type="text"
             />
+             {errPhoneNumber ? (
+            <p style={{ marginTop: "5px",  color: 'red' }}>Số điện thoại không được để trống</p>
+          ) : (
+            <></>
+          )}
           </div>
           <div className="form-input">
-            <div className="top">Địa chỉ email*</div>
+            <div className="top">Địa chỉ email 
+  <span style={{color: 'red'}}>*</span>              
+              </div>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="bottom"
               type="text"
             />
+              
+          {errEmail ? (
+            <p style={{ marginTop: "5px",  color: 'red' }}>Email không được để trống</p>
+          ) : (
+            <></>
+          )}
           </div>
           {item?.hasOwnProperty("book_id") ? (
             <div>
               <div className="form-input">
-                <div className="top">Tỉnh/Thành phố*</div>
+                <div className="top">Tỉnh/Thành phố   <span style={{color: 'red'}}>*</span>  </div>
                 <input
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
@@ -144,7 +191,7 @@ export const Checkout = () => {
                 />
               </div>
               <div className="form-input">
-                <div className="top">Quận/Huyện*</div>
+                <div className="top">Quận/Huyện   <span style={{color: 'red'}}>*</span>  </div>
                 <input
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
@@ -153,7 +200,7 @@ export const Checkout = () => {
                 />
               </div>
               <div className="form-input">
-                <div className="top">Địa chỉ nhà (Số nhà/Tên Toà...)*</div>
+                <div className="top">Địa chỉ nhà (Số nhà/Tên Toà...)  <span style={{color: 'red'}}>*</span>  </div>
                 <input
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}

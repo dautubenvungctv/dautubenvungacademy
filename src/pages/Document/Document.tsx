@@ -8,6 +8,8 @@ export const Document = () => {
   const [name, setName] = useState("");
   const [api, contextHolder] = notification.useNotification();
   const [email, setEmail] = useState("");
+  const [errEmail, setErrEmail] = useState(false);
+   const [errFullName, setErrorFullName] = useState(false);
   const token = localStorage.getItem("token");
 
   const handleScrollTo = (target: any) => {
@@ -19,6 +21,24 @@ export const Document = () => {
     }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
   };
   const sendEmail = () => {
+    if(email === "") {
+      setErrEmail(true);
+    } else {
+      setErrEmail(false);
+    }
+    if(name === "") {
+      setErrorFullName(true);
+    } else {
+      setErrorFullName(false);
+    }
+    if(name === "" || email === "") {
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Bạn vui lòng nhập đầy đủ thông tin",
+        placement: "topRight",
+      });
+      return;
+    }
     if (name !== "" && email !== "") {
       axios
         .post(
@@ -44,9 +64,9 @@ export const Document = () => {
           }
         });
     } else {
-      api.error({
-        message: `Lỗi`,
-        description: "Đăng ký thất bại",
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Bạn vui lòng nhập đầy đủ thông tin",
         placement: "topRight",
       });
     }
@@ -326,23 +346,33 @@ export const Document = () => {
         <div className="box-input">
           <div className="form-checkout">
             <div className="form-input">
-              <div className="top">Họ và tên*</div>
+              <div className="top">Họ và tên <span style={{color: 'red'}}>*</span> </div>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="bottom"
                 type="text"
               />
+              {errFullName ? (
+            <p style={{ marginTop: "5px", color: 'red' }}>Họ và tên không được để trống</p>
+          ) : (
+            <></>
+          )}
             </div>
 
             <div className="form-input">
-              <div className="top">Địa chỉ email*</div>
+              <div className="top">Địa chỉ email <span style={{color: 'red'}}>*</span> </div>
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bottom"
                 type="text"
               />
+               {errEmail ? (
+            <p style={{ marginTop: "5px",  color: 'red' }}>Email không được để trống</p>
+          ) : (
+            <></>
+          )}
             </div>
             <div className="box-btn-mail">
               <button onClick={sendEmail} className="btn-order">
