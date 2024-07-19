@@ -16,7 +16,33 @@ export const ChangePass = () => {
   const [oldPass, setOldPass] = useState("");
   const [phone, setPhone] = useState("");
   const [passWord, setPassWord] = useState("");
+const [errPhoneNumber, setErrPhoneNumber] = useState(false);
+  const [errPassWordOld, setErrPassWordOld] = useState(false);
+  const [errPassWord, setErrPassWord] = useState(false);
   const submitChange = () => {
+    if(phone === '') {
+      setErrPhoneNumber(true);
+    } else {
+      setErrPhoneNumber(false);
+    }
+    if(oldPass === '') {
+      setErrPassWordOld(true);
+    } else {
+      setErrPassWordOld(false);
+    }
+    if(passWord === '') {
+      setErrPassWord(true);
+    } else {
+      setErrPassWord(false);
+    }
+    if(phone === '' || oldPass === '' || passWord === '') {
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Bạn vui lòng nhập đầy đủ thông tin",
+        placement: "topRight",
+      });
+      return;
+    }
     axios
       .post(
         `${process.env.REACT_APP_PORT}/change-password`,
@@ -87,16 +113,21 @@ export const ChangePass = () => {
         <div className="box-input">
           <div className="form-checkout">
             <div className="form-input">
-              <div className="top">Số điện thoại*</div>
+              <div className="top">Số điện thoại<span style={{color: 'red'}}>*</span></div>
               <input
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="bottom"
                 type="text"
               />
+               {errPhoneNumber ? (
+            <p style={{ marginTop: "5px",  color: 'red' }}>Số điện thoại không được để trống</p>
+          ) : (
+            <></>
+          )}
             </div>
             <div className="form-input">
-              <div className="top">Mật khẩu cũ*</div>
+              <div className="top">Mật khẩu cũ<span style={{color: 'red'}}>*</span></div>
               <div style={{ position: "relative" }}>
                 <input
                   value={oldPass}
@@ -111,9 +142,14 @@ export const ChangePass = () => {
                   {showPass ? <IoMdEye /> : <IoIosEyeOff />}
                 </div>
               </div>
+              {errPassWordOld ? (
+            <p style={{ marginTop: "5px",  color: 'red' }}>Mật khẩu cũ không được để trống</p>
+          ) : (
+            <></>
+          )}
             </div>
             <div className="form-input">
-              <div className="top">Mật khẩu mới*</div>
+              <div className="top">Mật khẩu mới<span style={{color: 'red'}}>*</span></div>
               <div style={{ position: "relative" }}>
                 <input
                   value={passWord}
@@ -128,6 +164,11 @@ export const ChangePass = () => {
                   {showPassNew ? <IoMdEye /> : <IoIosEyeOff />}
                 </div>
               </div>
+              {errPassWord ? (
+            <p style={{ marginTop: "5px",  color: 'red' }}>Mật khẩu mới không được để trống</p>
+          ) : (
+            <></>
+          )}
             </div>
             <div className="box-btn-mail">
               <button onClick={submitChange} className="btn-order">
