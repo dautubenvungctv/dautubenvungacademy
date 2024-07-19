@@ -45,7 +45,7 @@ export const StyledLayout = styled.div<any>`
       justify-content: center;
       margin: 20px 0;
       color: #fff;
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 500;
       letter-spacing: 0.3em; /* Adjust this value as needed */
       font-family: Arial, sans-serif;
