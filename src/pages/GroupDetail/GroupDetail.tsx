@@ -9,7 +9,7 @@ import { selectAppSelector } from "../../redux/app/selector";
 import debounce from "lodash/debounce";
 import { notification } from "antd";
 import { setProduct } from "../../redux/app";
-import { Element } from "react-scroll";
+import { Element, scroller } from "react-scroll";
 
 export const GroupDetail = () => {
   const user = useSelector(selectAppSelector, shallowEqual);
@@ -82,6 +82,15 @@ export const GroupDetail = () => {
   const handleBuy = (item: any) => {
     navigate("/check-out", { state: { item } });
   };
+  const handleScrollTo = (target: any) => {
+    navigate("/");
+    setTimeout(() => {
+      scroller.scrollTo(target, {
+        smooth: true,
+        duration: 500,
+      });
+    }, 100); // Adjust the delay as needed to ensure routing is complete before scrolling
+  };
   return (
     <StyledGroupDetail>
       {contextHolder}
@@ -151,7 +160,16 @@ export const GroupDetail = () => {
                   </button>
                 </div>
               ) : (
-                <></>
+                <div className="box-submit">
+                  <button
+                    onClick={() => handleScrollTo("courses")}
+                    className="btn-add-shopping-cart-des"
+                  >
+                    <span style={{ marginTop: "3px" }}>
+                      Đăng ký khóa học để tham gia cộng đồng
+                    </span>
+                  </button>
+                </div>
               )}
             </div>
           </div>
