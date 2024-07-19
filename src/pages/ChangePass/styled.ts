@@ -1,5 +1,10 @@
 import styled from "styled-components";
 export const StyleChangePass = styled.div<any>`
+  @media (max-width: 800px) {
+    .form-checkout {
+      width: 80% !important;
+    }
+  }
   margin-top: 50px;
   .titleqr {
     text-align: center;
@@ -17,7 +22,7 @@ export const StyleChangePass = styled.div<any>`
 
       display: flex;
       flex-direction: column;
-      border-radius: 8px;
+      border-radius: 13px;
       padding: 16px 30px 25px 30px;
       margin: 0 0 24px 0;
       border: 1px solid #d5d8dc;
@@ -37,7 +42,7 @@ export const StyleChangePass = styled.div<any>`
           font-weight: 400;
           padding: 10px;
           width: calc(100% - 20px);
-          border-radius: 13px;
+          border-radius: 20px;
         }
       }
       .box-btn-mail {
@@ -53,7 +58,7 @@ export const StyleChangePass = styled.div<any>`
           color: var(--purchase-button-normal-text-color, #fff);
           min-height: auto;
           padding: var(--purchase-button-padding, 1em 1em);
-          border-radius: var(--purchase-button-border-radius, 13px);
+          border-radius: var(--purchase-button-border-radius, 20px);
           border: none;
           &:hover {
             transform: scale(1.01);
@@ -66,7 +71,7 @@ export const StyleChangePass = styled.div<any>`
     color: #fff;
     background-color: #42a732;
     padding: 20px;
-    border-radius: 13px;
+    border-radius: 20px;
     &:hover {
       transform: scale(1.02);
     }
