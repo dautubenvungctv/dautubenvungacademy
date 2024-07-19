@@ -3,13 +3,15 @@ import { StyledMyCourse } from "./styled";
 import { Space, Table } from "antd";
 import axios from "axios";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export const Mycourse = () => {
+  const next = useNavigate();
   const handleLogOut = () => {
     localStorage.removeItem("userID");
     localStorage.removeItem("token");
     localStorage.removeItem("info");
     window.location.reload();
+    next("/");
   };
 
   const [listMyBook, setListMyBook] = useState([]);

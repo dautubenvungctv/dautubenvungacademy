@@ -27,13 +27,16 @@ export const Header = () => {
   const info = localStorage.getItem("info");
   const token = localStorage.getItem("token");
 
- // Thêm event listener khi component mount
+  // Thêm event listener khi component mount
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (optionRef.current && !optionRef.current.contains(event.target)) {
         setOpenOption(false); // Đóng popup người dùng nếu click bên ngoài
       }
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
         setOpenShowMobile(false); // Đóng menu di động nếu click bên ngoài
       }
     };
@@ -160,7 +163,7 @@ export const Header = () => {
                   {info} <IoMdArrowDropdown />
                   {openOption && (
                     <div
-                    ref={optionRef} // Tham chiếu ref tới popup
+                      ref={optionRef} // Tham chiếu ref tới popup
                       style={{
                         position: "absolute",
                         top: "31px",
@@ -210,6 +213,8 @@ export const Header = () => {
                           localStorage.removeItem("token");
                           localStorage.removeItem("info");
                           setOpenOption(false);
+                          navigate("/");
+
                           window.location.reload();
                         }}
                         style={{
