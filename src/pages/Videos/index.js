@@ -18,7 +18,6 @@ export const VideoGlobal = () => {
     console.log("videoId: ", videoId);
     // getVideo(videoId)
   }, [videoId, courseId]);
-
   const videoJsOptions = {
     autoplay: true,
     controls: true,

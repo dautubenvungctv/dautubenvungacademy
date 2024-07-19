@@ -1,11 +1,14 @@
 import React from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
+import "videojs-overlay/dist/videojs-overlay.css"; // Ensure overlay CSS is imported
+import overlay from "videojs-overlay"; // Import the overlay plugin
 
 export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
   const playerRef = React.useRef(null);
   const { options, onReady } = props;
+  const info = localStorage.getItem("info");
 
   React.useEffect(() => {
     // Make sure Video.js player is only initialized once
@@ -20,6 +23,18 @@ export const VideoJS = (props) => {
         onReady && onReady(player);
       }));
 
+      // Initialize the overlay plugin
+      player.overlay({
+        overlays: [
+          {
+            content: `<div class='overlay-text'>${info}</div>`,
+            start: "play",
+            end: "pause",
+            align: "top-right",
+          },
+        ],
+      });
+
       // Prevent context menu on right click
       videoElement.addEventListener("contextmenu", (e) => {
         e.preventDefault();
@@ -33,7 +48,7 @@ export const VideoJS = (props) => {
       player.autoplay(options.autoplay);
       player.src(options.sources);
     }
-  }, [options, videoRef]);
+  }, [options, onReady]);
 
   // Dispose the Video.js player when the functional component unmounts
   React.useEffect(() => {
@@ -70,7 +85,7 @@ export const VideoJS = (props) => {
         style={{ width: "100%", marginTop: "20px" }}
         ref={videoRef}
         className="video-js vjs-big-play-centered"
-      />
+      ></div>
     </div>
   );
 };
