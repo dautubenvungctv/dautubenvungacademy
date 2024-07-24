@@ -275,7 +275,7 @@ export const StyledHome = styled.div<any>`
             width: 281px;
 
             padding: 8px;
-
+            justify-content: space-between;
             flex-direction: column;
             align-items: flex-start;
             gap: 8px;
@@ -451,6 +451,9 @@ export const StyledHome = styled.div<any>`
       }
     }
   }
+  .lotrinh {
+    margin-bottom: 30px;
+  }
   .company {
     margin-top: 50px;
     display: flex;
@@ -530,12 +533,14 @@ export const StyledHome = styled.div<any>`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin-top: 20px;
+    /* margin-bottom: 10px; */
     color: #131c2e;
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.3em; /* Adjust this value as needed */
     font-family: Arial, sans-serif;
+    text-align: center;
   }
   .box-headerhome {
     display: flex;

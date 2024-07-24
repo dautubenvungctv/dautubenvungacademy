@@ -172,7 +172,7 @@ export const ForgotPassword = () => {
           <></>
         )}
         <button onClick={handleSendCode} className="btn-sendcode">
-          Send code
+          Gửi mã
         </button>
       </div>
       <div className="form-input">
