@@ -539,6 +539,7 @@ export const StyledHome = styled.div<any>`
     font-weight: 500;
     letter-spacing: 0.3em; /* Adjust this value as needed */
     font-family: Arial, sans-serif;
+    text-align: center;
   }
   .box-headerhome {
     display: flex;

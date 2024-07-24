@@ -16,12 +16,13 @@ export const Home = () => {
   const [infoCompany, setInfoCompany] = useState<any>([]);
   const token = localStorage.getItem("token");
 
-  const [listCourse, setListCourse] = useState([]);
+  const [listCourse, setListCourse] = useState<any>([]);
+
   const [listBooks, setListBooks] = useState([]);
   const navigate = useNavigate();
   const getListCourses = () => {
     axios
-      .get(`${process.env.REACT_APP_PORT}/courses`, {
+      .get(`${process.env.REACT_APP_PORT}/courses-new`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": "foobar",
@@ -47,9 +48,7 @@ export const Home = () => {
   useEffect(() => {
     getBooks();
   }, []);
-  const handleBuy = (item: any) => {
-    navigate("/check-out", { state: { item } });
-  };
+
   const getCompany = () => {
     axios
       .get(`${process.env.REACT_APP_PORT}/title`, {
@@ -181,14 +180,80 @@ export const Home = () => {
           </div>
           <Element name="courses">
             <div className="carousel">
-              <strong className="title-course">KHOÁ HỌC</strong>
+              <strong className="title-course">CHƯƠNG TRÌNH CƠ BẢN</strong>
               <Flex
                 className="flex-course"
                 wrap="wrap"
                 gap="24px"
                 justify="center"
               >
-                {listCourse?.map((item: any, index: any) => (
+                {listCourse.listBasic?.map((item: any, index: any) => (
+                  <div
+                    onClick={() =>
+                      handleScrollTo(
+                        `/product-detail/${item?.course_id}`,
+                        "header"
+                      )
+                    }
+                    className="item-caroulsel"
+                  >
+                    <div className="title">
+                      <img
+                        style={{
+                          width: "100%",
+                          height: "150px",
+                          borderRadius: "3px",
+                          objectFit: "cover",
+                        }}
+                        src={item?.image}
+                        alt=""
+                      />
+                    </div>
+                    <div className="body">
+                      <div className="body-first">
+                        <div className="item-first">
+                          <Tooltip color="#04225C" title={item?.title}>
+                            <div
+                              style={{
+                                color: "#020C2F",
+                                height: "24px",
+                                fontSize: "17px",
+                                fontFamily: "system-ui",
+                                fontWeight: 600,
+                              }}
+                            >
+                              {item?.title?.length > 25
+                                ? `${item?.title?.slice(0, 25)}...`
+                                : item?.title}
+                            </div>
+                          </Tooltip>
+                        </div>
+                        <div className="text-demo">{item?.demo}</div>
+                        <div className="box-buy">
+                          <div className="price">
+                            {item.price
+                              .toLocaleString("en-US", {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0,
+                              })
+                              .replace(/,/g, ".")}{" "}
+                            VND
+                          </div>
+                          <button className="buy-now">ĐĂNG KÝ KHOÁ HỌC</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </Flex>
+              <strong className="title-course">CHƯƠNG TRÌNH NÂNG CAO</strong>
+              <Flex
+                className="flex-course"
+                wrap="wrap"
+                gap="24px"
+                justify="center"
+              >
+                {listCourse?.listAdvance?.map((item: any, index: any) => (
                   <div
                     onClick={() =>
                       handleScrollTo(
