@@ -7,7 +7,7 @@ export const VideoGlobal = () => {
   const playerRef = React.useRef(null);
 
   // const getVideo = async (videoId: any) => {
-  //   let videoResponse = await axios.get(`http://117.6.60.82:3000/videos/19/${videoId}`);
+  //   let videoResponse = await axios.get(`${process.env.REACT_APP_PORT}/videos/19/${videoId}`);
   //   let video = videoResponse.data;
   //   console.log("video: ", video);
   // }
@@ -26,7 +26,7 @@ export const VideoGlobal = () => {
     playbackRates: [0.5, 1, 1.5, 2],
     sources: [
       {
-        src: `http://117.6.60.82:3000/videos/${courseId}/${videoId}`,
+        src: `${process.env.REACT_APP_PORT}/videos/${courseId}/${videoId}`,
         type: "video/mp4",
       },
     ],

@@ -10,7 +10,7 @@ export const TableVideo = () => {
   let courseId = useParams().courseId;
   const getListCourses = async (courseId: any) => {
     let listCoursesResponse = await axios.get(
-      `http://117.6.60.82:3000/api/courses_detail/${courseId}`
+      `${process.env.REACT_APP_PORT}/api/courses_detail/${courseId}`
     );
     let listCourses = listCoursesResponse.data;
     console.log("listCourses: ", listCourses);
