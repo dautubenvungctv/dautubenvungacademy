@@ -451,6 +451,9 @@ export const StyledHome = styled.div<any>`
       }
     }
   }
+  .lotrinh {
+    margin-bottom: 30px;
+  }
   .company {
     margin-top: 50px;
     display: flex;

@@ -10,6 +10,7 @@ import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
 import { useDispatch } from "react-redux";
 import { setProduct } from "../../redux/app";
+import lotrinh from "../../assets/lotrinh.png";
 export const Home = () => {
   const dispatch = useDispatch();
   const [infoCompany, setInfoCompany] = useState<any>([]);
@@ -170,6 +171,13 @@ export const Home = () => {
                 dautubenvung.vn
               </a>
             </div>
+          </div>
+          <div className="lotrinh">
+            <img
+              style={{ width: "100%", objectFit: "cover", borderRadius: "8px" }}
+              src={lotrinh}
+              alt=""
+            />
           </div>
           <Element name="courses">
             <div className="carousel">
