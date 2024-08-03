@@ -10,7 +10,8 @@ import { GrFormNextLink } from "react-icons/gr";
 import next from "../../assets/Asset 5.png";
 import { useDispatch } from "react-redux";
 import { setProduct } from "../../redux/app";
-import lotrinh from "../../assets/lotrinh.png";
+// import lotrinh from "../../assets/lotrinh.png";
+import lotrinh from "../../assets/lotrinh-new.png";
 export const Home = () => {
   const dispatch = useDispatch();
   const [infoCompany, setInfoCompany] = useState<any>([]);
@@ -171,23 +172,23 @@ export const Home = () => {
               </a>
             </div>
           </div>
-          <div className="lotrinh">
+          {/* <div className="lotrinh">
             <img
               style={{ width: "100%", objectFit: "cover", borderRadius: "8px" }}
               src={lotrinh}
               alt=""
             />
-          </div>
+          </div> */}
           <Element name="courses">
             <div className="carousel">
-              <strong className="title-course">CHƯƠNG TRÌNH CƠ BẢN</strong>
+              <strong className="title-course">KHÓA HỌC</strong>
               <Flex
                 className="flex-course"
                 wrap="wrap"
                 gap="24px"
                 justify="center"
               >
-                {listCourse.listBasic?.map((item: any, index: any) => (
+                {listCourse.rows?.map((item: any, index: any) => (
                   <div
                     onClick={() =>
                       handleScrollTo(
@@ -246,72 +247,7 @@ export const Home = () => {
                   </div>
                 ))}
               </Flex>
-              <strong className="title-course">CHƯƠNG TRÌNH NÂNG CAO</strong>
-              <Flex
-                className="flex-course"
-                wrap="wrap"
-                gap="24px"
-                justify="center"
-              >
-                {listCourse?.listAdvance?.map((item: any, index: any) => (
-                  <div
-                    onClick={() =>
-                      handleScrollTo(
-                        `/product-detail/${item?.course_id}`,
-                        "header"
-                      )
-                    }
-                    className="item-caroulsel"
-                  >
-                    <div className="title">
-                      <img
-                        style={{
-                          width: "100%",
-                          height: "150px",
-                          borderRadius: "3px",
-                          objectFit: "cover",
-                        }}
-                        src={item?.image}
-                        alt=""
-                      />
-                    </div>
-                    <div className="body">
-                      <div className="body-first">
-                        <div className="item-first">
-                          <Tooltip color="#04225C" title={item?.title}>
-                            <div
-                              style={{
-                                color: "#020C2F",
-                                height: "24px",
-                                fontSize: "17px",
-                                fontFamily: "system-ui",
-                                fontWeight: 600,
-                              }}
-                            >
-                              {item?.title?.length > 25
-                                ? `${item?.title?.slice(0, 25)}...`
-                                : item?.title}
-                            </div>
-                          </Tooltip>
-                        </div>
-                        <div className="text-demo">{item?.demo}</div>
-                        <div className="box-buy">
-                          <div className="price">
-                            {item.price
-                              .toLocaleString("en-US", {
-                                minimumFractionDigits: 0,
-                                maximumFractionDigits: 0,
-                              })
-                              .replace(/,/g, ".")}{" "}
-                            VND
-                          </div>
-                          <button className="buy-now">ĐĂNG KÝ KHOÁ HỌC</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Flex>
+             
             </div>
           </Element>
         </div>

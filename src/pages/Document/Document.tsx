@@ -14,6 +14,12 @@ export const Document = () => {
   const token = localStorage.getItem("token");
   const [isCooldown, setIsCooldown] = useState(false);
 
+  const validateEmail = (email: any) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+  
+
   const handleScrollTo = (target: any) => {
     setTimeout(() => {
       scroller.scrollTo(target, {
@@ -60,10 +66,22 @@ export const Document = () => {
           if (res.status === 200) {
             api.success({
               message: `Thành công`,
-              description: "Bạn đã đăng ký nhận ebook miễn phí thành công!",
+              description: "Bạn đã đăng ký nhận tài liệu đầu tư miễn phí. Vui lòng vào gmail để xác nhận.",
+              placement: "topRight",
+            });
+          } else {
+            api.error({
+              message: `Thất bại`,
+              description: "Đăng ký nhận tài liệu thất bại, vui lòng nhập email hợp lệ",
               placement: "topRight",
             });
           }
+        }).catch((err) => {
+          api.error({
+            message: `Thất bại`,
+            description: "Đăng ký nhận tài liệu thất bại, vui lòng nhập email hợp lệ",
+            placement: "topRight",
+          });
         });
     } else {
       api.warning({
@@ -80,13 +98,62 @@ export const Document = () => {
     []
   );
 
+  // const sendEmail = () => {
+  //   if (!isCooldown) {
+  //     postEmail();
+  //     setIsCooldown(true);
+  //     debouncedResetCooldown();
+  //   }
+  // };
+
   const sendEmail = () => {
+    // Kiểm tra email trống
+    if (email === "") {
+      setErrEmail(true);
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Email không được để trống",
+        placement: "topRight",
+      });
+      return;
+    } else {
+      setErrEmail(false);
+    }
+  
+    // Kiểm tra định dạng email
+    if (!validateEmail(email)) {
+      setErrEmail(true);
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Địa chỉ email không hợp lệ",
+        placement: "topRight",
+      });
+      return;
+    } else {
+      setErrEmail(false);
+    }
+  
+    // Kiểm tra họ tên trống
+    if (name === "") {
+      setErrorFullName(true);
+      api.warning({
+        message: `Cảnh báo`,
+        description: "Họ và tên không được để trống",
+        placement: "topRight",
+      });
+      return;
+    } else {
+      setErrorFullName(false);
+    }
+  
+    // Nếu tất cả thông tin đầy đủ và hợp lệ
     if (!isCooldown) {
       postEmail();
       setIsCooldown(true);
       debouncedResetCooldown();
     }
   };
+  
   return (
     <StyleDocument>
       {contextHolder}
