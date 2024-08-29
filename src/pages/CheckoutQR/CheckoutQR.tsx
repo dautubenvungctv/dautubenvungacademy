@@ -9,7 +9,8 @@ import { shallowEqual, useSelector } from "react-redux";
 
 export const CheckoutQR = () => {
   const { state } = useLocation();
-  const { name, phoneNumber, email, district, city, address, item } = state;
+
+  const phoneNumber = localStorage.getItem("info");
 
   const [api, contextHolder] = notification.useNotification();
   const nextHome = useNavigate();
@@ -24,17 +25,17 @@ export const CheckoutQR = () => {
   const checkSubmitOrder = () => {
     axios
       .post(
-        `${process.env.REACT_APP_PORT}/buy-course`,
+        `${process.env.REACT_APP_PORT}/buy-course-new`,
         {
           user_id: token ? userID : null,
-          name: name,
           phone: token ? null : phoneNumber,
-          email: token ? null : email,
-          city: city,
-          district: district,
-          address: address,
-          book_id: item?.book_id,
-          course_id: item?.course_id,
+          name: "",
+          email: "",
+          city: "",
+          district: "",
+          address: "",
+          book_id: "",
+          course_id: "",
         },
         {
           headers: {
@@ -60,11 +61,9 @@ export const CheckoutQR = () => {
     ACCOUNT_NO: "105868742671",
     ACCOUNT_NAME: "HOANG VAN VINH",
   };
-  const CODE_ORDER = item.hasOwnProperty("book_id")
-    ? item.book_id
-    : item.course_id;
+  const CODE_ORDER = 102;
 
-  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=${item?.price}&addInfo=XDTBVX${CODE_ORDER}X${phoneNumber}X&accountName=${MY_BANK.ACCOUNT_NAME}`;
+  const QR = `https://img.vietqr.io/image/${MY_BANK.BANK_ID}-${MY_BANK.ACCOUNT_NO}-compact2.png?amount=11111111&addInfo=XDTBVX${CODE_ORDER}X${phoneNumber}X&accountName=${MY_BANK.ACCOUNT_NAME}`;
   const API_KEY =
     "AK_CS.72f19260378f11efb7127b03250987c0.S4hO33vAcwUjzFSgRA1xxzhWBvfjMEizTRfU72G9rk9uGVmeRBW0GvXRhyAmKqWKkckzSKHA";
   const API_GET_PAID =
@@ -158,7 +157,7 @@ export const CheckoutQR = () => {
 
   useEffect(() => {
     if (
-      pricePaid === item?.price &&
+      pricePaid === 11111111 &&
       extractDTBVId(contentPaid) === expectedString
     ) {
       api.success({
@@ -200,12 +199,10 @@ export const CheckoutQR = () => {
               <strong>
                 <span className="woocommerce-Price-amount amount">
                   <bdi>
-                    {item
-                      ? (item.price * 1).toLocaleString("en-US", {
-                          minimumFractionDigits: 0,
-                          maximumFractionDigits: 0,
-                        })
-                      : "0"}
+                    {(11111111 * 1).toLocaleString("en-US", {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    })}
                     &nbsp;
                     <span className="woocommerce-Price-currencySymbol">₫</span>
                   </bdi>
@@ -233,12 +230,10 @@ export const CheckoutQR = () => {
             <strong>
               <span className="woocommerce-Price-amount amount">
                 <bdi>
-                  {item
-                    ? (item.price * 1).toLocaleString("en-US", {
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })
-                    : "0"}
+                  {(11111111 * 1).toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  })}
                   &nbsp;
                   <span className="woocommerce-Price-currencySymbol">₫</span>
                 </bdi>
@@ -249,8 +244,8 @@ export const CheckoutQR = () => {
             Phương thức thanh toán: <strong>Chuyển khoản</strong>
           </li>
         </ul>
-        {item.hasOwnProperty("group_id") &&
-        pricePaid === item?.price &&
+
+        {pricePaid === 11111111 &&
         extractDTBVId(contentPaid) === expectedString ? (
           <div
             style={{
@@ -401,12 +396,10 @@ export const CheckoutQR = () => {
                   >
                     <div ng-switch-when="vcb" className="ng-scope">
                       <span style={{ color: "#FFF" }}>
-                        {item
-                          ? (item.price * 1).toLocaleString("en-US", {
-                              minimumFractionDigits: 0,
-                              maximumFractionDigits: 0,
-                            })
-                          : "0"}
+                        {(11111111 * 1).toLocaleString("en-US", {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0,
+                        })}
                         <sup>vnđ</sup>
                       </span>
                     </div>

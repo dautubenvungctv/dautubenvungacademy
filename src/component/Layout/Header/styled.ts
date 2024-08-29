@@ -29,6 +29,10 @@ export const StyledHeader = styled.div<any>`
             color: #fff;
             padding: 10px 0;
           }
+          .pro {
+            color: #fff;
+            padding: 10px 0;
+          }
         }
       }
     }
@@ -74,7 +78,7 @@ export const StyledHeader = styled.div<any>`
         height: 100%;
 
         border-radius: 3px;
-        width: 50%;
+        width: 69%;
         .tab {
           display: flex;
           justify-content: center;
@@ -104,7 +108,70 @@ export const StyledHeader = styled.div<any>`
             font-size: 20px;
           }
         }
-
+        .pro {
+          border-radius: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: calc(100% / 3);
+          font-size: 16px;
+          font-weight: 700;
+          color: #ffff;
+          background-color: #b42ae9;
+          padding: 7px;
+          gap: 16px;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+          &:hover {
+            cursor: pointer;
+            background-color: #f41e92;
+          }
+          .icon-home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 9999999px;
+            background-color: #fff;
+            width: 28px;
+            height: 28px;
+            color: #131c2e;
+            font-size: 20px;
+          }
+        }
+        div {
+          .auth {
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(100% / 3);
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffff;
+            background-color: #b42ae9;
+            padding: 7px;
+            gap: 16px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+              "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+              "Helvetica Neue", sans-serif;
+            &:hover {
+              cursor: pointer;
+              background-color: #f41e92;
+            }
+            .icon-home {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 9999999px;
+              background-color: #fff;
+              width: 28px;
+              height: 28px;
+              color: #131c2e;
+              font-size: 20px;
+            }
+          }
+        }
         .tab:nth-child(2) {
           border-left: 1px solid #636e72;
           border-right: 1px solid #636e72;

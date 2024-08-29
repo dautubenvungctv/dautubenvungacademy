@@ -7,7 +7,7 @@ export const StyledLayout = styled.div<any>`
       .box {
         .img {
           width: 53%;
-          height: 240px;
+          height: 300px;
         }
       }
     }
@@ -65,7 +65,7 @@ export const StyledLayout = styled.div<any>`
         flex-direction: column;
         justify-content: space-between;
         padding: 24px;
-        width: calc(50% - 24px);
+        width: calc(50% - 8px);
         background: linear-gradient(to bottom, #0f1a53, #2081f7);
         border-radius: 16px;
         .first {

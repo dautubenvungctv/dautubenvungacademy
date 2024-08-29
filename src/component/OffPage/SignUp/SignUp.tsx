@@ -81,10 +81,11 @@ export const SignUp = () => {
     <StyledSignUp>
       {contextHolder}{" "}
       <div className="sign-in">
-        <div className="title-login">Đăng ký</div>
+        {/* <div className="title-login">Đăng ký</div> */}
         <div className="form-login">
           <div className="title">Email</div>
           <input
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -98,6 +99,7 @@ export const SignUp = () => {
         <div className="form-login">
           <div className="title">Số điện thoại</div>
           <input
+            placeholder="Số điện thoại"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
@@ -114,6 +116,7 @@ export const SignUp = () => {
           <div className="title">Mật khẩu</div>
           <div style={{ position: "relative" }}>
             <input
+              placeholder="Mật khẩu"
               value={passWordFirst}
               onChange={(e) => setPassWordFirst(e.target.value)}
               type={showPassFirst ? "text" : "password"}
@@ -123,7 +126,7 @@ export const SignUp = () => {
               style={{
                 position: "absolute",
                 right: 20,
-                top: 22,
+                top: 18,
                 cursor: "pointer",
               }}
             >
@@ -132,9 +135,10 @@ export const SignUp = () => {
           </div>
         </div>
         <div className="form-login">
-          <div className="title">Nhập lại mật khẩu</div>
+          <div className="title">Xác nhận mật khẩu</div>
           <div style={{ position: "relative" }}>
             <input
+              placeholder="Xác nhận mật khẩu"
               value={passWord}
               onChange={(e) => setPassWord(e.target.value)}
               type={showPass ? "text" : "password"}
@@ -144,7 +148,7 @@ export const SignUp = () => {
               style={{
                 position: "absolute",
                 right: 20,
-                top: 22,
+                top: 18,
                 cursor: "pointer",
               }}
             >
@@ -157,6 +161,9 @@ export const SignUp = () => {
             <></>
           )}
         </div>
+        {/* <div className="box-pass">
+        </div> */}
+
         {/* <div className="memorize">
           <input type="checkbox" name="" id="" />
           <div>Ghi nhớ mật khẩu</div>

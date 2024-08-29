@@ -64,25 +64,8 @@ export const VideoJS = (props) => {
 
   return (
     <div className="margin-video" data-vjs-player>
-      <button
-        style={{
-          background: "#1877F2",
-          marginTop: "70px",
-          border: "none",
-          color: "#fff",
-          fontWeight: 600,
-          padding: "10px 30px",
-          borderRadius: "10px",
-          cursor: "pointer",
-        }}
-        onClick={() => {
-          window.history.back();
-        }}
-      >
-        Back
-      </button>
       <div
-        style={{ width: "100%", marginTop: "20px" }}
+        style={{ width: "100%", borderRadius: "30px", marginTop: "10px" }}
         ref={videoRef}
         className="video-js vjs-big-play-centered"
       ></div>

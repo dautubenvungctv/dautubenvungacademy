@@ -79,7 +79,7 @@ export const Login = () => {
     <StyleLogin>
       {contextHolder}
       <div className="login">
-        <div className="title-login">Đăng nhập</div>
+        {/* <div className="title-login">Đăng nhập</div> */}
 
         <div className="form-login">
           <div className="title">Số điện thoại</div>
@@ -87,6 +87,7 @@ export const Login = () => {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
+            placeholder="Số điện thoại"
           />
           {errPhoneNumber ? (
             <p style={{ margin: 0 }}>Số điện thoại không được để trống</p>
@@ -103,10 +104,11 @@ export const Login = () => {
               value={passWord}
               onChange={(e) => setPassWord(e.target.value)}
               type={showPass ? "text" : "password"}
+              placeholder="Mật khẩu"
             />
             <div
               onClick={() => setShowPass(!showPass)}
-              style={{ position: "absolute", right: 20, top: 22 }}
+              style={{ position: "absolute", right: 20, top: 18 }}
             >
               {showPass ? <IoMdEye /> : <IoIosEyeOff />}
             </div>
@@ -122,12 +124,12 @@ export const Login = () => {
           <input type="checkbox" name="" id="" />
           <div>Ghi nhớ mật khẩu</div>
         </div> */}
-        <button onClick={handleSubmit} className="btn-login">
-          ĐĂNG NHẬP
-        </button>
         <Link to="/forgot-password" className="forgot-password">
           Quên mật khẩu ?
         </Link>
+        <button onClick={handleSubmit} className="btn-login">
+          ĐĂNG NHẬP
+        </button>
       </div>
     </StyleLogin>
   );

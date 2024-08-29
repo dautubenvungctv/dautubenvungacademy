@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StyledHeader } from "./styled";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { FaRegUser } from "react-icons/fa";
+import {
+  FaCrown,
+  FaFacebookSquare,
+  FaRegUser,
+  FaTiktok,
+  FaYoutube,
+} from "react-icons/fa";
+import logocty from "../../../assets/Artboard 2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoMdBook } from "react-icons/io";
@@ -25,6 +32,7 @@ export const Header = () => {
   const mobileMenuRef = useRef<any>(null); // Ref cho menu di động
 
   const info = localStorage.getItem("info");
+
   const token = localStorage.getItem("token");
 
   // Thêm event listener khi component mount
@@ -81,7 +89,7 @@ export const Header = () => {
                   >
                     TRANG CHỦ
                   </Link>
-                  <div
+                  {/* <div
                     onClick={() => {
                       setOpenShowMobile(!openShowMobile);
                       handleScrollTo("courses");
@@ -98,6 +106,13 @@ export const Header = () => {
                     className="tab"
                   >
                     TÀI LIỆU
+                  </Link> */}
+                  <Link
+                    onClick={() => setOpenShowMobile(!openShowMobile)}
+                    to="/payment-pro"
+                    className="tab"
+                  >
+                    TRỞ THÀNH THÀNH VIÊN CỦA DAUTUBENVUNG
                   </Link>
                 </div>
               ) : (
@@ -115,13 +130,56 @@ export const Header = () => {
               <Link to="/" className="tab">
                 TRANG CHỦ
               </Link>
-              <div
-                onClick={() => handleScrollTo("courses")}
+              <a
+                target="_plank"
+                href="https://www.facebook.com/hoangvinhdautu"
                 className="tab"
-                style={{ cursor: "pointer" }}
               >
-                KHOÁ HỌC
-              </div>
+                <FaFacebookSquare
+                  style={{
+                    color: "#0051ff",
+                    background: "#fff",
+                    padding: "1px",
+                    borderRadius: "9999999px",
+                  }}
+                />
+                Fanpage
+              </a>
+              <a
+                target="_plank"
+                href="https://www.youtube.com/@hoangvinhdautubenvung"
+                className="tab"
+              >
+                <FaYoutube
+                  style={{
+                    color: "#ff0000",
+                    background: "#fff",
+                    padding: "1px",
+                    borderRadius: "9999999px",
+                  }}
+                />
+                Youtube
+              </a>
+              <a
+                target="_plank"
+                href="https://dautubenvung.vn/"
+                className="tab"
+                style={{ borderLeft: "1px solid #636e72" }}
+              >
+                <img
+                  src={logocty}
+                  style={{
+                    width: "17px",
+                    height: "17px",
+                    color: "#000000",
+                    background: "#fff",
+                    padding: "1px",
+                    borderRadius: "9999999px",
+                  }}
+                  alt=""
+                ></img>
+                dautubenvung.vn
+              </a>
               {/* <div
               onClick={() => handleScrollTo("book")}
               className="tab"
@@ -129,19 +187,48 @@ export const Header = () => {
             >
               SÁCH
             </div> */}
-              <Link
+              {/* <Link
                 style={{ visibility: "visible" }}
                 to="/document"
                 className="tab"
               >
                 TÀI LIỆU
-              </Link>
+              </Link> */}
+              {token ? (
+                <Link
+                  onClick={() => setOpenShowMobile(!openShowMobile)}
+                  to="/payment-pro"
+                  className="pro"
+                >
+                  <FaCrown />
+                  NÂNG CẤP PRO
+                </Link>
+              ) : (
+                <div style={{ display: "flex", gap: "8pxz" }}>
+                  <Link
+                    onClick={() => setOpenShowMobile(!openShowMobile)}
+                    to="/payment-pro"
+                    className="pro"
+                  >
+                    <FaCrown />
+                    ĐĂNG NHẬP
+                  </Link>
+                  <Link
+                    onClick={() => setOpenShowMobile(!openShowMobile)}
+                    to="/payment-pro"
+                    className="pro"
+                  >
+                    <FaCrown />
+                    ĐĂNG KÝ
+                  </Link>
+                </div>
+              )}
             </div>
             <div style={{ display: "flex", gap: "16px" }}>
               {!token ? (
-                <Link to="/login" className="icon-user">
+                <div className="icon-user">
                   <FaRegUser style={{ color: "#fff" }} />
-                </Link>
+                </div>
               ) : (
                 <div
                   style={{
@@ -172,8 +259,8 @@ export const Header = () => {
                         border: "1px solid #333",
                       }}
                     >
-                      <Link
-                        to="/login"
+                      {/* <Link
+                        to="/my-course"
                         style={{
                           padding: "8px",
                           borderBottom: "1px solid #333",
@@ -188,7 +275,7 @@ export const Header = () => {
                         }}
                       >
                         Khoá học của tôi
-                      </Link>
+                      </Link> */}
                       <Link
                         to="/change-pass"
                         style={{

@@ -13,6 +13,10 @@ body {
 .video-js .vjs-overlay-background {
   width: 13% !important;
 }
+.video-js.vjs-fluid:not(.vjs-audio-only-mode),
+.video-js .vjs-tech {
+  border-radius: 16px;
+}
 @media (max-width: 500px) {
   .margin-video {
     margin-bottom: 80px;
@@ -23,8 +27,13 @@ body {
     margin-bottom: 200px;
   }
 }
-@media (min-width: 700px) {
+@media (max-width: 1200px) {
   .margin-video {
-    margin-bottom: 385px;
+    margin-bottom: 345px;
+  }
+}
+@media (min-width: 1000px) {
+  .margin-video {
+    margin-bottom: 470px;
   }
 }

@@ -138,7 +138,7 @@ const Layout = ({ children }: LayoutProps) => {
         >
           <div
             style={{
-              maxWidth: "1000px",
+              maxWidth: "1500px",
               width: "100%",
               margin: "0 auto",
               flex: 1,
@@ -150,7 +150,8 @@ const Layout = ({ children }: LayoutProps) => {
             {children}
             {location.pathname === "/check-outqr" ||
             location.pathname === "/check-out" ||
-            location.pathname === "/document" ? (
+            location.pathname === "/document" ||
+            location.pathname === "/login" ? (
               <></>
             ) : (
               <div className="wrapper-footer">

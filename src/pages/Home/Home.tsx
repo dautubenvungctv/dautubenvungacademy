@@ -11,12 +11,14 @@ import next from "../../assets/Asset 5.png";
 import { useDispatch } from "react-redux";
 import { setProduct } from "../../redux/app";
 import lotrinh from "../../assets/lotrinh.png";
+import { User } from "../../component/OffPage/index";
 export const Home = () => {
   const dispatch = useDispatch();
   const [infoCompany, setInfoCompany] = useState<any>([]);
   const token = localStorage.getItem("token");
 
   const [listCourse, setListCourse] = useState<any>([]);
+  const info = localStorage.getItem("info");
 
   const [listBooks, setListBooks] = useState([]);
   const navigate = useNavigate();
@@ -76,61 +78,127 @@ export const Home = () => {
   };
   return (
     <StyledHome>
-      <div className="company">
-        <div className="img-company">
-          <img
-            style={{ width: "100%", objectFit: "cover" }}
-            src={infoCompany?.image_url}
-            alt=""
-            className="avt-cty"
-          />
-          <div className="blurred-section"></div>
-        </div>
-        <div className="info-company">
-          <div className="box-icon">
-            <a
-              target="_plank"
-              href="https://www.facebook.com/hoangvinhdautu"
-              style={{ color: "#3D5A98" }}
-              className="icon"
-            >
-              <FaFacebookSquare />
-            </a>
-            <a
-              target="_plank"
-              href="https://www.youtube.com/@hoangvinhdautubenvung"
-              style={{ color: "red" }}
-              className="icon"
-            >
-              <FaYoutube />
-            </a>
-            <a
-              target="_plank"
-              href="https://www.tiktok.com/@hoangvinhdautu"
-              style={{ color: "black" }}
-              className="icon"
-            >
-              <FaTiktok />
-            </a>
-          </div>
-          <div className="info-child">
-            <div className="title-company">
-              <h1>{infoCompany?.title_first}</h1>
-              <h1>{infoCompany?.title_second}</h1>
-            </div>
-            <div className="text-company">
-              <blockquote
-                dangerouslySetInnerHTML={{
-                  __html: infoCompany?.description?.replace(/\n/g, "<br/>"),
-                }}
+      <div className="box-first">
+        <div className="company">
+          <div className="introduce">
+            <div className="img-company">
+              <img
+                style={{ width: "100%", objectFit: "cover" }}
+                src={infoCompany?.image_url}
+                alt=""
+                className="avt-cty"
               />
+              <div className="blurred-section"></div>
+            </div>
+            <div className="info-company">
+              {/* <div className="box-icon">
+                <a
+                  target="_plank"
+                  href="https://www.facebook.com/hoangvinhdautu"
+                  style={{ color: "#3D5A98" }}
+                  className="icon"
+                >
+                  <FaFacebookSquare />
+                </a>
+                <a
+                  target="_plank"
+                  href="https://www.youtube.com/@hoangvinhdautubenvung"
+                  style={{ color: "red" }}
+                  className="icon"
+                >
+                  <FaYoutube />
+                </a>
+                <a
+                  target="_plank"
+                  href="https://www.tiktok.com/@hoangvinhdautu"
+                  style={{ color: "black" }}
+                  className="icon"
+                >
+                  <FaTiktok />
+                </a>
+              </div> */}
+              <div className="info-child">
+                <div className="title-company">
+                  <h1>{infoCompany?.title_first}</h1>
+                  <h1>{infoCompany?.title_second}</h1>
+                </div>
+                <div className="text-company">
+                  <blockquote
+                    dangerouslySetInnerHTML={{
+                      __html: infoCompany?.description?.replace(/\n/g, "<br/>"),
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+        <div className="user">
+          {token ? (
+            <div className="banner-wrapper-header welcome-login-js">
+              <div className="txt-hello">
+                <div className="congrat">
+                  <img
+                    src="https://khanhhung.academy/template/assets/images/home/congrat.png"
+                    alt=""
+                  />
+                </div>
+                <span className="txt-upper">Chào Đồng Nghiệp</span>
+                <div className="congrat">
+                  <img
+                    className="need-trans"
+                    src="https://khanhhung.academy/template/assets/images/home/congrat.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div className="txt-comback">
+                <span className="txt-upper">{info}</span> đã trở lại với
+              </div>
+              <div className="academy">
+                <img
+                  src="https://khanhhung.academy/template/assets/images/home/academy.svg"
+                  alt=""
+                />
+              </div>
+              <Link
+                className="internal-btn btn-cta txt-white"
+                to={"/my-course"}
+              >
+                <div className="inner">
+                  <div className="icon">
+                    <img
+                      src="https://khanhhung.academy/template/assets/images/home/start-up.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="text">
+                    <span className="txt fw-700 txt-upper">
+                      ĐỪNG TRÌ HOÃN NỮA <br />
+                      HÃY BẮT ĐẦU Khoá HỌC NGAY VÀ LUÔN{" "}
+                    </span>
+                    <span className="txt-gif">
+                      Bạn đã hoàn thành <span className="fw-700">0/182</span>{" "}
+                      videos về khoá học rồi
+                    </span>
+                  </div>
+                </div>
+                <div className="image">
+                  <img
+                    src="https://khanhhung.academy/template/assets/images/home/ani-button-02.svg"
+                    alt=""
+                  />
+                </div>
+              </Link>
+            </div>
+          ) : (
+            <User />
+          )}
         </div>
       </div>
       <div className="box-headerhome">
         <div className="container">
-          <div className="member">
+          {/* <div className="member">
             <div
               style={{
                 width: "10%",
@@ -170,15 +238,9 @@ export const Home = () => {
                 dautubenvung.vn
               </a>
             </div>
-          </div>
-          <div className="lotrinh">
-            <img
-              style={{ width: "100%", objectFit: "cover", borderRadius: "8px" }}
-              src={lotrinh}
-              alt=""
-            />
-          </div>
-          <Element name="courses">
+          </div> */}
+
+          {/* <Element name="courses">
             <div className="carousel">
               <strong className="title-course">CHƯƠNG TRÌNH CƠ BẢN</strong>
               <Flex
@@ -313,7 +375,7 @@ export const Home = () => {
                 ))}
               </Flex>
             </div>
-          </Element>
+          </Element> */}
         </div>
       </div>
 

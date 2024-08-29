@@ -20,6 +20,8 @@ import { Document } from "./pages/Document/Document";
 import { ChangePass } from "./pages/ChangePass/ChangePass";
 import { TableVideo } from "./pages/Table/Table";
 import { VideoGlobal } from "./pages/Videos";
+import { Pro } from "./pages/Pro/Pro";
+import { Mycourse } from "./component/OffPage/MyCourse/Mycourse";
 function App() {
   const publics = [
     {
@@ -56,6 +58,10 @@ function App() {
       pages: Member,
     },
     {
+      path: "/payment-pro",
+      pages: Pro,
+    },
+    {
       path: "/list-course",
       pages: ListCourse,
     },
@@ -78,6 +84,10 @@ function App() {
     {
       path: "/video/:courseId/:videoId",
       pages: VideoGlobal,
+    },
+    {
+      path: "/my-course",
+      pages: Mycourse,
     },
   ];
 
