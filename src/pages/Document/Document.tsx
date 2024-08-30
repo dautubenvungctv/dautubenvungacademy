@@ -3,7 +3,7 @@ import { StyleDocument } from "./styles";
 import { Element, Link as Scroll, scroller } from "react-scroll";
 import axios from "axios";
 import { notification } from "antd";
-import anhVinh from "../../assets/anhvinh.jpg";
+import anhVinh from "../../assets/anhvinh.png";
 import { debounce } from "lodash";
 export const Document = () => {
   const [name, setName] = useState("");
@@ -15,10 +15,10 @@ export const Document = () => {
   const [isCooldown, setIsCooldown] = useState(false);
 
   const validateEmail = (email: any) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
-  
 
   const handleScrollTo = (target: any) => {
     setTimeout(() => {
@@ -66,20 +66,24 @@ export const Document = () => {
           if (res.status === 200) {
             api.success({
               message: `Thành công`,
-              description: "Bạn đã đăng ký nhận tài liệu đầu tư miễn phí. Vui lòng vào gmail để xác nhận.",
+              description:
+                "Bạn đã đăng ký nhận tài liệu đầu tư miễn phí. Vui lòng vào gmail để xác nhận.",
               placement: "topRight",
             });
           } else {
             api.error({
               message: `Thất bại`,
-              description: "Đăng ký nhận tài liệu thất bại, vui lòng nhập email hợp lệ",
+              description:
+                "Đăng ký nhận tài liệu thất bại, vui lòng nhập email hợp lệ",
               placement: "topRight",
             });
           }
-        }).catch((err) => {
+        })
+        .catch((err) => {
           api.error({
             message: `Thất bại`,
-            description: "Đăng ký nhận tài liệu thất bại, vui lòng nhập email hợp lệ",
+            description:
+              "Đăng ký nhận tài liệu thất bại, vui lòng nhập email hợp lệ",
             placement: "topRight",
           });
         });
@@ -119,7 +123,7 @@ export const Document = () => {
     } else {
       setErrEmail(false);
     }
-  
+
     // Kiểm tra định dạng email
     if (!validateEmail(email)) {
       setErrEmail(true);
@@ -132,7 +136,7 @@ export const Document = () => {
     } else {
       setErrEmail(false);
     }
-  
+
     // Kiểm tra họ tên trống
     if (name === "") {
       setErrorFullName(true);
@@ -145,7 +149,7 @@ export const Document = () => {
     } else {
       setErrorFullName(false);
     }
-  
+
     // Nếu tất cả thông tin đầy đủ và hợp lệ
     if (!isCooldown) {
       postEmail();
@@ -153,7 +157,7 @@ export const Document = () => {
       debouncedResetCooldown();
     }
   };
-  
+
   return (
     <StyleDocument>
       {contextHolder}
