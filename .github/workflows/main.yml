@@ -1,0 +1,20 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Chạy script một dòng
+      run: echo Hello, world!
+    - name: Chạy script nhiều dòng
+      run: |
+        echo Thêm các lệnh khác bạn cần
+        echo Cái này chạy trong một shell
