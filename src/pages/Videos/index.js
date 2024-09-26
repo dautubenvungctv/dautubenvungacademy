@@ -38,38 +38,16 @@ export const VideoGlobal = ({ dataVideo }: any) => {
   return (
     <StyledVideo>
       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />;
-      <div className="title">{dataVideo?.title}</div>
-      <div className="box-des">
-        <div className="time">
-          <MdAccessTimeFilled style={{ color: "#fff", fontSize: "13px" }} />
-          {dataVideo?.length}
-        </div>
-        <div style={{ marginLeft: 8 }} className="time">
-          <FaPlay style={{ color: "#fff", fontSize: "13px" }} />
-          Lượt xem
-        </div>
-        <div style={{ marginLeft: 8 }} className="time">
-          <FaPlay style={{ color: "#fff", fontSize: "13px" }} />
-          Bài giảng:
-          <div className="btn">
-            <button className="star">
-              <FaStar style={{ color: "#fff" }} /> {dataVideo?.important}
-            </button>
-            {dataVideo?.pro ? (
-              <button className="free">
-                <BiSolidDollarCircle
-                  style={{ color: "#fff", fontSize: "12px" }}
-                />{" "}
-                Pro
-              </button>
-            ) : (
-              <button className="free">
-                <BiSolidDollarCircle
-                  style={{ color: "#fff", fontSize: "12px" }}
-                />{" "}
-                FREE
-              </button>
-            )}
+      <div className="wrapper">
+        <div className="title">{dataVideo?.title}</div>
+        <div className="box-des">
+          <div className="des-child">
+            <ul>
+              This class is a fun and approachable explorantion of hand-coding
+              your first website:
+              <li>Writing and structuring content with HTML</li>
+              <li>Writing and structuring content with HTML</li>
+            </ul>
           </div>
         </div>
       </div>

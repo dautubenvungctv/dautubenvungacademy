@@ -151,6 +151,7 @@ const Layout = ({ children }: LayoutProps) => {
             {location.pathname === "/check-outqr" ||
             location.pathname === "/check-out" ||
             location.pathname === "/document" ||
+            location.pathname === "/my-course" ||
             location.pathname === "/login" ? (
               <></>
             ) : (

@@ -1,68 +1,50 @@
 import styled from "styled-components";
 export const StyledVideo = styled.div<any>`
-  .title {
-    font-size: 1.2rem;
-    line-height: 2.8rem;
-    font-weight: 700;
-    overflow: hidden;
-    color: #fff;
-    display: block;
-    max-height: 5.6rem;
-    -webkit-line-clamp: 2;
-    display: box;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    white-space: normal;
-    font-family: "Roboto", "Arial", sans-serif;
-  }
-  .box-des {
-    display: flex;
-    .time {
-      margin-top: 5px;
-      gap: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  .wrapper {
+    padding: 10px 16px;
+    background-color: #310243;
+    border-radius: 8px;
+    .title {
+      font-size: 1.5rem;
+      line-height: 2.8rem;
+      font-weight: 600;
+      overflow: hidden;
       color: #fff;
-      font-size: 0.9rem;
-      padding-right: 8px;
-      border-right: 1px solid #ccc;
-      .btn {
-        display: flex;
-        gap: 5px;
-        .star {
-          border: none;
-          cursor: pointer;
-          background-color: #56d699;
-          border-radius: 3px;
-          font-size: 9.5px;
-          color: #fff;
-          padding-top: 2px;
-          padding-bottom: 2px;
-          gap: 2px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .free {
-          border: none;
-          cursor: pointer;
-          background-color: #56d699;
-          border-radius: 3px;
-          font-size: 9.5px;
-          gap: 2px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #fff;
-          padding-top: 2px;
-          padding-bottom: 2px;
+      display: block;
+      max-height: 5.6rem;
+      -webkit-line-clamp: 2;
+      display: box;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      white-space: normal;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom: 15px;
+    }
+    .box-des {
+      display: flex;
+
+      .des-child {
+        color: #fff;
+
+        ul {
+          font-size: 1.1rem;
+
+          margin-top: 0;
+          margin-bottom: 3px;
+          padding: 0px !important;
+          font-family: Arial, Helvetica, sans-serif;
+          li:first-child {
+            margin-top: 5px;
+          }
+          li {
+            font-size: 1rem;
+            padding: 3px 0;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 30px;
+          }
         }
       }
-    }
-    .time:last-child {
-      border: none;
     }
   }
 `;

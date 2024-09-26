@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const StyledMyCourse = styled.div<any>`
+  margin-bottom: 20px;
   /* @media (min-width: 800px) {
     width: 100%;
     .wrapper-footer {
@@ -37,81 +38,80 @@ export const StyledMyCourse = styled.div<any>`
     }
   } */
   .wrapper-footer {
-    padding: 30px 15px;
-    .title-group {
+  }
+  .title-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.3em; /* Adjust this value as needed */
+    font-family: Arial, sans-serif;
+  }
+  .box {
+    margin: 10px 0;
+    display: flex;
+
+    align-items: center;
+
+    padding: 6px 0px;
+    border-radius: 5px;
+    gap: 30px;
+    .img {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      color: #fff;
-      font-size: 17px;
-      font-weight: 500;
-      letter-spacing: 0.3em; /* Adjust this value as needed */
-      font-family: Arial, sans-serif;
+      height: 300px;
     }
-    .box {
-      margin: 10px 0;
+    .box-text {
+      gap: 16px;
+      width: 50% !important;
       display: flex;
-
       align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 75px 24px 75px 24px;
 
-      padding: 6px;
-      border-radius: 5px;
-      gap: 30px;
-      .img {
+      background: linear-gradient(to bottom, #0f1a53, #2081f7);
+      border-radius: 16px;
+      .first {
+        font-weight: 400;
+        font-family: "system-ui";
+        /* margin-bottom: 0.5em; */
+        margin-top: 0;
+        text-rendering: optimizeSpeed;
         width: 100%;
-        height: 300px;
+        font-size: 17px;
+        color: #fff;
       }
-      .box-text {
-        gap: 16px;
-        width: 50% !important;
+      .demo-group {
+        font-size: 11px;
+        color: #fff;
+        font-family: sans-serif;
+      }
+      .box-btn-group {
         display: flex;
-        align-items: center;
-        flex-direction: column;
         justify-content: space-between;
-        padding: 75px 24px 75px 24px;
-
-        background: linear-gradient(to bottom, #0f1a53, #2081f7);
-        border-radius: 16px;
-        .first {
-          font-weight: 400;
-          font-family: "system-ui";
-          /* margin-bottom: 0.5em; */
-          margin-top: 0;
-          text-rendering: optimizeSpeed;
-          width: 100%;
-          font-size: 17px;
-          color: #fff;
+        width: 100%;
+        align-items: center;
+        .icon-next {
+          width: 20% !important;
         }
-        .demo-group {
-          font-size: 11px;
-          color: #fff;
-          font-family: sans-serif;
-        }
-        .box-btn-group {
+        .second {
+          padding: 6px 20px !important;
           display: flex;
-          justify-content: space-between;
-          width: 100%;
+          justify-content: center;
           align-items: center;
-          .icon-next {
-            width: 20% !important;
-          }
-          .second {
-            padding: 6px 20px !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            color: #031b55;
-            font-weight: 700;
-            background-color: #56d699;
-            font-size: 13px;
+          border: none;
+          color: #031b55;
+          font-weight: 700;
+          background-color: #56d699;
+          font-size: 13px;
 
-            height: 100%;
-            border-radius: 20px;
-            &:hover {
-              border: 1.5px solid #ffcf03;
-            }
+          height: 100%;
+          border-radius: 20px;
+          &:hover {
+            border: 1.5px solid #ffcf03;
           }
         }
       }
@@ -355,8 +355,17 @@ export const StyledMyCourse = styled.div<any>`
       }
     }
     .list-video {
+      border: 1px solid #68008f;
+      border-radius: 4px;
       width: 24%;
+      padding: 16px;
       margin-top: 8px;
+      .carousel-tab {
+        color: #fff;
+        font-size: 23px;
+        font-weight: 600;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
       .box-group {
         margin-top: 16px;
         h2 {
@@ -364,38 +373,51 @@ export const StyledMyCourse = styled.div<any>`
           color: #fff;
         }
         .item-video {
-          height: 94px;
+          /* height: 94px; */
           display: flex;
           gap: 8px;
-
+          align-items: center;
+          padding: 10px 0;
           border-radius: 5px;
           cursor: pointer;
           margin-bottom: 8px;
+          .icon-video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            /* background-color: #593ce6; */
+            width: 27px;
+            height: 27px;
+          }
           img {
             border-radius: 8px;
             width: 46%;
             height: 100%;
           }
           .info-item-video {
-            width: 54%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: space-between;
+            width: 100%;
             .title {
-              margin: 0 0 4px 0;
+              /* margin: 0 0 4px 0; */
               font-family: "Roboto", "Arial", sans-serif;
-              font-size: 0.78rem;
+              font-size: 0.9rem;
               color: #fff;
               font-weight: 500;
               overflow: hidden;
               display: block;
               max-height: 4rem;
               -webkit-line-clamp: 2;
-              display: box;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               text-overflow: ellipsis;
               white-space: normal;
             }
             .child-box {
-              display: flex;
+              /* display: flex; */
               justify-content: space-between;
               align-items: center;
               .btn {
@@ -450,7 +472,7 @@ export const StyledMyCourse = styled.div<any>`
                 }
               }
               .time {
-                margin-top: 5px;
+                /* margin-top: 5px; */
                 gap: 2px;
                 display: flex;
                 align-items: center;
